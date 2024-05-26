@@ -836,4 +836,17 @@ require("lazy").setup({
         end,
     },
 
+    {
+        "numToStr/Comment.nvim",
+        lazy = true,
+        event = { "CursorHold", "CursorHoldI" },
+
+        opts = {},
+        config = function(_, opts)
+            require("Comment").setup(opts)
+        end,
+    },
+
+
+
 })
