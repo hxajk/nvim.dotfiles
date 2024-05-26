@@ -157,4 +157,57 @@ require("lazy").setup({
             vim.cmd("colorscheme tokyonight")
         end
     },
+    {
+        {
+		"nvimdev/dashboard-nvim",
+		event = "BufWinEnter",
+		lazy = true,
+		opts = function()
+			local logo = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+            ]]
+
+			logo = string.rep("\n", 8) .. logo .. "\n\n"
+
+			local opts = {
+				theme = "doom",
+				hide = {
+					statusline = false,
+				},
+				config = {
+					header = vim.split(logo, "\n"),
+                    -- stylua: ignore
+                    center = {
+                        { action = "Telescope find_files", desc = " Find File", icon = " ", key = "f" },
+                        { action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
+                        { action = "Telescope oldfiles", desc = " Recent Files", icon = " ", key = "r" },
+                        { action = "Telescope colorscheme", desc = " Change Background", icon = " ", key = "t" },
+                        { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
+                        { action = 'e $MYVIMRC', desc = " Configuration", icon = " ", key = "c" },
+                        { action = "qa", desc = " Quit Neovim", icon = " ", key = "q" },
+                    },
+					footer = function()
+						local stats = require("lazy").stats()
+						local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+						return {
+							"⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+						}
+					end,
+				},
+			}
+
+			for _, button in ipairs(opts.config.center) do
+				button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+				button.key_format = "  %s"
+			end
+
+			return opts
+		end,
+	},
+    },
 })
