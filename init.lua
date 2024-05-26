@@ -598,9 +598,7 @@ require("lazy").setup({
             for _, server in ipairs(servers) do
                 require("lspconfig")[server].setup({
                     on_attach = function(client, buffer)
-                        require("core.lsp").on_attach(client, buffer)
                     end,
-                    capabilities = require("core.lsp").capabilities(),
                 })
             end
 
@@ -618,6 +616,33 @@ require("lazy").setup({
                     },
                 },
             })
+        end,
+    },
+
+
+     {
+        "williamboman/mason.nvim",
+        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+        lazy = true,
+        opts = {
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_uninstalled = "✗",
+                    package_pending = "⟳",
+                },
+            },
+        },
+        config = function(_, opts)
+            local ensure_installed = { "lua-language-server", "stylua" }
+
+            require("mason").setup(opts)
+
+            vim.api.nvim_create_user_command("MasonInstallAll", function()
+                if ensure_installed and #ensure_installed > 0 then
+                    vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
+                end
+            end, {})
         end,
     },
 })
