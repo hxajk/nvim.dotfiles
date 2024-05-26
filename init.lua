@@ -93,6 +93,12 @@ local is_windows = vim.fn.has("win32") ~= 0
 
 vim.g.mapleader = " "
 
+-- Insert mode mappings
+vim.keymap.set('i', 'jj', '<ESC>', { desc = 'Turn to normal mode' })
+vim.keymap.set('i', '<C-b>', '<ESC>^i', { desc = 'Beginning of line' })
+vim.keymap.set('i', '<C-e>', '<End>', { desc = 'End of line' })
+
+
 -- Normal mode mappings
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
@@ -113,3 +119,8 @@ end, { desc = 'Fast move up' })
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>|', '<cmd>vsplit<cr>', { desc = 'Vertical Split' })
 vim.keymap.set('n', '<leader>\\', '<cmd>split<cr>', { desc = 'Horizontal Split' })
+
+-- Visual mode mappings
+vim.keymap.set('x', 'X', '"_x"', { desc = 'Delete all characters in line' })
+vim.keymap.set('x', '>', '<gv', { desc = 'Indent line' })
+vim.keymap.set('x', '<', '<gv', { desc = 'Unindent line' })
