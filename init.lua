@@ -567,4 +567,57 @@ require("lazy").setup({
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
+
+        {
+        -- LSP and Autocompletion
+        "neovim/nvim-lspconfig",
+        lazy = true,
+        event = { "CursorHold", "CursorHoldI" },
+        opts = function()
+            return {
+                underline = true,
+                severity_sort = true,
+                update_in_insert = false,
+                diagnostic = {
+                    underline = true,
+                    update_in_insert = false,
+                    virtual_text = {
+                        spacing = 4,
+                        source = "if_many",
+                        prefix = "●",
+                    },
+                    severity_sort = true,
+                },
+            }
+        end,
+        config = function(_, opts)
+            vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+
+            local servers =  { "clangd", "pyright" }
+
+            for _, server in ipairs(servers) do
+                require("lspconfig")[server].setup({
+                    on_attach = function(client, buffer)
+                        require("core.lsp").on_attach(client, buffer)
+                    end,
+                    capabilities = require("core.lsp").capabilities(),
+                })
+            end
+
+            require("lspconfig").lua_ls.setup({
+                on_attach = function(client, buffer)
+                    require("core.lsp").on_attach(client, buffer)
+                end,
+                capabilities = require("core.lsp").capabilities(),
+
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                    },
+                },
+            })
+        end,
+    },
 })
