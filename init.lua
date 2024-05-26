@@ -209,6 +209,35 @@ require("lazy").setup({
 	},
     },
 
+    	{
+		"echasnovski/mini.indentscope",
+		version = false, -- wait till new 0.7.0 release to put it back on semver
+		opts = {
+			symbol = "│",
+			options = { try_as_border = true },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"trouble",
+					"lazy",
+					"mason",
+					"notify",
+					"toggleterm",
+					"lazyterm",
+				},
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+		end,
+	},
+
     {
 		"akinsho/bufferline.nvim",
 		lazy = true,
@@ -349,8 +378,33 @@ require("lazy").setup({
             for _, map in ipairs(mappings) do
                 vim.keymap.set("n", map[1], map[2], map[3])
             end
-        end
-,
+        end,
 	},
 
+    {
+		"folke/which-key.nvim",
+		lazy = true,
+		event = { "CursorHold", "CursorHoldI" },
+		init = function()
+		end,
+		opts = {
+			disable = { filetypes = { "TelescopePrompt" } },
+			layout = {
+				height = { min = 3, max = 25 },
+				align = "center",
+			},
+			window = {
+				border = "none",
+				position = "bottom",
+				margin = { 1, 0, 1, 0 },
+				padding = { 1, 1, 1, 1 },
+				winblend = 0,
+			},
+		},
+		config = function(_, opts)
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require("which-key").setup(opts)
+		end,
+	},
 })
