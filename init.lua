@@ -532,4 +532,39 @@ require("lazy").setup({
             require("telescope").load_extension("ui-select")
         end,
     },
+
+
+
+     {
+        "nvim-treesitter/nvim-treesitter",
+        build = function()
+            if #vim.api.nvim_list_uis() ~= 0 then
+                vim.api.nvim_command([[TSUpdate]])
+            end
+        end,
+        event = "BufReadPre",
+        lazy = true,
+        version = false,
+        init = function(plugin)
+            require("lazy.core.loader").add_to_rtp(plugin)
+            require("nvim-treesitter.query_predicates")
+        end,
+        opts = {
+            hightlight = {
+                enable = true,
+                disable = { "help" },
+            },
+            indent = { enable = true },
+
+            ensure_installed = {
+                "markdown",
+                "vim",
+                "vimdoc",
+                "lua",
+            },
+        },
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end,
+    },
 })
