@@ -21,6 +21,14 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 
+
+-- File handling
+vim.opt.autowrite = true
+vim.opt.swapfile = true
+vim.opt.backup = false
+vim.opt.undofile = true
+
+
 -- Indentation and tabs
 vim.opt.tabstop = 4        -- Number of spaces for a tab
 vim.opt.shiftwidth = 4     -- Spaces for auto-indent
