@@ -124,3 +124,37 @@ vim.keymap.set('n', '<leader>\\', '<cmd>split<cr>', { desc = 'Horizontal Split' 
 vim.keymap.set('x', 'X', '"_x"', { desc = 'Delete all characters in line' })
 vim.keymap.set('x', '>', '<gv', { desc = 'Indent line' })
 vim.keymap.set('x', '<', '<gv', { desc = 'Unindent line' })
+
+-- Terminal mode mappings 
+
+vim.keymap.set('t',"<C-h>","<cmd>wincmd h<cr>", {desc = "Terminal left window navigation" })
+vim.keymap.set('t',"<C-j>", "<cmd>wincmd j<cr>", {desc = "Terminal down window navigation" })
+vim.keymap.set('t',"<C-k>", "<cmd>wincmd k<cr>", { desc = "Terminal up window navigation" })
+vim.keymap.set('t',"<C-l>","<cmd>wincmd l<cr>", {desc = "Terminal right window navigation"})
+
+
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+
+
+require("lazy").setup({
+    {
+        "folke/tokyonight.nvim",
+		lazy = false,
+        config = function()
+            vim.cmd("colorscheme tokyonight")
+        end
+    },
+})
