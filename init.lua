@@ -412,4 +412,124 @@ require("lazy").setup({
     { "nvim-lua/plenary.nvim",       lazy = true },
 
     { "nvim-tree/nvim-web-devicons", lazy = true},
+
+
+        {
+        "folke/persistence.nvim",
+        event = "BufReadPre",
+        lazy = true,
+        opts = {},
+
+        config = function(_, opts)
+            require("persistence").setup(opts)
+        end,
+    },
+    {
+        "akinsho/toggleterm.nvim",
+        lazy = true,
+        cmd = {
+            "ToggleTerm",
+            "ToggleTermSetName",
+            "ToggleTermToggleAll",
+            "ToggleTermSendVisualLines",
+            "ToggleTermSendCurrentLine",
+            "ToggleTermSendVisualSelection",
+        },
+        opts = {
+            on_open = function(_)
+                -- Prevent infinite calls from freezing neovim.
+                -- Only set these options specific to this terminal buffer.
+                vim.api.nvim_set_option_value("foldmethod", "manual", { scope = "local" })
+                vim.api.nvim_set_option_value("foldexpr", "0", { scope = "local" })
+            end,
+            highlights = {
+                Normal = {
+                    link = "Normal",
+                },
+                NormalFloat = {
+                    link = "NormalFloat",
+                },
+                FloatBorder = {
+                    link = "FloatBorder",
+                },
+            },
+            open_mapping = false,
+            hide_numbers = true,
+            shade_filetypes = {},
+            shade_terminals = false,
+            shading_factor = "1",
+            start_in_insert = true,
+            persist_mode = false,
+            insert_mappings = true,
+            persist_size = true,
+            close_on_exit = true,
+            shell = vim.o.shell,
+        },
+
+        config = function(_, opts)
+            require("toggleterm").setup(opts)
+        end,
+    },
+
+    -- Fuzzy Finder
+    {
+        "nvim-telescope/telescope.nvim",
+        lazy = true,
+        cmd = "Telescope",
+        dependencies = {
+            {
+                "nvim-telescope/telescope-ui-select.nvim",
+            },
+        },
+        opts = {
+            pickers = {
+                colorscheme = {
+                    enable_preview = true,
+                },
+            },
+            defaults = {
+                prompt_prefix = "  ",
+                initial_mode = "insert",
+                results_title = false,
+                layout_strategy = "horizontal",
+                path_display = { "absolute" },
+                selection_strategy = "reset",
+                sorting_strategy = "ascending",
+                color_devicons = true,
+                selection_caret = "  ",
+                file_ignore_patterns = {
+                    ".git/*",
+                    ".cache/**",
+                    "build/**",
+                    "%.class",
+                    "%.pdf",
+                    "%.mkv",
+                    "%.mp4",
+                    "%.zip",
+                    "*.o",
+                    "*.exe",
+                    "bin/*",
+                },
+                layout_config = {
+                    horizontal = {
+                        prompt_position = "top",
+                        preview_width = 0.55,
+                        results_width = 0.8,
+                    },
+                    vertical = {
+                        mirror = false,
+                    },
+                    width = 0.85,
+                    height = 0.92,
+                    preview_cutoff = 120,
+                },
+            },
+            extensions = {},
+        },
+
+        config = function(_, opts)
+            require("telescope").setup(opts)
+            require("telescope").load_extension("ui-select")
+        end,
+    },
 })
