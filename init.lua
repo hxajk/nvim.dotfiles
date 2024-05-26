@@ -270,4 +270,87 @@ require("lazy").setup({
 			require("lualine").setup(opts)
 		end,
 	},
+
+
+    {
+		"rcarriga/nvim-notify",
+		lazy = true,
+		event = "VeryLazy",
+		config = function()
+			require("notify").setup({
+				stages = "fade",
+				timeout = 3000,
+				max_height = function()
+					return math.floor(vim.o.lines * 0.75)
+				end,
+				max_width = function()
+					return math.floor(vim.o.columns * 0.75)
+				end,
+				on_open = function(win)
+					vim.api.nvim_win_set_config(win, { zindex = 100 })
+				end,
+			})
+			vim.notify = require("notify")
+		end,
+	},
+
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		lazy = true,
+		dependencies = {
+			{ "MunifTanjim/nui.nvim", lazy = true },
+		},
+		opts = {
+			lsp = {
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true,
+				},
+			},
+			routes = {
+				{
+					filter = {
+						event = "msg_show",
+						any = {
+							{ find = "%d+L, %d+B" },
+							{ find = "; after #%d+" },
+							{ find = "; before #%d+" },
+						},
+					},
+					view = "mini",
+				},
+			},
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+				inc_rename = true,
+			},
+		},
+        -- stylua: ignore
+        config = function(_, opts)
+            local noice = require("noice")
+            local noice_lsp = require("noice.lsp")
+            noice.setup(opts)
+
+            local mappings = {
+                { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end,                 { desc = "Redirect Cmdline" } },
+                { "<leader>sl", function() noice.cmd("last") end,                                   { desc = "Noice Last Message" } },
+                { "<leader>sh", function() noice.cmd("history") end,                                { desc = "Noice History" } },
+                { "<leader>sa", function() noice.cmd("all") end,                                    { desc = "Noice All" } },
+                { "<leader>sd", function() noice.cmd("dismiss") end,                                { desc = "Dismiss All" } },
+                { "<leader>st", function() noice.cmd("telescope") end,                              { desc = "Noice Telescope" } },
+                { "<c-f>",      function() if not noice_lsp.scroll(4) then return "<c-f>" end end,  { silent = true, expr = true, desc = "Scroll Forward" } },
+                { "<c-b>",      function() if not noice_lsp.scroll(-4) then return "<c-b>" end end, { silent = true, expr = true, desc = "Scroll Backward" } },
+            }
+
+            for _, map in ipairs(mappings) do
+                vim.keymap.set("n", map[1], map[2], map[3])
+            end
+        end
+,
+	},
+
 })
