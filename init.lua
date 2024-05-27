@@ -27,19 +27,18 @@ vim.opt.numberwidth = 1
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
 }
 
-
 -- Indentation and tabs
-vim.opt.tabstop = 4        -- Number of spaces for a tab
-vim.opt.shiftwidth = 4     -- Spaces for auto-indent
-vim.opt.expandtab = true   -- Convert tabs to spaces
+vim.opt.tabstop = 4 -- Number of spaces for a tab
+vim.opt.shiftwidth = 4 -- Spaces for auto-indent
+vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.smartindent = true -- Smart indentation
 
 -- File handling
@@ -72,7 +71,7 @@ vim.opt.virtualedit = "block"
 
 -- Smooth scrolling (available in Neovim 0.10 and above)
 if vim.fn.has("nvim-0.10") == 1 then
-  vim.opt.smoothscroll = true
+	vim.opt.smoothscroll = true
 end
 
 -- Editor settings
@@ -88,16 +87,15 @@ vim.g.maplocalleader = ";"
 vim.g.icons_enabled = true
 vim.g.autoformat = false
 
--- Extras 
+-- Extras
 
 for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
+	vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 local is_windows = vim.fn.has("win32") ~= 0
 
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
-
 
 -- Key maps ---------------------------------------------
 
@@ -220,7 +218,7 @@ require("lazy").setup({
 		},
 	},
 
-    	{
+	{
 		"echasnovski/mini.indentscope",
 		version = false, -- wait till new 0.7.0 release to put it back on semver
 		opts = {
@@ -416,7 +414,6 @@ require("lazy").setup({
 		end,
 	},
 
-
 	-- library used by other plugins
 	{ "nvim-lua/plenary.nvim", lazy = true },
 
@@ -427,12 +424,12 @@ require("lazy").setup({
 		event = "BufReadPre",
 		lazy = true,
 		opts = {},
-        keys = {
-            {"<leader>S", "<cmd><leader>S<cr>", desc = "+ Session"},
-            {"<leader>Sa", [[<cmd>lua require("persistence").load()]], desc = "Load current session"},
-            {"<leader>Sb", [[<cmd>lua require("persistence").load({last = true})<cr>]], desc = "Load last session"},
-            {"<leader>Sc", [[<cmd>lua require("persistence").stop()<cr>]], desc = "Stop session saved on exit"},
-        },
+		keys = {
+			{ "<leader>S", "<cmd><leader>S<cr>", desc = "+ Session" },
+			{ "<leader>Sa", [[<cmd>lua require("persistence").load()]], desc = "Load current session" },
+			{ "<leader>Sb", [[<cmd>lua require("persistence").load({last = true})<cr>]], desc = "Load last session" },
+			{ "<leader>Sc", [[<cmd>lua require("persistence").stop()<cr>]], desc = "Stop session saved on exit" },
+		},
 
 		config = function(_, opts)
 			require("persistence").setup(opts)
@@ -482,8 +479,13 @@ require("lazy").setup({
 
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
-			vim.keymap.set("n", "<leader>t", "<Cmd><leader>t<cr>", {desc = "+ Terminal"})
-			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle terminal (float)" })
+			vim.keymap.set("n", "<leader>t", "<Cmd><leader>t<cr>", { desc = "+ Terminal" })
+			vim.keymap.set(
+				"n",
+				"<leader>tt",
+				"<cmd>ToggleTerm direction=float<cr>",
+				{ desc = "Toggle terminal (float)" }
+			)
 			vim.keymap.set(
 				"n",
 				"<leader>th",
@@ -502,7 +504,7 @@ require("lazy").setup({
 	-- Fuzzy Finder
 	{
 		"nvim-telescope/telescope.nvim",
-		lazy = true,
+		lazy = false,
 		cmd = "Telescope",
 		dependencies = {
 			{
@@ -558,6 +560,46 @@ require("lazy").setup({
 		config = function(_, opts)
 			require("telescope").setup(opts)
 			require("telescope").load_extension("ui-select")
+
+            vim.keymap.set("n", "<leader>f", "<leader>f", {desc = "+ Telescope"})
+
+			vim.keymap.set("n", "<leader>fa", function()
+				local cwd = vim.fn.stdpath("config") .. "/.."
+				local search_dirs = { vim.fn.stdpath("config") }
+				if #search_dirs == 1 then
+					cwd = search_dirs[1]
+				end -- if only one directory, focus cwd
+				require("telescope.builtin").find_files({
+					prompt_title = "Config Files",
+					cwd = cwd,
+				}) -- call telescope
+			end, { desc = "Find nvim config files" })
+
+			-- Find help
+			vim.keymap.set("n", "<leader>fh", function()
+				require("telescope.builtin").help_tags()
+			end, { desc = "Find help" })
+
+			-- Find word in current buffer
+			vim.keymap.set("n", "<leader>f/", function()
+				require("telescope.builtin").current_buffer_fuzzy_find()
+			end, { desc = "Find word in current buffer" })
+
+			-- Find recent files
+			vim.keymap.set("n", "<leader>fo", function()
+				require("telescope.builtin").oldfiles()
+			end, { desc = "Find recent" })
+
+			-- Find all files
+			vim.keymap.set("n", "<leader>ff", function()
+				require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+			end, { desc = "Find all files" })
+
+			-- Find themes
+			vim.keymap.set("n", "<leader>ft", function()
+				pcall(vim.api.nvim_command, "doautocmd User LoadColorSchemes")
+				pcall(require("telescope.builtin").colorscheme, { enable_preview = true })
+			end, { desc = "Find themes" })
 		end,
 	},
 
@@ -656,7 +698,7 @@ require("lazy").setup({
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-            vim.keymap.set("n", "<leader>l", "<leader>l", {desc = "+ LSP"})
+			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+ LSP" })
 			vim.keymap.set("n", "<leader>lu", function()
 				vim.g.autoformat = not vim.g.autoformat
 
@@ -911,5 +953,4 @@ require("lazy").setup({
 			end,
 		},
 	},
-
 })
