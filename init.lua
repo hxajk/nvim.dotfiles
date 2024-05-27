@@ -944,21 +944,21 @@ require("lazy").setup({
 				end
             
             -- stylua: ignore start 
-        map("n", "<leader>g", "<leader>g", "+ Git")
-        map("n", "]h", function() gs.nav_hunk("next") end, "Next Hunk")
-        map("n", "[h", function() gs.nav_hunk("prev") end, "Prev Hunk")
-        map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
-        map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
-        map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>gp", gs.preview_hunk_inline, "Preview Hunk Inline")
-        map("n", "<leader>gb", function() gs.blame_line({ full = true }) end, "Blame Line")
-        map("n", "<leader>gd", gs.diffthis, "Diff This")
-        map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff This ~")
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+            vim.keymap.set('n', '<leader>g', '<leader>g', { desc = '+ Git' })
+            vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
+            vim.keymap.set('n', '[h', function() gs.nav_hunk("prev") end, { desc = 'Prev Hunk' })
+            vim.keymap.set('n', ']H', function() gs.nav_hunk("last") end, { desc = 'Last Hunk' })
+            vim.keymap.set('n', '[H', function() gs.nav_hunk("first") end, { desc = 'First Hunk' })
+            vim.keymap.set({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage Hunk' })
+            vim.keymap.set({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset Hunk' })
+            vim.keymap.set('n', '<leader>gS', gs.stage_buffer, { desc = 'Stage Buffer' })
+            vim.keymap.set('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Undo Stage Hunk' })
+            vim.keymap.set('n', '<leader>gR', gs.reset_buffer, { desc = 'Reset Buffer' })
+            vim.keymap.set('n', '<leader>gp', gs.preview_hunk_inline, { desc = 'Preview Hunk Inline' })
+            vim.keymap.set('n', '<leader>gb', function() gs.blame_line({ full = true }) end, { desc = 'Blame Line' })
+            vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'Diff This' })
+            vim.keymap.set('n', '<leader>gD', function() gs.diffthis("~") end, { desc = 'Diff This ~' })
+            vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'GitSigns Select Hunk' })   
 			end,
 		},
 	},
