@@ -89,10 +89,13 @@ vim.g.autoformat = false
 
 -- Extras
 
-for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
-	vim.g["loaded_" .. provider .. "_provider"] = 0
-end
+-- disable some default providers
+vim.g["loaded_node_provider"] = 0
+vim.g["loaded_python3_provider"] = 0
+vim.g["loaded_perl_provider"] = 0
+vim.g["loaded_ruby_provider"] = 0
 
+-- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
@@ -722,7 +725,7 @@ require("lazy").setup({
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
-		event = "User Lazy",
+		event = "VeryLazy",
 	},
 
 	{
