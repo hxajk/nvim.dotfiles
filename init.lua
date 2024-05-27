@@ -12,7 +12,7 @@
 -- Update: 2024-05-30 18:41:00
 
 -- Options
-
+    
 -- Clipboard setup based on environment
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
@@ -216,7 +216,7 @@ require("lazy").setup({
 		},
 	},
 
-	{
+    	{
 		"echasnovski/mini.indentscope",
 		version = false, -- wait till new 0.7.0 release to put it back on semver
 		opts = {
@@ -244,7 +244,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 	{
 		"akinsho/bufferline.nvim",
 		lazy = true,
@@ -387,6 +386,32 @@ require("lazy").setup({
             end
         end,
 	},
+	{
+		"folke/which-key.nvim",
+		lazy = true,
+		event = { "CursorHold", "CursorHoldI" },
+		init = function() end,
+		opts = {
+			disable = { filetypes = { "TelescopePrompt" } },
+			layout = {
+				height = { min = 3, max = 25 },
+				align = "center",
+			},
+			window = {
+				border = "none",
+				position = "bottom",
+				margin = { 1, 0, 1, 0 },
+				padding = { 1, 1, 1, 1 },
+				winblend = 0,
+			},
+		},
+		config = function(_, opts)
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require("which-key").setup(opts)
+		end,
+	},
+
 
 	-- library used by other plugins
 	{ "nvim-lua/plenary.nvim", lazy = true },
@@ -405,7 +430,7 @@ require("lazy").setup({
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		lazy = true,
+		lazy = false,
 		cmd = {
 			"ToggleTerm",
 			"ToggleTermSetName",
@@ -447,6 +472,20 @@ require("lazy").setup({
 
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
+			vim.keymap.set("n", "<leader>t", "<Cmd><leader>t<cr>", {desc = "+ Terminal"})
+			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle terminal (float)" })
+			vim.keymap.set(
+				"n",
+				"<leader>th",
+				"<cmd>ToggleTerm direction=horizontal<cr>",
+				{ desc = "Toggle terminal (horizontal)" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>tv",
+				"<cmd>ToggleTerm direction=veritcal<cr>",
+				{ desc = "Toggle terminal (vertical)" }
+			)
 		end,
 	},
 
@@ -607,7 +646,7 @@ require("lazy").setup({
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-
+            vim.keymap.set("n", "<leader>l", "<leader>l", {desc = "+ LSP"})
 			vim.keymap.set("n", "<leader>lu", function()
 				vim.g.autoformat = not vim.g.autoformat
 
@@ -863,35 +902,4 @@ require("lazy").setup({
 		},
 	},
 
-	{
-		"folke/which-key.nvim",
-		lazy = true,
-		event = { "CursorHold", "CursorHoldI" },
-		init = function() end,
-		opts = {
-			disable = { filetypes = { "TelescopePrompt" } },
-			layout = {
-				height = { min = 3, max = 25 },
-				align = "center",
-			},
-			window = {
-				border = "none",
-				position = "bottom",
-				margin = { 1, 0, 1, 0 },
-				padding = { 1, 1, 1, 1 },
-				winblend = 0,
-			},
-		},
-		config = function(_, opts)
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-			require("which-key").setup(opts)
-
-			local function map(mode, l, r, desc)
-				vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-			end
-
-			map("n", "<leader>l", "<leader>l", "+ LSP")
-		end,
-	},
 })
