@@ -1,4 +1,6 @@
 	-------------------- Development Tools ----------------------------
+
+local get_icons = require("core").get_icon
 return {
     {
 		"nvim-treesitter/nvim-treesitter",
