@@ -88,6 +88,9 @@ M.Icons = {
 }
 
 M.get_icon = function(kind, padding, enable) -- Later on...
+    if not vim.g.icons_enabled and enable then
+        return ""
+    end    
 
     local Base = M.Icons
     local icon = Base["base"] and Base["base"][kind]
