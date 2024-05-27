@@ -561,7 +561,7 @@ require("lazy").setup({
 			require("telescope").setup(opts)
 			require("telescope").load_extension("ui-select")
 
-            vim.keymap.set("n", "<leader>f", "<leader>f", {desc = "+ Telescope"})
+			vim.keymap.set("n", "<leader>f", "<leader>f", { desc = "+ Telescope" })
 
 			vim.keymap.set("n", "<leader>fa", function()
 				local cwd = vim.fn.stdpath("config") .. "/.."
@@ -905,6 +905,15 @@ require("lazy").setup({
 		"numToStr/Comment.nvim",
 		lazy = true,
 		event = { "CursorHold", "CursorHoldI" },
+
+		keys = {
+			{ "gcc", mode = "n", desc = "comment toggle current line" },
+			{ "gc", mode = { "n", "o" }, desc = "comment toggle linewise" },
+			{ "gc", mode = "x", desc = "comment toggle linewise (visual)" },
+			{ "gbc", mode = "n", desc = "comment toggle current block" },
+			{ "gb", mode = { "n", "o" }, desc = "comment toggle blockwise" },
+			{ "gb", mode = "x", desc = "comment toggle blockwise (visual)" },
+		},
 
 		opts = {},
 		config = function(_, opts)
