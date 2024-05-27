@@ -110,7 +110,7 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" })
 vim.keymap.set("n", "<C-Up>", "<cmd>resize -2<CR>", { desc = "Resize up" })
-    vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>", { desc = "Resize down" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>", { desc = "Resize down" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Resize left" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Resize right" })
 vim.keymap.set("n", "<S-Down>", function()
@@ -171,7 +171,7 @@ require("lazy").setup({
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
             ]]
 
-			    logo = string.rep("\n", 8) .. logo .. "\n\n"
+				logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 				local opts = {
 					theme = "doom",
@@ -255,8 +255,8 @@ require("lazy").setup({
 				diagnostics_update_in_insert = false,
 			},
 		},
-	    keys = {
-            { "<leader>b", "<Cmd><leader>b<CR>", desc = "+󰓩 Buffer" },
+		keys = {
+			{ "<leader>b", "<Cmd><leader>b<CR>", desc = "+󰓩 Buffer" },
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
 			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete Other Buffers" },
@@ -387,7 +387,6 @@ require("lazy").setup({
             end
         end,
 	},
-
 
 	-- library used by other plugins
 	{ "nvim-lua/plenary.nvim", lazy = true },
@@ -630,221 +629,219 @@ require("lazy").setup({
 		end,
 	},
 
-        {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        event = "User Lazy",
-    },
+	{
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		event = "User Lazy",
+	},
 
-   {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-        },
-        lazy = true,
-        event = "InsertEnter",
-        version = false,
-        opts = function()
-            local cmp = require("cmp")
-            local luasnip = require("luasnip")
-            local icons = 
-{
-      Array         = " ",
-      Boolean       = "󰨙 ",
-      Class         = " ",
-      Codeium       = "󰘦 ",
-      Color         = " ",
-      Control       = " ",
-      Collapsed     = " ",
-      Constant      = "󰏿 ",
-      Constructor   = " ",
-      Copilot       = " ",
-      Enum          = " ",
-      EnumMember    = " ",
-      Event         = " ",
-      Field         = " ",
-      File          = " ",
-      Folder        = " ",
-      Function      = "󰊕 ",
-      Interface     = " ",
-      Key           = " ",
-      Keyword       = " ",
-      Method        = "󰊕 ",
-      Module        = " ",
-      Namespace     = "󰦮 ",
-      Null          = " ",
-      Number        = "󰎠 ",
-      Object        = " ",
-      Operator      = " ",
-      Package       = " ",
-      Property      = " ",
-      Reference     = " ",
-      Snippet       = " ",
-      String        = " ",
-      Struct        = "󰆼 ",
-      TabNine       = " ",
-      Text          = " ",
-      TypeParameter = " ",
-      Unit          = " ",
-      Value         = " ",
-      Variable      = "󰀫 ",            
-}
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+		},
+		lazy = true,
+		event = "InsertEnter",
+		version = false,
+		opts = function()
+			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+			local icons = {
+				Array = " ",
+				Boolean = "󰨙 ",
+				Class = " ",
+				Codeium = "󰘦 ",
+				Color = " ",
+				Control = " ",
+				Collapsed = " ",
+				Constant = "󰏿 ",
+				Constructor = " ",
+				Copilot = " ",
+				Enum = " ",
+				EnumMember = " ",
+				Event = " ",
+				Field = " ",
+				File = " ",
+				Folder = " ",
+				Function = "󰊕 ",
+				Interface = " ",
+				Key = " ",
+				Keyword = " ",
+				Method = "󰊕 ",
+				Module = " ",
+				Namespace = "󰦮 ",
+				Null = " ",
+				Number = "󰎠 ",
+				Object = " ",
+				Operator = " ",
+				Package = " ",
+				Property = " ",
+				Reference = " ",
+				Snippet = " ",
+				String = " ",
+				Struct = "󰆼 ",
+				TabNine = " ",
+				Text = " ",
+				TypeParameter = " ",
+				Unit = " ",
+				Value = " ",
+				Variable = "󰀫 ",
+			}
 
-            return {
-                snippet = {
-                    expand = function(args)
-                        require("luasnip").lsp_expand(args.body)
-                    end,
-                },
+			return {
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
 
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                experimental = {
-                    ghost_text = {
-                        hl_group = "CmpGhostText",
-                    },
-                },
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
+				experimental = {
+					ghost_text = {
+						hl_group = "CmpGhostText",
+					},
+				},
 
-                formatting = {
-                    fields = { "abbr", "kind", "menu" },
-                    format = function(_, item)
-                        -- Kind icons
-                        if icons[item.kind] then
-                            item.kind = icons[item.kind] .. item.kind
-                        end
+				formatting = {
+					fields = { "abbr", "kind", "menu" },
+					format = function(_, item)
+						-- Kind icons
+						if icons[item.kind] then
+							item.kind = icons[item.kind] .. item.kind
+						end
 
-                        return item
-                    end,
-                },
-                mapping = {
-                    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<C-e>"] = cmp.mapping.close(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                    ["<Tab>"] = function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        elseif luasnip.expand_or_jumpable() then
-                            luasnip.expand_or_jump()
-                        else
-                            fallback()
-                        end
-                    end,
-                    ["<S-Tab>"] = function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        elseif luasnip.jumpable(-1) then
-                            luasnip.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end,
-                },
-                sources = {
-                    { name = "nvim_lsp" },
-                    { name = "luasnip" },
-                },
-            }
-        end,
+						return item
+					end,
+				},
+				mapping = {
+					["<C-d>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.close(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<Tab>"] = function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end,
+					["<S-Tab>"] = function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end,
+				},
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+				},
+			}
+		end,
 
-        config = function(_, opts)
-            local cmp = require("cmp")
+		config = function(_, opts)
+			local cmp = require("cmp")
 
-            cmp.setup(opts)
-        end,
-    }, 
+			cmp.setup(opts)
+		end,
+	},
 
+	{
+		"williamboman/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+		lazy = true,
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_uninstalled = "✗",
+					package_pending = "⟳",
+				},
+			},
+		},
+		config = function(_, opts)
+			local ensure_installed = { "lua-language-server", "stylua" }
 
-     {
-        "williamboman/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-        lazy = true,
-        opts = {
-            ui = {
-                icons = {
-                    package_installed = "✓",
-                    package_uninstalled = "✗",
-                    package_pending = "⟳",
-                },
-            },
-        },
-        config = function(_, opts)
-            local ensure_installed = { "lua-language-server", "stylua" }
+			require("mason").setup(opts)
 
-            require("mason").setup(opts)
+			vim.api.nvim_create_user_command("MasonInstallAll", function()
+				if ensure_installed and #ensure_installed > 0 then
+					vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
+				end
+			end, {})
+		end,
+	},
 
-            vim.api.nvim_create_user_command("MasonInstallAll", function()
-                if ensure_installed and #ensure_installed > 0 then
-                    vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
-                end
-            end, {})
-        end,
-    },
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		lazy = true,
+		opts = {
+			check_ts = true,
+			ts_config = { java = false },
+			fast_wrap = {
+				map = "<M-e>",
+				chars = { "{", "[", "(", '"', "'" },
+				pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+				offset = 0,
+				end_key = "$",
+				keys = "qwertyuiopzxcvbnmasdfghjkl",
+				check_comma = true,
+				highlight = "PmenuSel",
+				highlight_grey = "LineNr",
+			},
+		},
+		config = function(_, opts)
+			require("nvim-autopairs").setup(opts)
 
-     {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        lazy = true,
-        opts = {
-            check_ts = true,
-            ts_config = { java = false },
-            fast_wrap = {
-                map = "<M-e>",
-                chars = { "{", "[", "(", '"', "'" },
-                pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-                offset = 0,
-                end_key = "$",
-                keys = "qwertyuiopzxcvbnmasdfghjkl",
-                check_comma = true,
-                highlight = "PmenuSel",
-                highlight_grey = "LineNr",
-            },
-        },
-        config = function(_, opts)
-            require("nvim-autopairs").setup(opts)
+			require("cmp").event:on(
+				"confirm_done",
+				require("nvim-autopairs.completion.cmp").on_confirm_done({ tex = false })
+			)
+		end,
+	},
 
-            require("cmp").event:on(
-                "confirm_done",
-                require("nvim-autopairs.completion.cmp").on_confirm_done({ tex = false })
-            )
-        end,
-    },
+	{
+		"numToStr/Comment.nvim",
+		lazy = true,
+		event = { "CursorHold", "CursorHoldI" },
 
-    {
-        "numToStr/Comment.nvim",
-        lazy = true,
-        event = { "CursorHold", "CursorHoldI" },
+		opts = {},
+		config = function(_, opts)
+			require("Comment").setup(opts)
+		end,
+	},
 
-        opts = {},
-        config = function(_, opts)
-            require("Comment").setup(opts)
-        end,
-    },
-    
-     {
-        "lewis6991/gitsigns.nvim",
-        lazy = true,
-        event = { "CursorHold", "CursorHoldI" },
-        enabled = vim.fn.executable("git") == 1,
-        
-          opts = {
-    signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
-    },
-        on_attach = function(buffer)
-            local gs = package.loaded.gitsigns
+	{
+		"lewis6991/gitsigns.nvim",
+		lazy = true,
+		event = { "CursorHold", "CursorHoldI" },
+		enabled = vim.fn.executable("git") == 1,
 
-            local function map(mode, l, r, desc)
-                vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-            end
+		opts = {
+			signs = {
+				add = { text = "▎" },
+				change = { text = "▎" },
+				delete = { text = "" },
+				topdelete = { text = "" },
+				changedelete = { text = "▎" },
+				untracked = { text = "▎" },
+			},
+			on_attach = function(buffer)
+				local gs = package.loaded.gitsigns
+
+				local function map(mode, l, r, desc)
+					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+				end
             
             -- stylua: ignore start 
         map("n", "<leader>g", "<leader>g", "+ Git")
@@ -862,13 +859,11 @@ require("lazy").setup({
         map("n", "<leader>gd", gs.diffthis, "Diff This")
         map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff This ~")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+			end,
+		},
+	},
 
-         end,
-  },           
-},
-
-    
-    	{
+	{
 		"folke/which-key.nvim",
 		lazy = true,
 		event = { "CursorHold", "CursorHoldI" },
@@ -886,24 +881,20 @@ require("lazy").setup({
 				padding = { 1, 1, 1, 1 },
 				winblend = 0,
 			},
-            
 		},
 		config = function(_, opts)
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 			require("which-key").setup(opts)
 
-            local function map(mode, l, r, desc)
-                vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-            end
-            
-            map("n", "<leader>s", "<leader>s", "+ Notification")
-            map("n", "<leader>b", "<leader>b", "+󰓩 Buffer")
-            map("n", "<leader>g", "<leader>g", "+ Notification")
-            map("n", "<leader>l", "<leader>l", "+ LSP")
-            
+			local function map(mode, l, r, desc)
+				vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+			end
+
+			map("n", "<leader>s", "<leader>s", "+ Notification")
+			map("n", "<leader>b", "<leader>b", "+󰓩 Buffer")
+			map("n", "<leader>g", "<leader>g", "+ Notification")
+			map("n", "<leader>l", "<leader>l", "+ LSP")
 		end,
 	},
-
-    
 })
