@@ -11,8 +11,11 @@
 -- Author: hxajk (hxajkzzz@gmail.com).
 -- Update: 2024-05-30 18:41:00
 
-require("core.options")
 
-require("core.keymaps")
+local installpath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-require("core.bootstraps")
+if not (vim.uv or vim.loop).fs_stat(installpath) then
+	require("core.bootstrap").init(installpath)
+end
+
+require("core.bootstrap").load(installpath)

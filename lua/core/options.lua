@@ -69,11 +69,10 @@ vim.cmd("set updatetime=500")
 
 -- Global Variables
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than 100KB
-vim.g.mapleader = ";"
-vim.g.maplocalleader = ";"
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.icons_enabled = true
 vim.g.autoformat = false
-
 -- Extras
 
 -- disable some default providers

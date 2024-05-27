@@ -1,18 +1,26 @@
+local M = {}
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+M.init = function(installpath)
+    
+    vim.notify("  Installing lazy.nvim & plugins ...")
+
 	vim.fn.system({
 		"git",
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
+		"--branch=stable",
+		installpath,
 	})
-end
-vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+end
+
+M.load = function(installpath)
+	vim.opt.rtp:prepend(installpath)
+    
+    require("core.options")
+
+	require("lazy").setup({
 		spec = {
 			{ import = "plugins" },
 		},
@@ -38,3 +46,11 @@ require("lazy").setup({
 			},
 		},
 	})
+
+	-- Defer non-critical operations
+	vim.defer_fn(function()
+		require("core.keymaps")
+	end, 0)
+end
+
+return M
