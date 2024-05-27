@@ -153,6 +153,30 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local lazy_conf = {
+
+    ui = {
+			border = "rounded",
+			title = "Plugin Manager",
+			title_pos = "center",
+		},
+
+		performance = {
+			cache = {
+				enabled = true,
+				path = vim.fn.stdpath("cache") .. "/lazy/cache",
+				disable_events = { "UIEnter", "BufReadPre" },
+				ttl = 3600 * 24 * 2,
+			},
+			reset_packpath = true,
+			rtp = {
+				reset = true,
+				---@type string[]
+				paths = {},
+			},
+		},
+	}
+
 require("lazy").setup({
 	{
 		"folke/tokyonight.nvim",
@@ -960,4 +984,4 @@ require("lazy").setup({
 			end,
 		},
 	},
-})
+}, lazy_conf)
