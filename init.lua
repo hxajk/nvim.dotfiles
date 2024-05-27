@@ -255,7 +255,8 @@ require("lazy").setup({
 				diagnostics_update_in_insert = false,
 			},
 		},
-		keys = {
+	    keys = {
+            { "<leader>b", "<Cmd><leader>b<CR>", desc = "+󰓩 Buffer" },
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
 			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete Other Buffers" },
@@ -370,7 +371,8 @@ require("lazy").setup({
             noice.setup(opts)
 
             local mappings = {
-                { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end,                 { desc = "Redirect Cmdline" } },
+                { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end, { desc = "Redirect Cmdline" } },
+                { "<leader>s", "<leader>s", { desc = "+ Notification" } },
                 { "<leader>sl", function() noice.cmd("last") end,                                   { desc = "Noice Last Message" } },
                 { "<leader>sh", function() noice.cmd("history") end,                                { desc = "Noice History" } },
                 { "<leader>sa", function() noice.cmd("all") end,                                    { desc = "Noice All" } },
@@ -386,31 +388,6 @@ require("lazy").setup({
         end,
 	},
 
-	{
-		"folke/which-key.nvim",
-		lazy = true,
-		event = { "CursorHold", "CursorHoldI" },
-		init = function() end,
-		opts = {
-			disable = { filetypes = { "TelescopePrompt" } },
-			layout = {
-				height = { min = 3, max = 25 },
-				align = "center",
-			},
-			window = {
-				border = "none",
-				position = "bottom",
-				margin = { 1, 0, 1, 0 },
-				padding = { 1, 1, 1, 1 },
-				winblend = 0,
-			},
-		},
-		config = function(_, opts)
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-			require("which-key").setup(opts)
-		end,
-	},
 
 	-- library used by other plugins
 	{ "nvim-lua/plenary.nvim", lazy = true },
@@ -869,7 +846,8 @@ require("lazy").setup({
                 vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
             end
             
-            -- stylua: ignore start
+            -- stylua: ignore start 
+        map("n", "<leader>g", "<leader>g", "+ Git")
         map("n", "]h", function() gs.nav_hunk("next") end, "Next Hunk")
         map("n", "[h", function() gs.nav_hunk("prev") end, "Prev Hunk")
         map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
@@ -888,5 +866,44 @@ require("lazy").setup({
          end,
   },           
 },
+
+    
+    	{
+		"folke/which-key.nvim",
+		lazy = true,
+		event = { "CursorHold", "CursorHoldI" },
+		init = function() end,
+		opts = {
+			disable = { filetypes = { "TelescopePrompt" } },
+			layout = {
+				height = { min = 3, max = 25 },
+				align = "center",
+			},
+			window = {
+				border = "none",
+				position = "bottom",
+				margin = { 1, 0, 1, 0 },
+				padding = { 1, 1, 1, 1 },
+				winblend = 0,
+			},
+            
+		},
+		config = function(_, opts)
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require("which-key").setup(opts)
+
+            local function map(mode, l, r, desc)
+                vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+            end
+            
+            map("n", "<leader>s", "<leader>s", "+ Notification")
+            map("n", "<leader>b", "<leader>b", "+󰓩 Buffer")
+            map("n", "<leader>g", "<leader>g", "+ Notification")
+            map("n", "<leader>l", "<leader>l", "+ LSP")
+            
+		end,
+	},
+
     
 })
