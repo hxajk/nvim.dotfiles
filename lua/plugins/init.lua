@@ -1,3 +1,4 @@
+local get_icons = require("core").get_icon
 return {
 	--------------------- User Interface (UI) -------------------------------
 	{
@@ -106,7 +107,7 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>b", "<Cmd><leader>b<CR>", desc = "+󰓩 Buffer" },
+			{ "<leader>b", "<Cmd><leader>b<CR>", desc = "+" .. get_icons("Buffer",1,true) .. "Buffer" },
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
 			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete Other Buffers" },
@@ -222,7 +223,7 @@ return {
 
             local mappings = {
                 { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end, { desc = "Redirect Cmdline" } },
-                { "<leader>s", "<leader>s", { desc = "+ Notification" } },
+                { "<leader>s", "<leader>s", { desc = "+" .. get_icons("Message",1,true) ..  "Notification" } },
                 { "<leader>sl", function() noice.cmd("last") end,                                   { desc = "Noice Last Message" } },
                 { "<leader>sh", function() noice.cmd("history") end,                                { desc = "Noice History" } },
                 { "<leader>sa", function() noice.cmd("all") end,                                    { desc = "Noice All" } },
@@ -331,7 +332,7 @@ return {
 
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
-			vim.keymap.set("n", "<leader>t", "<Cmd><leader>t<cr>", { desc = "+ Terminal" })
+			vim.keymap.set("n", "<leader>t", "<Cmd><leader>t<cr>", { desc = "+" .. get_icons("Terminal",1,true) .. "Terminal" })
 			vim.keymap.set(
 				"n",
 				"<leader>tt",
@@ -370,7 +371,7 @@ return {
 				},
 			},
 			defaults = {
-				prompt_prefix = "  ",
+				prompt_prefix = get_icons("TelescopePrompt",1,true),
 				initial_mode = "insert",
 				results_title = false,
 				layout_strategy = "horizontal",
@@ -413,7 +414,7 @@ return {
 			require("telescope").setup(opts)
 			require("telescope").load_extension("ui-select")
 
-			vim.keymap.set("n", "<leader>f", "<leader>f", { desc = "+ Telescope" })
+			vim.keymap.set("n", "<leader>f", "<leader>f", { desc = "+" .. get_icons("Telescope",1,true) .. "Telescope" })
 
 			vim.keymap.set("n", "<leader>fa", function()
 				local cwd = vim.fn.stdpath("config") .. "/.."
@@ -550,7 +551,7 @@ return {
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+ LSP" })
+			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+" .. get_icons("LSP",1,true) .. "LSP" })
 			vim.keymap.set("n", "<leader>lu", function()
 				vim.g.autoformat = not vim.g.autoformat
 
@@ -589,47 +590,7 @@ return {
 		opts = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			local icons = {
-				Array = " ",
-				Boolean = "󰨙 ",
-				Class = " ",
-				Codeium = "󰘦 ",
-				Color = " ",
-				Control = " ",
-				Collapsed = " ",
-				Constant = "󰏿 ",
-				Constructor = " ",
-				Copilot = " ",
-				Enum = " ",
-				EnumMember = " ",
-				Event = " ",
-				Field = " ",
-				File = " ",
-				Folder = " ",
-				Function = "󰊕 ",
-				Interface = " ",
-				Key = " ",
-				Keyword = " ",
-				Method = "󰊕 ",
-				Module = " ",
-				Namespace = "󰦮 ",
-				Null = " ",
-				Number = "󰎠 ",
-				Object = " ",
-				Operator = " ",
-				Package = " ",
-				Property = " ",
-				Reference = " ",
-				Snippet = " ",
-				String = " ",
-				Struct = "󰆼 ",
-				TabNine = " ",
-				Text = " ",
-				TypeParameter = " ",
-				Unit = " ",
-				Value = " ",
-				Variable = "󰀫 ",
-			}
+			local icons = require("core").Icons
 
 			return {
 				snippet = {
@@ -781,18 +742,18 @@ return {
 
 		opts = {
 			signs = {
-				add = { text = "▎" },
-				change = { text = "▎" },
-				delete = { text = "" },
-				topdelete = { text = "" },
-				changedelete = { text = "▎" },
-				untracked = { text = "▎" },
+				add = { text = get_icons("GitAdd",1,true) },
+				change = { text = get_icons("GitChange",1,true) },
+				delete = { text = get_icons("GitDelete",1,true) },
+				topdelete = { text = get_icons("GitTopDelete",1,true) },
+				changedelete = { text = get_icons("GitChangeDelete",1,true) },
+				untracked = { text = get_icons("GitUnTracked",1,true) },
 			},
 			on_attach = function(_)
 				local gs = package.loaded.gitsigns
 
             -- stylua: ignore start 
-            vim.keymap.set('n', '<leader>g', '<leader>g', { desc = '+ Git' })
+            vim.keymap.set('n', '<leader>g', '<leader>g', { desc = "+" .. get_icons("Git",1,true) .. "Git" })
             vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
             vim.keymap.set('n', '[h', function() gs.nav_hunk("prev") end, { desc = 'Prev Hunk' })
             vim.keymap.set('n', ']H', function() gs.nav_hunk("last") end, { desc = 'Last Hunk' })
