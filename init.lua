@@ -891,9 +891,6 @@ require("lazy").setup({
 				vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
 			end
 
-			map("n", "<leader>s", "<leader>s", "+ Notification")
-			map("n", "<leader>b", "<leader>b", "+󰓩 Buffer")
-			map("n", "<leader>g", "<leader>g", "+ Notification")
 			map("n", "<leader>l", "<leader>l", "+ LSP")
 		end,
 	},
