@@ -939,10 +939,6 @@ require("lazy").setup({
 			on_attach = function(buffer)
 				local gs = package.loaded.gitsigns
 
-				local function map(mode, l, r, desc)
-					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-				end
-            
             -- stylua: ignore start 
             vim.keymap.set('n', '<leader>g', '<leader>g', { desc = '+ Git' })
             vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
