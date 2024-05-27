@@ -12,7 +12,7 @@
 -- Update: 2024-05-30 18:41:00
 
 -- Options
-    
+
 -- Clipboard setup based on environment
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
@@ -27,18 +27,19 @@ vim.opt.numberwidth = 1
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = " ",
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
 }
 
+
 -- Indentation and tabs
-vim.opt.tabstop = 4 -- Number of spaces for a tab
-vim.opt.shiftwidth = 4 -- Spaces for auto-indent
-vim.opt.expandtab = true -- Convert tabs to spaces
+vim.opt.tabstop = 4        -- Number of spaces for a tab
+vim.opt.shiftwidth = 4     -- Spaces for auto-indent
+vim.opt.expandtab = true   -- Convert tabs to spaces
 vim.opt.smartindent = true -- Smart indentation
 
 -- File handling
@@ -71,7 +72,7 @@ vim.opt.virtualedit = "block"
 
 -- Smooth scrolling (available in Neovim 0.10 and above)
 if vim.fn.has("nvim-0.10") == 1 then
-	vim.opt.smoothscroll = true
+  vim.opt.smoothscroll = true
 end
 
 -- Editor settings
@@ -87,13 +88,16 @@ vim.g.maplocalleader = ";"
 vim.g.icons_enabled = true
 vim.g.autoformat = false
 
--- Extras
+-- Extras 
 
 for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
-	vim.g["loaded_" .. provider .. "_provider"] = 0
+  vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 local is_windows = vim.fn.has("win32") ~= 0
+
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
+
 
 -- Key maps ---------------------------------------------
 
