@@ -1,4 +1,5 @@
 return {
+	--------------------- User Interface (UI) -------------------------------
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -262,6 +263,9 @@ return {
 		end,
 	},
 
+	----------------------------------- END ---------------------------------------
+
+	----------------------------------- Tools Part ---------------------------------
 	-- library used by other plugins
 	{ "nvim-lua/plenary.nvim", lazy = true },
 
@@ -451,6 +455,7 @@ return {
 		end,
 	},
 
+	-------------------- Development Tools ----------------------------
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
@@ -718,7 +723,7 @@ return {
 			end, {})
 		end,
 	},
-
+	---------------------- Development Helpers -----------------
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -783,7 +788,7 @@ return {
 				changedelete = { text = "▎" },
 				untracked = { text = "▎" },
 			},
-			on_attach = function(buffer)
+			on_attach = function(_)
 				local gs = package.loaded.gitsigns
 
             -- stylua: ignore start 
@@ -805,4 +810,5 @@ return {
 			end,
 		},
 	},
+	-----------------------------------------------------------------------------------------------------------------------------
 }
