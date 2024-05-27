@@ -1,7 +1,7 @@
 	---------------------- Development Helpers -----------------
     
 local get_icons = require("core").get_icon
-return {
+local default = {
     	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -90,3 +90,5 @@ return {
 	},
 
 }
+
+return default

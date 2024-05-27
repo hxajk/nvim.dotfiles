@@ -1,7 +1,7 @@
 	--------------------- User Interface (UI) Part -------------------------------
 local get_icons = require("core").get_icon
 
-return {
+local default = {
    	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -265,3 +265,5 @@ return {
 		end,
 	}, 
 }
+
+return default

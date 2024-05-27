@@ -1,7 +1,7 @@
 	-------------------- Development Tools ----------------------------
 
 local get_icons = require("core").get_icon
-return {
+local default = {
     {
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
@@ -232,3 +232,5 @@ return {
 		end,
 	},
 }
+
+return default

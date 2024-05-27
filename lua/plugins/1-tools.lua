@@ -1,7 +1,7 @@
 	----------------------------------- Tools Part ---------------------------------
 local get_icons = require("core").get_icon
 
-return {
+local default = {
     -- library used by other plugins
 	{ "nvim-lua/plenary.nvim", lazy = true },
 
@@ -191,3 +191,5 @@ return {
 		end,
 	},
 }
+
+return default
