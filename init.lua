@@ -627,7 +627,6 @@ require("lazy").setup({
 			ensure_installed = {
 				"markdown",
 				"vim",
-				"vimdoc",
 				"lua",
 			},
 		},
