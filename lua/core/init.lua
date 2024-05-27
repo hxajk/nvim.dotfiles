@@ -131,7 +131,7 @@ M.on_attach = function(client, _)
             function() 
                 return vim.lsp.buf.format() 
             end, 
-        {"Format buffer"}
+        {desc = "Format buffer"}
     )
 	end
 end
