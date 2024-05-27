@@ -12,9 +12,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_conf = {
+require("lazy").setup({
+		spec = {
+			{ import = "plugins" },
+		},
 
-    ui = {
+		ui = {
 			border = "rounded",
 			title = "Plugin Manager",
 			title_pos = "center",
@@ -34,7 +37,4 @@ local lazy_conf = {
 				paths = {},
 			},
 		},
-	}
-
-require("lazy").setup("plugins"
-, lazy_conf)
+	})
