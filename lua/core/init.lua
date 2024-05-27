@@ -102,38 +102,22 @@ M.capabilities = function ()
     require('cmp_nvim_lsp').default_capabilities()
 end
 
-M.on_attach = function(client, _)
+M.on_attach = function(client, bufnr)
     
-    vim.keymap.set("n","<leader>lh",
-    function()
-        return vim.lsp.buf.signature_help
-    end,
-    {desc = "Show signature help"}
-    )
+    local function map(mode, key, core, desc)
+        vim.keymap.set(mode, key, core, { desc = desc, buffer = bufnr })    
+    end
     
-    vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", {desc = "Lsp Info"})
+    -- Using the custom map function
+    map("n", "<leader>lh", function() vim.lsp.buf.signature_help() end, "Show signature help")
+    map("n", "<leader>li", "<cmd>LspInfo<cr>", "Lsp Info")
+    map("n", "<leader>lk", function() vim.lsp.buf.hover() end, "Hover")
+    map("n", "<leader>la", vim.lsp.buf.code_action, "Code Action")
+    map("n", "<leader>lc", vim.lsp.codelens.run, "Run Codelens")
+    map("n", "<leader>lC", vim.lsp.codelens.refresh, "Refresh & Display Codelens")
     
-    vim.keymap.set("n", "<leader>lk", 
-    function()
-        return vim.lsp.buf.hover 
-    end, 
-    {desc = "Hover"}
-    )
-
-    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {desc = "Code Action"})
-
-    vim.keymap.set("n", "<leader>lc", vim.lsp.codelens.run, {desc = "Run Codelens"})
-
-    vim.keymap.set("n", "<leader>lC", vim.lsp.codelens.refresh, {desc = "Refresh & Display Codelens"})
-    
-    	if client.supports_method("textDocument/formatting") then
-            vim.keymap.set("n", "<leader>lf", 
-            function() 
-                return vim.lsp.buf.format() 
-            end, 
-        {desc = "Format buffer"}
-    )
-	end
+    if client.supports_method("textDocument/formatting") then
+        map("n", "<leader>lf", function() vim.lsp.buf.format() end, "Format buffer")
+    end
 end
-
 return M

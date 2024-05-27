@@ -518,9 +518,11 @@ return {
 
 			for _, server in ipairs(servers) do
 				require("lspconfig")[server].setup({
-					on_attach = function(client, buffer) end,
+					on_attach = function(client, buffer) 
+                        require("core").on_attach(client,buffer)
+                    end,
 
-					capabilities = require("cmp_nvim_lsp").default_capabilities(),
+					capabilities = require("core").capabilities(),
 				})
 			end
 
