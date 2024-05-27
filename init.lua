@@ -427,6 +427,12 @@ require("lazy").setup({
 		event = "BufReadPre",
 		lazy = true,
 		opts = {},
+        keys = {
+            {"<leader>S", "<cmd><leader>S<cr>", desc = "+ Session"},
+            {"<leader>Sa", [[<cmd>lua require("persistence").load()]], desc = "Load current session"},
+            {"<leader>Sb", [[<cmd>lua require("persistence").load({last = true})<cr>]], desc = "Load last session"},
+            {"<leader>Sc", [[<cmd>lua require("persistence").stop()<cr>]], desc = "Stop session saved on exit"},
+        },
 
 		config = function(_, opts)
 			require("persistence").setup(opts)
