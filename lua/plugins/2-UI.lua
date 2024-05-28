@@ -1,12 +1,13 @@
-	--------------------- User Interface (UI) Part -------------------------------
+--------------------- User Interface (UI) Part -------------------------------
 local get_icons = require("core").get_icon
 
 local default = {
-   	{
+	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		config = function()
-			vim.cmd("colorscheme tokyonight")
+			require("tokyonight").load()
+			--	vim.cmd("colorscheme tokyonight")
 		end,
 	},
 	{
@@ -108,7 +109,7 @@ local default = {
 			},
 		},
 		keys = {
-			{ "<leader>b", "<Cmd><leader>b<CR>", desc = "+" .. get_icons("Buffer",1,true) .. "Buffer" },
+			{ "<leader>b", "<Cmd><leader>b<CR>", desc = "+" .. get_icons("Buffer", 1, true) .. "Buffer" },
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
 			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete Other Buffers" },
@@ -140,7 +141,7 @@ local default = {
 		opts = function()
 			return {
 				options = {
-					theme = "tokyonight",
+					theme = "auto",
 					globalstatus = true,
 					disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
 				},
@@ -216,28 +217,28 @@ local default = {
 				inc_rename = true,
 			},
 		},
-        -- stylua: ignore
-        config = function(_, opts)
-            local noice = require("noice")
-            local noice_lsp = require("noice.lsp")
-            noice.setup(opts)
 
-            local mappings = {
-                { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end, { desc = "Redirect Cmdline" } },
-                { "<leader>s", "<leader>s", { desc = "+" .. get_icons("Message",1,true) ..  "Notification" } },
-                { "<leader>sl", function() noice.cmd("last") end,                                   { desc = "Noice Last Message" } },
-                { "<leader>sh", function() noice.cmd("history") end,                                { desc = "Noice History" } },
-                { "<leader>sa", function() noice.cmd("all") end,                                    { desc = "Noice All" } },
-                { "<leader>sd", function() noice.cmd("dismiss") end,                                { desc = "Dismiss All" } },
-                { "<leader>st", function() noice.cmd("telescope") end,                              { desc = "Noice Telescope" } },
-                { "<c-f>",      function() if not noice_lsp.scroll(4) then return "<c-f>" end end,  { silent = true, expr = true, desc = "Scroll Forward" } },
-                { "<c-b>",      function() if not noice_lsp.scroll(-4) then return "<c-b>" end end, { silent = true, expr = true, desc = "Scroll Backward" } },
-            }
+		keys = function()
+			local noice = require("noice")
+			local noice_lsp = require("noice.lsp")
+			return {
+            -- stylua: ignore start
+				{ "<S-Enter>", function() noice.redirect(vim.fn.getcmdline()) end, desc = "Redirect Cmdline" },
+				{ "<leader>s", "<leader>s", desc = "+" .. get_icons("Message", 1, true) .. "Notification" },
+				{ "<leader>sl", function() noice.cmd("last") end, desc = "Noice Last Message" },
+				{ "<leader>sh", function() noice.cmd("history") end, desc = "Noice History" },
+				{ "<leader>sa", function() noice.cmd("all") end, desc = "Noice All"},
+				{ "<leader>sd", function() noice.cmd("dismiss") end, desc = "Dismiss All" },
+				{ "<leader>st", function() noice.cmd("telescope") end, desc = "Noice Telescope" },
+				{ "<c-f>", function() if not noice_lsp.scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward" },
+				{ "<c-b>", function() if not noice_lsp.scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward" },
+			}
+			-- stylua : ignore
+		end,
 
-            for _, map in ipairs(mappings) do
-                vim.keymap.set("n", map[1], map[2], map[3])
-            end
-        end,
+		config = function(_, opts)
+			require("noice").setup(opts)
+		end,
 	},
 	{
 		"folke/which-key.nvim",
@@ -263,7 +264,7 @@ local default = {
 			vim.o.timeoutlen = 300
 			require("which-key").setup(opts)
 		end,
-	}, 
+	},
 }
 
 return default
