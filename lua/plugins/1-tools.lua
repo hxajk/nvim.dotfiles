@@ -80,7 +80,7 @@ local default = {
 	-- Fuzzy Finder
 	{
 		"nvim-telescope/telescope.nvim",
-		lazy = false,
+		lazy = true,
 		cmd = "Telescope",
 		dependencies = {
 			{
@@ -133,11 +133,13 @@ local default = {
 			extensions = {},
 		},
 
+        keys = {
+            {"<leader>f", "<leader>f", desc = "+" .. get_icons("Telescope",1,true) .. "Telescope" }
+        },
+
 		config = function(_, opts)
 			require("telescope").setup(opts)
 			require("telescope").load_extension("ui-select")
-
-			vim.keymap.set("n", "<leader>f", "<leader>f", { desc = "+" .. get_icons("Telescope",1,true) .. "Telescope" })
 
 			vim.keymap.set("n", "<leader>fa", function()
 				local cwd = vim.fn.stdpath("config") .. "/.."
