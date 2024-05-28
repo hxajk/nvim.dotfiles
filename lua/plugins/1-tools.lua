@@ -25,7 +25,7 @@ local default = {
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		lazy = false,
+		lazy = true,
 		cmd = {
 			"ToggleTerm",
 			"ToggleTermSetName",
@@ -65,27 +65,15 @@ local default = {
 			shell = vim.o.shell,
 		},
 
+        keys = {
+            { "<leader>t", "<Cmd><leader>t<CR>", desc = "t" .. get_icons("Terminal",1,true) .. "Terminal" },
+            {"<leader>tt", "<Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal (float)"},
+            {"<leader>th","<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Toggle terminal (horizontal)"},
+            {"<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>", desc = "Toggle terminal (vertical)"}
+        },
+
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
-			vim.keymap.set("n", "<leader>t", "<Cmd><leader>t<cr>", { desc = "+" .. get_icons("Terminal",1,true) .. "Terminal" })
-			vim.keymap.set(
-				"n",
-				"<leader>tt",
-				"<cmd>ToggleTerm direction=float<cr>",
-				{ desc = "Toggle terminal (float)" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>th",
-				"<cmd>ToggleTerm direction=horizontal<cr>",
-				{ desc = "Toggle terminal (horizontal)" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>tv",
-				"<cmd>ToggleTerm direction=veritcal<cr>",
-				{ desc = "Toggle terminal (vertical)" }
-			)
 		end,
 	},
 
