@@ -66,7 +66,7 @@ local default = {
 		},
 
         keys = {
-            { "<leader>t", "<Cmd><leader>t<CR>", desc = "t" .. get_icons("Terminal",1,true) .. "Terminal" },
+            { "<leader>t", "<Cmd><leader>t<CR>", desc = "+" .. get_icons("Terminal",1,true) .. "Terminal" },
             {"<leader>tt", "<Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal (float)"},
             {"<leader>th","<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Toggle terminal (horizontal)"},
             {"<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>", desc = "Toggle terminal (vertical)"}
