@@ -2,8 +2,7 @@ local M = {}
 
 M.init = function(installpath)
     
-    vim.notify("  Installing lazy.nvim & plugins ...")
-
+    vim.notify("Waiting...")
 	vim.fn.system({
 		"git",
 		"clone",
@@ -12,8 +11,57 @@ M.init = function(installpath)
 		"--branch=stable",
 		installpath,
 	})
+    M.gen_template()
 
 end
+
+
+-- Function to generate a template configuration
+M.gen_template = function()
+	local path = vim.fn.stdpath("config") .. "/lua/custom"
+
+	if vim.fn.isdirectory(path) == 1 then
+		return
+	end
+
+	vim.fn.mkdir(path, "p")
+
+	local files = {
+		["options.lua"] = 
+[[
+-- Add additonal option here
+
+
+
+]],
+		["plugins.lua"] = 
+[[
+-- Add additional plugin here
+
+local default = {
+
+}
+
+return default
+]],
+		["keymaps.lua"] = 
+[[
+-- Add additional keymap here 
+
+
+
+]],
+	}
+
+	for filename, content in pairs(files) do
+		local file = io.open(path .. "/" .. filename, "w")
+		if file then
+			file:write(content)
+			file:close()
+		end
+	end
+end
+
 
 M.load = function(installpath)
 	vim.opt.rtp:prepend(installpath)
