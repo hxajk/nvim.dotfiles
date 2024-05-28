@@ -1,8 +1,8 @@
-	-------------------- Development Tools ----------------------------
+-------------------- Development Tools ----------------------------
 
 local get_icons = require("core").get_icon
 local default = {
-    {
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
 			if #vim.api.nvim_list_uis() ~= 0 then
@@ -63,9 +63,9 @@ local default = {
 
 			for _, server in ipairs(servers) do
 				require("lspconfig")[server].setup({
-					on_attach = function(client, buffer) 
-                        require("core").on_attach(client,buffer)
-                    end,
+					on_attach = function(client, buffer)
+						require("core").on_attach(client, buffer)
+					end,
 
 					capabilities = require("core").capabilities(),
 				})
@@ -98,7 +98,7 @@ local default = {
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+" .. get_icons("LSP",1,true) .. "LSP" })
+			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+" .. get_icons("LSP", 1, true) .. "LSP" })
 			vim.keymap.set("n", "<leader>lu", function()
 				vim.g.autoformat = not vim.g.autoformat
 
@@ -209,6 +209,7 @@ local default = {
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+		build = ":MasonUpdate",
 		lazy = true,
 		opts = {
 			ui = {
@@ -219,16 +220,32 @@ local default = {
 				},
 			},
 		},
+		keys = {
+			{ "<leader>p", "<Cmd><leader>p<CR>", desc = "+" .. get_icons("Package", 1, true) .. "Packages" },
+			{ "<leader>pm", "<Cmd>Mason<CR>", desc = "Open Language Menu" },
+			{ "<leader>pu", "<Cmd>MasonUpdate<CR>", desc = "Refesh Language" },
+		},
 		config = function(_, opts)
 			local ensure_installed = { "lua-language-server", "stylua" }
 
+			local mr = require("mason-registry")
+
 			require("mason").setup(opts)
 
-			vim.api.nvim_create_user_command("MasonInstallAll", function()
-				if ensure_installed and #ensure_installed > 0 then
-					vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
+			local function installer()
+				for _, tool in ipairs(ensure_installed) do
+					local p = mr.get_package(tool)
+					if not p:is_installed() then
+						p:install()
+					end
 				end
-			end, {})
+			end
+
+			if mr.refresh then
+				mr.refresh(installer)
+			else
+				installer()
+			end
 		end,
 	},
 }
