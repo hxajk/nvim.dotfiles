@@ -80,7 +80,7 @@ M.Icons = {
 		Clock = "",
 		Telescope = "", -- The same, but i want so...
 		LSP = "",
-        Package = " ",
+        Package = "",
 	},
 
 	-- -- -- -- -- -- --
