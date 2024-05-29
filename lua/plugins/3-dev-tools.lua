@@ -1,23 +1,23 @@
--- Coding Tools plugins 
+-- Coding Tools plugins
 
 local get_icons = require("core").get_icon
 
 local default = {
 	{
 		"nvim-treesitter/nvim-treesitter",
-        version = false,
+		version = false,
 		event = "BufReadPre",
 		build = function()
 			if #vim.api.nvim_list_uis() ~= 0 then
 				vim.api.nvim_command([[TSUpdate]])
 			end
 		end,
-		lazy =  vim.fn.argc(-1) == 0,
+		lazy = vim.fn.argc(-1) == 0,
 		init = function(plugin)
 			require("lazy.core.loader").add_to_rtp(plugin)
 			require("nvim-treesitter.query_predicates")
 		end,
-        cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		opts = {
 			hightlight = {
 				enable = true,
@@ -74,7 +74,9 @@ local default = {
 			end
 
 			require("lspconfig").lua_ls.setup({
-				on_attach = function(client, buffer) end,
+				on_attach = function(client, buffer)
+					require("core").on_attach(client, buffer)
+				end,
 
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
 
@@ -92,7 +94,7 @@ local default = {
 	{
 		"stevearc/conform.nvim",
 		lazy = true,
-        cmd = "ConformInfo",
+		cmd = "ConformInfo",
 		event = { "CursorHold", "CursorHoldI" },
 		opts = {
 			formatters_by_ft = {
@@ -218,7 +220,7 @@ local default = {
 		build = ":MasonUpdate",
 		lazy = true,
 		opts = {
-            log_level = vim.log.levels.INFO,
+			log_level = vim.log.levels.INFO,
 		},
 		keys = {
 			{ "<leader>p", "<Cmd><leader>p<CR>", desc = "+" .. get_icons("Package", 1, true) .. "Packages" },
