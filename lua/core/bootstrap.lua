@@ -86,6 +86,8 @@ M.load = function(installpath)
 				reset = true,
 				---@type string[]
 				paths = {},
+                --download faster from the plugin repos.
+                disabled_plugins = {"tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin"},
 			},
 		},
 	})
