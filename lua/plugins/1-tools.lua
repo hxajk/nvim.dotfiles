@@ -98,7 +98,7 @@ local default = {
 				initial_mode = "insert",
 				results_title = false,
 				layout_strategy = "horizontal",
-				path_display = { "absolute" },
+				path_display = { "truncate" },
 				selection_strategy = "reset",
 				sorting_strategy = "ascending",
 				color_devicons = true,
@@ -130,6 +130,7 @@ local default = {
 					preview_cutoff = 120,
 				},
 			},
+
 			extensions = {},
 		},
 
@@ -178,6 +179,12 @@ local default = {
 			vim.keymap.set("n", "<leader>ft", function()
 				require("telescope.builtin").colorscheme({ enable_preview = true })
 			end, { desc = "Find themes" })
+
+			if vim.fn.executable("rg") == 1 then
+				vim.keymap.set("n", "<leader>fw", function()
+					require("telescope.builtin").live_grep()
+				end, { desc = "Find Words" })
+			end
 		end,
 	},
 }
