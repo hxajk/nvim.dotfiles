@@ -3,7 +3,7 @@
 local get_icons = require("core").get_icon
 
 local default = {
-    	{
+	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		lazy = true,
@@ -60,12 +60,12 @@ local default = {
 
 		opts = {
 			signs = {
-				add = { text = get_icons("GitAdd",1,true) },
-				change = { text = get_icons("GitChange",1,true) },
-				delete = { text = get_icons("GitDelete",1,true) },
-				topdelete = { text = get_icons("GitTopDelete",1,true) },
-				changedelete = { text = get_icons("GitChangeDelete",1,true) },
-				untracked = { text = get_icons("GitUnTracked",1,true) },
+				add = { text = get_icons("GitAdd", 1, true) },
+				change = { text = get_icons("GitChange", 1, true) },
+				delete = { text = get_icons("GitDelete", 1, true) },
+				topdelete = { text = get_icons("GitTopDelete", 1, true) },
+				changedelete = { text = get_icons("GitChangeDelete", 1, true) },
+				untracked = { text = get_icons("GitUnTracked", 1, true) },
 			},
 			on_attach = function(_)
 				local gs = package.loaded.gitsigns
@@ -89,7 +89,6 @@ local default = {
 			end,
 		},
 	},
-
 }
 
 return default
