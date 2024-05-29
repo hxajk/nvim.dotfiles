@@ -11,7 +11,6 @@
 -- Author: hxajk (hxajkzzz@gmail.com).
 -- Update: 2024-05-30 18:41:00
 
-
 local installpath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(installpath) then

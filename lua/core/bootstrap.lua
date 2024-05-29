@@ -1,8 +1,7 @@
 local M = {}
 
 M.init = function(installpath)
-    
-    vim.notify("Waiting...")
+	vim.notify("Waiting...")
 	vim.fn.system({
 		"git",
 		"clone",
@@ -11,10 +10,8 @@ M.init = function(installpath)
 		"--branch=stable",
 		installpath,
 	})
-    M.gen_template()
-
+	M.gen_template()
 end
-
 
 -- Function to generate a template configuration
 M.gen_template = function()
@@ -27,15 +24,13 @@ M.gen_template = function()
 	vim.fn.mkdir(path, "p")
 
 	local files = {
-		["options.lua"] = 
-[[
+		["options.lua"] = [[
 -- Add additonal option here
 
 
 
 ]],
-		["plugins.lua"] = 
-[[
+		["plugins.lua"] = [[
 -- Add additional plugin here
 
 local default = {
@@ -44,8 +39,7 @@ local default = {
 
 return default
 ]],
-		["keymaps.lua"] = 
-[[
+		["keymaps.lua"] = [[
 -- Add additional keymap here 
 
 
@@ -62,11 +56,10 @@ return default
 	end
 end
 
-
 M.load = function(installpath)
 	vim.opt.rtp:prepend(installpath)
-    
-    require("core.options")
+
+	require("core.options")
 
 	require("lazy").setup({
 		spec = {
