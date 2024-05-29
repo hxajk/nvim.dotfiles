@@ -82,7 +82,7 @@ M.Icons = {
 		Clock = "",
 		Telescope = "", -- The same, but i want so...
 		LSP = "",
-        Package = "",
+		Package = "",
 	},
 
 	-- -- -- -- -- -- --
@@ -120,8 +120,8 @@ M.on_attach = function(client, bufnr)
 	map("n", "<leader>lC", vim.lsp.codelens.refresh, "Refresh & Display Codelens")
 
 	if client.supports_method("textDocument/formatting") then
-		map({"n","v"}, "<leader>lf", function()
-			require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
+		map({ "n", "v" }, "<leader>lf", function()
+			vim.lsp.buf.format()
 		end, "Format buffer")
 	end
 end
