@@ -92,6 +92,7 @@ local default = {
 	{
 		"stevearc/conform.nvim",
 		lazy = true,
+        cmd = "ConformInfo",
 		event = { "CursorHold", "CursorHoldI" },
 		opts = {
 			formatters_by_ft = {
@@ -218,7 +219,6 @@ local default = {
 		lazy = true,
 		opts = {
             log_level = vim.log.levels.INFO,
-            
 		},
 		keys = {
 			{ "<leader>p", "<Cmd><leader>p<CR>", desc = "+" .. get_icons("Package", 1, true) .. "Packages" },

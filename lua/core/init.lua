@@ -120,8 +120,8 @@ M.on_attach = function(client, bufnr)
 	map("n", "<leader>lC", vim.lsp.codelens.refresh, "Refresh & Display Codelens")
 
 	if client.supports_method("textDocument/formatting") then
-		map("n", "<leader>lf", function()
-			vim.lsp.buf.format()
+		map({"n","v"}, "<leader>lf", function()
+			require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
 		end, "Format buffer")
 	end
 end
