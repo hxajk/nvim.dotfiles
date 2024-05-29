@@ -1,8 +1,8 @@
-	----------------------------------- Tools Part ---------------------------------
+----------------------------------- Tools Part ---------------------------------
 local get_icons = require("core").get_icon
 
 local default = {
-    -- library used by other plugins
+	-- library used by other plugins
 	{ "nvim-lua/plenary.nvim", lazy = true },
 
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
@@ -13,7 +13,7 @@ local default = {
 		lazy = true,
 		opts = {},
 		keys = {
-			{ "<leader>S", "<cmd><leader>S<cr>", desc = "+".. get_icons("Session",1,true) .. "Session" },
+			{ "<leader>S", "<cmd><leader>S<cr>", desc = "+" .. get_icons("Session", 1, true) .. "Session" },
 			{ "<leader>Sa", [[<cmd>lua require("persistence").load()]], desc = "Load current session" },
 			{ "<leader>Sb", [[<cmd>lua require("persistence").load({last = true})<cr>]], desc = "Load last session" },
 			{ "<leader>Sc", [[<cmd>lua require("persistence").stop()<cr>]], desc = "Stop session saved on exit" },
@@ -65,12 +65,12 @@ local default = {
 			shell = vim.o.shell,
 		},
 
-        keys = {
-            { "<leader>t", "<Cmd><leader>t<CR>", desc = "+" .. get_icons("Terminal",1,true) .. "Terminal" },
-            {"<leader>tt", "<Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal (float)"},
-            {"<leader>th","<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Toggle terminal (horizontal)"},
-            {"<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>", desc = "Toggle terminal (vertical)"}
-        },
+		keys = {
+			{ "<leader>t", "<Cmd><leader>t<CR>", desc = "+" .. get_icons("Terminal", 1, true) .. "Terminal" },
+			{ "<leader>tt", "<Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal (float)" },
+			{ "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Toggle terminal (horizontal)" },
+			{ "<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>", desc = "Toggle terminal (vertical)" },
+		},
 
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
@@ -94,7 +94,7 @@ local default = {
 				},
 			},
 			defaults = {
-				prompt_prefix = get_icons("TelescopePrompt",1,true),
+				prompt_prefix = get_icons("TelescopePrompt", 1, true),
 				initial_mode = "insert",
 				results_title = false,
 				layout_strategy = "horizontal",
@@ -133,25 +133,26 @@ local default = {
 			extensions = {},
 		},
 
-        keys = {
-            {"<leader>f", "<leader>f", desc = "+" .. get_icons("Telescope",1,true) .. "Telescope" }
-        },
+		keys = {
+			{ "<leader>f", "<leader>f", desc = "+" .. get_icons("Telescope", 1, true) .. "Telescope" },
+		},
 
 		config = function(_, opts)
 			require("telescope").setup(opts)
 			require("telescope").load_extension("ui-select")
 
 			vim.keymap.set("n", "<leader>fa", function()
-				local cwd = vim.fn.stdpath("config") .. "/.."
-				local search_dirs = { vim.fn.stdpath("config") }
-				if #search_dirs == 1 then
-					cwd = search_dirs[1]
-				end -- if only one directory, focus cwd
 				require("telescope.builtin").find_files({
 					prompt_title = "Config Files",
-					cwd = cwd,
+					cwd = vim.fn.stdpath("config"),
+					follow = true,
 				}) -- call telescope
 			end, { desc = "Find nvim config files" })
+
+			-- Find Buffers
+			vim.keymap.set("n", "<leader>fb", function()
+				require("telescope.builtin").buffers()
+			end, { desc = "Find Buffers" })
 
 			-- Find help
 			vim.keymap.set("n", "<leader>fh", function()
@@ -175,12 +176,10 @@ local default = {
 
 			-- Find themes
 			vim.keymap.set("n", "<leader>ft", function()
-				pcall(vim.api.nvim_command, "doautocmd User LoadColorSchemes")
-				pcall(require("telescope.builtin").colorscheme, { enable_preview = true })
+				require("telescope.builtin").colorscheme({ enable_preview = true })
 			end, { desc = "Find themes" })
 		end,
 	},
 }
-
 
 return default

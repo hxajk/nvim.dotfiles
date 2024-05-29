@@ -215,13 +215,8 @@ local default = {
 		build = ":MasonUpdate",
 		lazy = true,
 		opts = {
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_uninstalled = "✗",
-					package_pending = "⟳",
-				},
-			},
+            log_level = vim.log.levels.INFO,
+            
 		},
 		keys = {
 			{ "<leader>p", "<Cmd><leader>p<CR>", desc = "+" .. get_icons("Package", 1, true) .. "Packages" },
