@@ -5,18 +5,19 @@ local get_icons = require("core").get_icon
 local default = {
 	{
 		"nvim-treesitter/nvim-treesitter",
+        version = false,
+		event = "BufReadPre",
 		build = function()
 			if #vim.api.nvim_list_uis() ~= 0 then
 				vim.api.nvim_command([[TSUpdate]])
 			end
 		end,
-		event = "BufReadPre",
-		lazy = true,
-		version = false,
+		lazy =  vim.fn.argc(-1) == 0,
 		init = function(plugin)
 			require("lazy.core.loader").add_to_rtp(plugin)
 			require("nvim-treesitter.query_predicates")
 		end,
+        cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		opts = {
 			hightlight = {
 				enable = true,
