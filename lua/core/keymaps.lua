@@ -1,4 +1,4 @@
--- Key maps ---------------------------------------------
+-- Mappings general
 
 -- Insert mode mappings
 vim.keymap.set("i", "jj", "<ESC>", { desc = "Turn to normal mode" })

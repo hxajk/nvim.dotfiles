@@ -1,4 +1,5 @@
------------------------------------ Tools Part ---------------------------------
+-- Tools plugins
+
 local get_icons = require("core").get_icon
 
 local default = {

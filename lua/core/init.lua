@@ -1,3 +1,5 @@
+-- Main core (extra stuffs)
+
 local M = {}
 
 M.notify = function(msg, type, opts)

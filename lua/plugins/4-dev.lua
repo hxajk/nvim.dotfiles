@@ -1,6 +1,7 @@
-	---------------------- Development Helpers -----------------
-    
+--  More coding plugins
+
 local get_icons = require("core").get_icon
+
 local default = {
     	{
 		"windwp/nvim-autopairs",

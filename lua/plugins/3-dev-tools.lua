@@ -1,6 +1,7 @@
--------------------- Development Tools ----------------------------
+-- Coding Tools plugins 
 
 local get_icons = require("core").get_icon
+
 local default = {
 	{
 		"nvim-treesitter/nvim-treesitter",

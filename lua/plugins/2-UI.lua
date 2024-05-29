@@ -1,4 +1,5 @@
---------------------- User Interface (UI) Part -------------------------------
+-- UI Plugins
+
 local get_icons = require("core").get_icon
 
 local default = {

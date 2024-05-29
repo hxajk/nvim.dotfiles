@@ -1,3 +1,5 @@
+-- Bootstrap core 
+
 local M = {}
 
 M.init = function(installpath)
