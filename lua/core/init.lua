@@ -106,8 +106,10 @@ M.on_attach = function(client, bufnr)
 	local function map(mode, key, core, desc)
 		vim.keymap.set(mode, key, core, { desc = desc, buffer = bufnr })
 	end
-
+    
 	-- Using the custom map function
+
+    map("n", "<leader>l", "<leader>l", "+" .. M.get_icon("LSP", 1, true) .. "LSP" )
 	map("n", "<leader>lh", function()
 		vim.lsp.buf.signature_help()
 	end, "Show signature help")
