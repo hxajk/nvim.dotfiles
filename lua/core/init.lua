@@ -110,21 +110,28 @@ M.on_attach = function(client, bufnr)
 	-- Using the custom map function
 
     map("n", "<leader>l", "<leader>l", "+" .. M.get_icon("LSP", 1, true) .. "LSP" )
+
 	map("n", "<leader>lh", function()
 		vim.lsp.buf.signature_help()
 	end, "Show signature help")
+
 	map("n", "<leader>li", "<cmd>LspInfo<cr>", "Lsp Info")
+
 	map("n", "<leader>lk", function()
 		vim.lsp.buf.hover()
 	end, "Hover")
 	map("n", "<leader>la", vim.lsp.buf.code_action, "Code Action")
+
 	map("n", "<leader>lc", vim.lsp.codelens.run, "Run Codelens")
+
 	map("n", "<leader>lC", vim.lsp.codelens.refresh, "Refresh & Display Codelens")
 
 	if client.supports_method("textDocument/formatting") then
+
 		map({ "n", "v" }, "<leader>lf", function()
 			vim.lsp.buf.format()
 		end, "Format buffer")
+
 	end
 end
 return M
