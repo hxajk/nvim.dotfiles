@@ -111,25 +111,21 @@ M.on_attach = function(client, bufnr)
 
     map("n", "<leader>l", "<leader>l", "+" .. M.get_icon("LSP", 1, true) .. "LSP" )
 
-	map("n", "<leader>lh", function()
-		vim.lsp.buf.signature_help()
-	end, "Show signature help")
+	map("n", "<leader>lh", vim.lsp.buf.signature_help, "Show signature help")
 
 	map("n", "<leader>li", "<cmd>LspInfo<cr>", "Lsp Info")
 
-	map("n", "<leader>lk", vim.lsp.buf.hover(), "Hover")
+	map("n", "<leader>lk", vim.lsp.buf.hover, "Hover")
 
-    map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
+    map("n", "[d", vim.diagnostic.goto_prev, "Previous Diagnostic" })
 
-    map("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+    map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic" })
 
-    map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Varable" })
+    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename Varable" })
 
 	if client.supports_method("textDocument/formatting") then
 
-		map({ "n", "v" }, "<leader>lf", function()
-			vim.lsp.buf.format()
-		end, "Format buffer")
+		map({ "n", "v" }, "<leader>lf", vim.lsp.buf.format,"Format buffer")
 
 	end
 end
