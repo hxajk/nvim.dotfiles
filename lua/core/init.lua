@@ -106,7 +106,7 @@ M.on_attach = function(client, bufnr)
 	local function map(mode, key, core, desc)
 		vim.keymap.set(mode, key, core, { desc = desc, buffer = bufnr })
 	end
-    
+
 	-- Using the custom map function
 
     map("n", "<leader>l", "<leader>l", "+" .. M.get_icon("LSP", 1, true) .. "LSP" )
@@ -117,14 +117,13 @@ M.on_attach = function(client, bufnr)
 
 	map("n", "<leader>li", "<cmd>LspInfo<cr>", "Lsp Info")
 
-	map("n", "<leader>lk", function()
-		vim.lsp.buf.hover()
-	end, "Hover")
-	map("n", "<leader>la", vim.lsp.buf.code_action, "Code Action")
+	map("n", "<leader>lk", vim.lsp.buf.hover(), "Hover")
 
-	map("n", "<leader>lc", vim.lsp.codelens.run, "Run Codelens")
+    map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
 
-	map("n", "<leader>lC", vim.lsp.codelens.refresh, "Refresh & Display Codelens")
+    map("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+
+    map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Varable" })
 
 	if client.supports_method("textDocument/formatting") then
 
