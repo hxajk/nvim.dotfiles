@@ -19,6 +19,7 @@ local default = {
         end,
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         opts = {
+            auto_install = vim.fn.executable "git" == 1 and vim.fn.executable "tree-sitter" == 1,
             hightlight = {
                 enable = true,
                 disable = { "help" },
