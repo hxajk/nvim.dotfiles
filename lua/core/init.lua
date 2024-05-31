@@ -117,7 +117,7 @@ M.on_attach = function(client, bufnr)
 
     map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
 
-    map("n", "<leader>lr", vim.lsp.buf.rename, "Rename Varable")
+    map("n", "<leader>ln", vim.lsp.buf.rename, "Rename Varable")
 
     if client.supports_method("textDocument/formatting") then
         map({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, "Format buffer")

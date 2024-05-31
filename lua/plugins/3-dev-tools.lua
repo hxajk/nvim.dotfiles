@@ -152,7 +152,7 @@ local default = {
         opts = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
-            local icons = require("core").Icons
+            local icons = require("core").Icons.kinds
 
             return {
                 snippet = {
