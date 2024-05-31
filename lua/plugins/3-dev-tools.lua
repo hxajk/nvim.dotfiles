@@ -229,6 +229,12 @@ local default = {
         build = ":MasonUpdate",
         lazy = true,
         opts = {
+            ui = {
+                check_outdated_packages_on_open = true,
+                width = 0.8,
+                height = 0.9,
+                border = "rounded",
+            },
             log_level = vim.log.levels.INFO,
         },
         keys = {
