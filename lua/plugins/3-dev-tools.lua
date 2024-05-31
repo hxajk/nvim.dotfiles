@@ -176,7 +176,7 @@ local default = {
                     format = function(_, item)
                         -- Kind icons
                         if icons[item.kind] then
-                            item.kind = icons[item.kind] .. item.kind
+                            item.kind = icons[item.kind] .. " " .. item.kind
                         end
 
                         return item
