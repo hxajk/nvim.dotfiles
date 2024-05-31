@@ -106,8 +106,10 @@ local default = {
         event = { "BufReadPost", "BufAdd", "BufNewFile" },
         opts = {
             options = {
+                themable = true,
                 diagnostics = "nvim_lsp",
                 diagnostics_update_in_insert = false,
+                 separator_style = "thin",
             },
         },
         keys = {
@@ -254,7 +256,7 @@ local default = {
                 align = "center",
             },
             window = {
-                border = "none",
+                border = "single",
                 position = "bottom",
                 margin = { 1, 0, 1, 0 },
                 padding = { 1, 1, 1, 1 },
