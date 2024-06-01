@@ -82,7 +82,7 @@ local default = {
     {
         "nvim-telescope/telescope.nvim",
         lazy = true,
-        cmd = "Telescope",
+        cmd = {"Telescope", "Mason"},
         dependencies = {
             {
                 "nvim-telescope/telescope-ui-select.nvim",
