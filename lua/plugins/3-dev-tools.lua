@@ -217,9 +217,7 @@ local default = {
         end,
 
         config = function(_, opts)
-            local cmp = require("cmp")
-
-            cmp.setup(opts)
+            require("cmp").setup(opts)
         end,
     },
 
