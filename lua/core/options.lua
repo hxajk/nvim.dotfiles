@@ -13,6 +13,7 @@ vim.opt.relativenumber = true
 vim.opt.numberwidth = 1
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
+vim.opt.sidescrolloff = 8
 vim.opt.fillchars = {
 	foldopen = "",
 	foldclose = "",
@@ -44,6 +45,9 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- Time settings
+vim.opt.timeoutlen = 300
 
 -- Scrolling and wrapping
 vim.opt.wrap = false

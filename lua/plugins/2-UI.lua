@@ -109,7 +109,7 @@ local default = {
                 themable = true,
                 diagnostics = "nvim_lsp",
                 diagnostics_update_in_insert = false,
-                 separator_style = "thin",
+                separator_style = "thin",
             },
         },
         keys = {
@@ -264,8 +264,6 @@ local default = {
             },
         },
         config = function(_, opts)
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
             require("which-key").setup(opts)
         end,
     },
