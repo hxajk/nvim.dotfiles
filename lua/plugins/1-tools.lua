@@ -4,13 +4,18 @@ local get_icons = require("core").get_icon
 
 local default = {
     -- library used by other plugins
-    { "nvim-lua/plenary.nvim",       lazy = true },
+    { 
+        "nvim-lua/plenary.nvim",       
+        lazy = true 
+    },
 
     {
         "nvim-tree/nvim-web-devicons", 
         enable = vim.g.icons_enabled,
         lazy = true,
     },
+    
+    --
 
     {
         "folke/persistence.nvim",
