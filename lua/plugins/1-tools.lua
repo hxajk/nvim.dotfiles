@@ -154,16 +154,8 @@ local default = {
                 color_devicons = true,
                 results_title = false,
                 file_ignore_patterns = {
-                    ".git/*",
                     ".cache/**",
                     "build/**",
-                    "%.class",
-                    "%.pdf",
-                    "%.mkv",
-                    "%.mp4",
-                    "%.zip",
-                    "*.o",
-                    "*.exe",
                     "bin/*",
                     "node_modules"
                 },
