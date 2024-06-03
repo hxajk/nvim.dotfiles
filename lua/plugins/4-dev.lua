@@ -3,72 +3,72 @@
 local get_icons = require("core").get_icon
 
 local default = {
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		lazy = true,
-		opts = {
-			check_ts = true,
-			ts_config = { java = false },
-			fast_wrap = {
-				map = "<M-e>",
-				chars = { "{", "[", "(", '"', "'" },
-				pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-				offset = 0,
-				end_key = "$",
-				keys = "qwertyuiopzxcvbnmasdfghjkl",
-				check_comma = true,
-				highlight = "PmenuSel",
-				highlight_grey = "LineNr",
-			},
-		},
-		config = function(_, opts)
-			require("nvim-autopairs").setup(opts)
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        lazy = true,
+        opts = {
+            check_ts = true,
+            ts_config = { java = false },
+            fast_wrap = {
+                map = "<M-e>",
+                chars = { "{", "[", "(", '"', "'" },
+                pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+                offset = 0,
+                end_key = "$",
+                keys = "qwertyuiopzxcvbnmasdfghjkl",
+                check_comma = true,
+                highlight = "PmenuSel",
+                highlight_grey = "LineNr",
+            },
+        },
+        config = function(_, opts)
+            require("nvim-autopairs").setup(opts)
 
-			require("cmp").event:on(
-				"confirm_done",
-				require("nvim-autopairs.completion.cmp").on_confirm_done({ tex = false })
-			)
-		end,
-	},
+            require("cmp").event:on(
+                "confirm_done",
+                require("nvim-autopairs.completion.cmp").on_confirm_done({ tex = false })
+            )
+        end,
+    },
 
-	{
-		"numToStr/Comment.nvim",
-		lazy = true,
-		event = { "CursorHold", "CursorHoldI" },
+    {
+        "numToStr/Comment.nvim",
+        lazy = true,
+        event = { "CursorHold", "CursorHoldI" },
 
-		keys = {
-			{ "gcc", mode = "n", desc = "comment toggle current line" },
-			{ "gc", mode = { "n", "o" }, desc = "comment toggle linewise" },
-			{ "gc", mode = "x", desc = "comment toggle linewise (visual)" },
-			{ "gbc", mode = "n", desc = "comment toggle current block" },
-			{ "gb", mode = { "n", "o" }, desc = "comment toggle blockwise" },
-			{ "gb", mode = "x", desc = "comment toggle blockwise (visual)" },
-		},
+        keys = {
+            { "gcc", mode = "n",          desc = "comment toggle current line" },
+            { "gc",  mode = { "n", "o" }, desc = "comment toggle linewise" },
+            { "gc",  mode = "x",          desc = "comment toggle linewise (visual)" },
+            { "gbc", mode = "n",          desc = "comment toggle current block" },
+            { "gb",  mode = { "n", "o" }, desc = "comment toggle blockwise" },
+            { "gb",  mode = "x",          desc = "comment toggle blockwise (visual)" },
+        },
 
-		opts = {},
-		config = function(_, opts)
-			require("Comment").setup(opts)
-		end,
-	},
+        opts = {},
+        config = function(_, opts)
+            require("Comment").setup(opts)
+        end,
+    },
 
-	{
-		"lewis6991/gitsigns.nvim",
-		lazy = true,
-		event = { "CursorHold", "CursorHoldI" },
-		enabled = vim.fn.executable("git") == 1,
+    {
+        "lewis6991/gitsigns.nvim",
+        lazy = true,
+        event = { "CursorHold", "CursorHoldI" },
+        enabled = vim.fn.executable("git") == 1,
 
-		opts = {
-			signs = {
-				add = { text = get_icons("GitAdd", 1, true) },
-				change = { text = get_icons("GitChange", 1, true) },
-				delete = { text = get_icons("GitDelete", 1, true) },
-				topdelete = { text = get_icons("GitTopDelete", 1, true) },
-				changedelete = { text = get_icons("GitChangeDelete", 1, true) },
-				untracked = { text = get_icons("GitUnTracked", 1, true) },
-			},
-			on_attach = function(_)
-				local gs = package.loaded.gitsigns
+        opts = {
+            signs = {
+                add = { text = get_icons("GitAdd", 1, true) },
+                change = { text = get_icons("GitChange", 1, true) },
+                delete = { text = get_icons("GitDelete", 1, true) },
+                topdelete = { text = get_icons("GitTopDelete", 1, true) },
+                changedelete = { text = get_icons("GitChangeDelete", 1, true) },
+                untracked = { text = get_icons("GitUnTracked", 1, true) },
+            },
+            on_attach = function(_)
+                local gs = package.loaded.gitsigns
 
                 -- stylua: ignore start
                 vim.keymap.set('n', '<leader>g', '<leader>g', { desc = "+" .. get_icons("Git", 1, true) .. "Git" })
@@ -86,9 +86,9 @@ local default = {
                 vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'Diff This' })
                 vim.keymap.set('n', '<leader>gD', function() gs.diffthis("~") end, { desc = 'Diff This ~' })
                 vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'GitSigns Select Hunk' })
-			end,
-		},
-	},
+            end,
+        },
+    },
 }
 
 return default
