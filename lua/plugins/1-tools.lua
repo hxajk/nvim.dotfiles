@@ -52,6 +52,10 @@ local default = {
 			require("persistence").setup(opts)
 		end,
 	},
+
+    -- toggleterm.nvim -> [Manager for multiple terminal windows]
+    -- https://github.com//akinsho/toggleterm.nvim    
+
 	{
 		"akinsho/toggleterm.nvim",
 		lazy = true,
