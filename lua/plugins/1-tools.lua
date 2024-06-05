@@ -3,11 +3,17 @@
 local get_icons = require("core").get_icon
 
 local default = {
-	-- library used by other plugins
+
+    -- pleanary.nvim -> [A provider for various lua plugins]
+    -- https://github.com/nvim-lua/plenary.nvim
+
 	{
 		"nvim-lua/plenary.nvim",
 		lazy = true,
 	},
+
+    -- nvim-web-devicons -> [Adds file type icons to Vim plugins]
+    -- https://github.com/ryanoasis/vim-devicons
 
 	{
 		"nvim-tree/nvim-web-devicons",
