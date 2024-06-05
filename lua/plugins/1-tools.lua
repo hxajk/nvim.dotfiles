@@ -21,7 +21,8 @@ local default = {
 		lazy = true,
 	},
 
-	--
+	-- persistence -> [Automated session for nvim]
+    -- https://github.com/folke/persistence.nvim
 
 	{
 		"folke/persistence.nvim",
