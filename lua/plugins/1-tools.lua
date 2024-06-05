@@ -114,7 +114,9 @@ local default = {
 		end,
 	},
 
-	-- Fuzzy Finder
+	-- telescope.nvim -> [A fuzzy finder]
+    -- https://github.com//nvim-telescope/telescope.nvim 
+
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
