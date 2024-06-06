@@ -170,6 +170,7 @@ local default = {
                     ".cache/**",
                     "build/**",
                     "bin/*",
+                    ".git/*",
                     "node_modules",
                 },
             },
