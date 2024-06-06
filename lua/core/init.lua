@@ -13,6 +13,24 @@ M.is_available = function(plugin)
     return status and lazy.spec.plugins[plugin] ~= nil
 end
 
+
+M.create_file = function()
+
+    local extension = vim.fn.input('Enter your file type e.g (.txt, .lua, ...): ')
+
+    if extension == '' then
+        print('No extension provided, operation cancelled.')
+        return
+    end
+
+    local filename = 'newfile' .. extension
+    vim.cmd('e ' .. filename)
+
+    local filetype = vim.fn.fnamemodify(filename, ':e')
+    vim.cmd('setlocal filetype=' .. filetype)
+
+    print('Created file: ' .. filename .. ' with filetype: ' .. filetype)
+end
 -- Icons
 
 M.Icons = {
@@ -79,6 +97,7 @@ M.Icons = {
         Telescope = "", -- The same, but i want so...
         LSP = "",
         Package = "",
+        Forward = ""
     },
 
     -- -- -- -- -- -- --
