@@ -39,7 +39,7 @@ local default = {
                         -- stylua: ignore
                         center = {
                             { action = "Telescope find_files", desc = " Find File", icon = " ", key = "f" },
-                            { action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
+                            { action = 'lua require("core").create_file()', desc = " New File", icon = " ", key = "n" },
                             { action = "Telescope oldfiles", desc = " Recent Files", icon = " ", key = "r" },
                             { action = "Telescope colorscheme", desc = " Change Background", icon = " ", key = "t" },
                             { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
