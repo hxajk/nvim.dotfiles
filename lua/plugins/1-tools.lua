@@ -146,21 +146,20 @@ local default = {
                 },
 
                 prompt_prefix = get_icons("TelescopePrompt", 1, true),
-                selection_caret = "  ",
+                selection_caret = get_icons("Selected",1,true),
                 initial_mode = "insert",
                 sorting_strategy = "ascending",
-                layout_strategy = "horizontal",
+                -- layout_strategy = "horizontal",
                 layout_config = {
                     horizontal = {
                         prompt_position = "top",
                         preview_width = 0.55,
-                        results_width = 0.8,
                     },
                     vertical = {
                         mirror = false,
                     },
-                    width = 0.85,
-                    height = 0.92,
+                    width = 0.87,
+                    height = 0.80,
                     preview_cutoff = 120,
                 },
                 path_display = { "truncate" },
