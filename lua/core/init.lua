@@ -97,7 +97,7 @@ M.Icons = {
         Telescope = "", -- The same, but i want so...
         LSP = "",
         Package = "",
-        Forward = ""
+        Selected = "❯",
     },
 
     -- -- -- -- -- -- --
