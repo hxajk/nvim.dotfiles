@@ -8,7 +8,58 @@ local default = {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
-		opts = {},
+		opts = {
+			background = { light = "latte", dark = "mocha" },
+			dim_inactive = {
+				enabled = false,
+				shade = "dark",
+				percentage = 0.15,
+			},
+			show_end_of_buffer = false,
+			term_colors = true,
+			compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+			styles = {
+				comments = { "bold" },
+				functions = { "bold" },
+				keywords = { "italic" },
+				operators = { "bold" },
+				conditionals = { "bold" },
+				loops = { "bold" },
+				booleans = { "bold", "italic" },
+				numbers = {},
+				types = {},
+				strings = {},
+				variables = {},
+				properties = {},
+			},
+			integrations = {
+				treesitter = true,
+				alpha = false,
+                notify = true,
+				cmp = true,
+				dashboard = false,
+				gitsigns = true,
+				indent_blankline = { enabled = true, colored_indent_levels = true },
+				markdown = true,
+				mason = true,
+				telescope = { enabled = true, style = "nvchad" },
+                which_key = true
+			},
+			color_overrides = {},
+			highlight_overrides = {
+				all = function(cp)
+					return {
+						CursorLineNr = { fg = cp.pink },
+
+                        NotifyBackground = { bg = cp.base },
+
+						["@keyword.return"] = { fg = cp.pink, style =  {}},
+						["@error.c"] = { fg = cp.none, style = {} },
+						["@error.cpp"] = { fg = cp.none, style = {} },
+					}
+				end,
+			 },
+		},
 		config = function(_, opts)
 			require("catppuccin").setup(opts)
 			require("catppuccin").load()
