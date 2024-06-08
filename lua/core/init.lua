@@ -98,6 +98,7 @@ M.Icons = {
         LSP = "",
         Package = "",
         Selected = "❯",
+        VBar = "│",
     },
 
     -- -- -- -- -- -- --
