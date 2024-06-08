@@ -15,7 +15,6 @@ end
 
 
 M.create_file = function()
-
     local extension = vim.fn.input('Enter your file type e.g (.txt, .lua, ...): ')
 
     if extension == '' then
@@ -74,30 +73,31 @@ M.Icons = {
     -- -- -- -- -- -- -- -- -- --
 
     -- Base Icon --
+
     base = {
+        Buffer = "󰓩",
+        Clock = "",
         DiagnosticError = "",
         DiagnosticHint = "󰌵",
         DiagnosticInfo = "󰋼",
         DiagnosticWarn = "",
+        Flash = "⚡",
         Git = "󰊢",
         GitAdd = "▎",
         GitChange = "▎",
+        GitChangeDelete = "▎",
         GitDelete = "",
         GitTopDelete = "",
-        GitChangeDelete = "▎",
         GitUnTracked = "▎",
-        Session = "",
-        Tab = "󰓩",
-        Buffer = "󰓩", --Buffer == Tab, aight?
-        Terminal = "",
-        Message = "",
-        TelescopePrompt = "",
-        Flash = "⚡",
-        Clock = "",
-        Telescope = "", -- The same, but i want so...
         LSP = "",
+        Message = "",
         Package = "",
         Selected = "❯",
+        Session = "",
+        Tab = "󰓩",
+        Telescope = "",
+        TelescopePrompt = "",
+        Terminal = "",
         VBar = "│",
     },
 
