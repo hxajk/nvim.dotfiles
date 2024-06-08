@@ -109,6 +109,9 @@ local default = {
                 themable = true,
                 diagnostics = "nvim_lsp",
                 diagnostics_update_in_insert = false,
+                diagnostics_indicator = function(count)
+                    return "(" .. count .. ")"
+                end,
                 separator_style = "thin",
             },
         },
@@ -254,10 +257,25 @@ local default = {
         event = { "CursorHold", "CursorHoldI" },
         init = function() end,
         opts = {
+
+            plugins = {
+                presets = {
+                    operators = false,
+                    motions = false,
+                    text_objects = false,
+                    windows = false,
+                    nav = false,
+                    z = true,
+                    g = true,
+                },
+            },
             disable = { filetypes = { "TelescopePrompt" } },
             layout = {
                 height = { min = 3, max = 25 },
                 align = "center",
+            },
+            icons = {
+                group = "",
             },
             window = {
                 border = "single",
