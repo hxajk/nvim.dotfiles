@@ -246,6 +246,28 @@ local default = {
 					vim.api.nvim_win_set_config(win, { zindex = 100 })
 				end,
 			})
+            
+            vim.cmd([[
+                    highlight NotifyERRORBorder guifg=#BF616A
+                    highlight NotifyWARNBorder guifg=#D08770
+                    highlight NotifyINFOBorder guifg=#A3BE8C
+                    highlight NotifyDEBUGBorder guifg=#BFBFBF
+                    highlight NotifyTRACEBorder guifg=#B48EAD
+
+                    highlight NotifyERRORIcon guifg=#BF616A
+                    highlight NotifyWARNIcon guifg=#D08770
+                    highlight NotifyINFOIcon guifg=#A3BE8C
+                    highlight NotifyDEBUGIcon guifg=#BFBFBF
+                    highlight NotifyTRACEIcon guifg=#B48EAD
+
+                    highlight NotifyERRORTitle  guifg=#BF616A
+                    highlight NotifyWARNTitle guifg=#D08770
+                    highlight NotifyINFOTitle guifg=#A3BE8C
+                    highlight NotifyDEBUGTitle  guifg=#BFBFBF
+                    highlight NotifyTRACETitle  guifg=#B48EAD
+
+]])
+
 			vim.notify = require("notify")
 		end,
 	},
