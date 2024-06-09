@@ -21,7 +21,7 @@ local default = {
 			styles = {
 				comments = { "bold" },
 				functions = { "bold" },
-				keywords = { "italic" },
+				keywords = { "bold" },
 				operators = { "bold" },
 				conditionals = { "bold" },
 				loops = { "bold" },
@@ -43,15 +43,30 @@ local default = {
 				markdown = true,
 				mason = true,
 				telescope = { enabled = true, style = "nvchad" },
-                which_key = true
 			},
 			color_overrides = {},
 			highlight_overrides = {
 				all = function(cp)
 					return {
-						CursorLineNr = { fg = cp.pink },
+						CursorLineNr = { fg = cp.green },
+
+                        WhichKeyBorder = { fg = cp.red },
 
                         NotifyBackground = { bg = cp.base },
+
+                        NoiceCmdlinePopupBorder = { fg = cp.red },
+
+                        NoiceCmdlineIcon = { fg = cp.red },
+
+                        NoiceCmdlinePopupTitle = { fg = cp.red },
+
+                        NotifyINFOBorder = { fg = cp.green },
+
+                        NotifyWARNBorder = { fg = cp.yellow },
+
+                        NotifyERRORBorder = { fg = cp.red },
+
+                        NotifyDEBUGBorder = { fg = cp.yellow },
 
 						["@keyword.return"] = { fg = cp.pink, style =  {}},
 						["@error.c"] = { fg = cp.none, style = {} },
@@ -332,7 +347,7 @@ local default = {
 				group = "",
 			},
 			window = {
-				border = "single",
+				border = "double",
 				position = "bottom",
 				margin = { 1, 0, 1, 0 },
 				padding = { 1, 1, 1, 1 },
