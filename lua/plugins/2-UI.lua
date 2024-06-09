@@ -90,6 +90,7 @@ local default = {
 					theme = "doom",
 					hide = {
 						statusline = false,
+                        tabline = false,
 					},
 					config = {
 						header = vim.split(logo, "\n"),
@@ -159,6 +160,7 @@ local default = {
 	},
 	{
 		"akinsho/bufferline.nvim",
+		tags = "*",
 		lazy = true,
 		event = { "BufReadPost", "BufAdd", "BufNewFile" },
 		opts = {
@@ -246,8 +248,8 @@ local default = {
 					vim.api.nvim_win_set_config(win, { zindex = 100 })
 				end,
 			})
-            
-            vim.cmd([[
+
+			vim.cmd([[
                     highlight NotifyERRORBorder guifg=#BF616A
                     highlight NotifyWARNBorder guifg=#D08770
                     highlight NotifyINFOBorder guifg=#A3BE8C
