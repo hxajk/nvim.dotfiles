@@ -35,7 +35,7 @@ local default = {
 			integrations = {
 				treesitter = true,
 				alpha = false,
-                notify = true,
+				notify = true,
 				cmp = true,
 				dashboard = false,
 				gitsigns = true,
@@ -50,30 +50,18 @@ local default = {
 					return {
 						CursorLineNr = { fg = cp.green },
 
-                        WhichKeyBorder = { fg = cp.red },
+						WhichKeyBorder = { fg = cp.red },
 
-                        NotifyBackground = { bg = cp.base },
+						NoiceCmdlinePopupBorder = { fg = cp.teal },
+						NoiceCmdlineIcon = { fg = cp.teal },
+						NoiceCmdlinePopupTitle = { fg = cp.teal },
 
-                        NoiceCmdlinePopupBorder = { fg = cp.red },
-
-                        NoiceCmdlineIcon = { fg = cp.red },
-
-                        NoiceCmdlinePopupTitle = { fg = cp.red },
-
-                        NotifyINFOBorder = { fg = cp.green },
-
-                        NotifyWARNBorder = { fg = cp.yellow },
-
-                        NotifyERRORBorder = { fg = cp.red },
-
-                        NotifyDEBUGBorder = { fg = cp.yellow },
-
-						["@keyword.return"] = { fg = cp.pink, style =  {}},
+						["@keyword.return"] = { fg = cp.pink, style = {} },
 						["@error.c"] = { fg = cp.none, style = {} },
 						["@error.cpp"] = { fg = cp.none, style = {} },
 					}
 				end,
-			 },
+			},
 		},
 		config = function(_, opts)
 			require("catppuccin").setup(opts)
