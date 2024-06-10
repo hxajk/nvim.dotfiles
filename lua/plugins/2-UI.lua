@@ -4,6 +4,9 @@ local get_icons = require("core").get_icon
 
 local default = {
 
+    -- catppuccin/nvim -> [A Soothing pastel theme for (Neo)vim]
+    -- https://github.com/catppuccin/nvim
+
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -68,6 +71,9 @@ local default = {
             require("catppuccin").load()
         end,
     },
+
+    -- dashbpard-nvim -> [A vim dashboard, greeter for neovim] 
+    -- https://github.com/nvimdev/dashboard-nvim
 
     {
         {
