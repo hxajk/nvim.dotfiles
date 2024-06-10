@@ -72,7 +72,7 @@ local default = {
         end,
     },
 
-    -- dashbpard-nvim -> [A vim dashboard, greeter for neovim] 
+    -- dashboard-nvim -> [A vim dashboard, greeter for neovim] 
     -- https://github.com/nvimdev/dashboard-nvim
 
     {
@@ -136,6 +136,9 @@ local default = {
         },
     },
 
+    -- mini.indentscope -> [Neovim Lua plugin to visualize and operate on indent scope]
+    -- https://github.com/echasnovski/mini.indentscope
+
     {
         "echasnovski/mini.indentscope",
         version = false, -- wait till new 0.7.0 release to put it back on semver
@@ -164,6 +167,7 @@ local default = {
             })
         end,
     },
+
     {
         "akinsho/bufferline.nvim",
         tags = "*",
