@@ -236,6 +236,9 @@ local default = {
         end,
     },
 
+    -- lualine.nvim -> [A blazing fast and easy to configure neovim statusline plugin]
+    -- https://github.com/nvim-lualine/lualine.nvim
+
     {
         "nvim-lualine/lualine.nvim",
         lazy = true,
