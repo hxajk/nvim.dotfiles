@@ -13,6 +13,7 @@ local default = {
         priority = 1000,
         opts = {
             background = { light = "latte", dark = "mocha" },
+            transparent_background = false,
             dim_inactive = {
                 enabled = false,
                 shade = "dark",
