@@ -13,7 +13,7 @@ local default = {
         priority = 1000,
         opts = {
             background = { light = "latte", dark = "mocha" },
-            transparent_background = false,
+            transparent_background = true,
             dim_inactive = {
                 enabled = false,
                 shade = "dark",
@@ -255,7 +255,7 @@ local default = {
         opts = function()
             return {
                 options = {
-                    theme = "auto",
+                    theme = require("core").theme(),
                     globalstatus = true,
                     disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
                 },
