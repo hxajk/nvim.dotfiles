@@ -31,54 +31,62 @@ M.create_file = function()
     print('Created file: ' .. filename .. ' with filetype: ' .. filetype)
 end
 
--- lualine 
+-- lualine
 
-    M.theme = function()
-        local colors = {
-            darkgray = "#16161d",
-            gray = "#727169",
-            innerbg = nil,
-            outerbg = "#16161D",
-            normal = "#7e9cd8",
-            insert = "#98bb6c",
-            visual = "#ffa066",
-            replace = "#e46876",
-            command = "#e6c384",
-        }
-        return {
-            inactive = {
-                a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
-                b = { fg = colors.gray, bg = colors.outerbg },
-                c = { fg = colors.gray, bg = colors.innerbg },
-            },
-            visual = {
-                a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
-                b = { fg = colors.gray, bg = colors.outerbg },
-                c = { fg = colors.gray, bg = colors.innerbg },
-            },
-            replace = {
-                a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
-                b = { fg = colors.gray, bg = colors.outerbg },
-                c = { fg = colors.gray, bg = colors.innerbg },
-            },
-            normal = {
-                a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
-                b = { fg = colors.gray, bg = colors.outerbg },
-                c = { fg = colors.gray, bg = colors.innerbg },
-            },
-            insert = {
-                a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
-                b = { fg = colors.gray, bg = colors.outerbg },
-                c = { fg = colors.gray, bg = colors.innerbg },
-            },
-            command = {
-                a = { fg = colors.darkgray, bg = colors.command, gui = "bold" },
-                b = { fg = colors.gray, bg = colors.outerbg },
-                c = { fg = colors.gray, bg = colors.innerbg },
-            },
-        }
-    end
 
+M.theme = function()
+    local colors = {
+        black        = '#282828',
+        white        = '#ebdbb2',
+        red          = '#fb4934',
+        green        = '#b8bb26',
+        blue         = '#83a598',
+        yellow       = '#fe8019',
+        gray         = '#a89984',
+        darkgray     = '#3c3836',
+        lightgray    = '#504945',
+        inactivegray = '#7c6f64',
+        outerbg      = '#3c3836',  -- Set transparent background
+        innerbg      = '#3c3836',  -- Set transparent background
+        normal       = '#8ec07c', -- Example color
+        insert       = '#d3869b', -- Example color
+        visual       = '#b16286', -- Example color
+        replace      = '#fe8019', -- Example color
+        command      = '#fabd2f', -- Example color
+    }
+    return {
+        inactive = {
+            a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
+            b = { fg = colors.gray, bg = colors.outerbg },
+            c = { fg = colors.gray, bg = colors.innerbg },
+        },
+        visual = {
+            a = { fg = colors.black, bg = colors.visual, gui = "bold" },
+            b = { fg = colors.gray, bg = colors.outerbg },
+            c = { fg = colors.gray, bg = colors.innerbg },
+        },
+        replace = {
+            a = { fg = colors.black, bg = colors.replace, gui = "bold" },
+            b = { fg = colors.gray, bg = colors.outerbg },
+            c = { fg = colors.gray, bg = colors.innerbg },
+        },
+        normal = {
+            a = { fg = colors.black, bg = colors.normal, gui = "bold" },
+            b = { fg = colors.gray, bg = colors.outerbg },
+            c = { fg = colors.gray, bg = colors.innerbg },
+        },
+        insert = {
+            a = { fg = colors.black, bg = colors.insert, gui = "bold" },
+            b = { fg = colors.gray, bg = colors.outerbg },
+            c = { fg = colors.gray, bg = colors.innerbg },
+        },
+        command = {
+            a = { fg = colors.black, bg = colors.command, gui = "bold" },
+            b = { fg = colors.gray, bg = colors.outerbg },
+            c = { fg = colors.gray, bg = colors.innerbg },
+        },
+    }
+end
 -- Icons
 
 M.Icons = {
