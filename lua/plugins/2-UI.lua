@@ -72,7 +72,7 @@ local default = {
         end,
     },
 
-    -- dashboard-nvim -> [A vim dashboard, greeter for neovim] 
+    -- dashboard-nvim -> [A vim dashboard, greeter for neovim]
     -- https://github.com/nvimdev/dashboard-nvim
 
     {
@@ -195,19 +195,19 @@ local default = {
                         local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
 
                         if error ~= 0 then
-                            table.insert(result, { text = get_icons("DiagnosticError",1,true) .. error, fg = "#EC5241" })
+                            table.insert(result, { text = get_icons("DiagnosticError", 1, true) .. error, fg = "#EC5241" })
                         end
 
                         if warning ~= 0 then
-                            table.insert(result, { text = get_icons("DiagnosticWarn",1,true) .. warning, fg = "#EFB839" })
+                            table.insert(result, { text = get_icons("DiagnosticWarn", 1, true) .. warning, fg = "#EFB839" })
                         end
 
                         if hint ~= 0 then
-                            table.insert(result, { text = get_icons("DiagnosticHint",1,true) .. hint, fg = "#A3BA5E" })
+                            table.insert(result, { text = get_icons("DiagnosticHint", 1, true) .. hint, fg = "#A3BA5E" })
                         end
 
                         if info ~= 0 then
-                            table.insert(result, { text = get_icons("DiagnosticInfo",1,true) .. info, fg = "#7EA9A7" })
+                            table.insert(result, { text = get_icons("DiagnosticInfo", 1, true) .. info, fg = "#7EA9A7" })
                         end
                         return result
                     end,
@@ -319,6 +319,9 @@ local default = {
             vim.notify = require("notify")
         end,
     },
+
+    -- noice.nvim -> [ A plugin that completely replaces the UI for messages, cmdline and the popupmenu]
+    -- https://github.com/folke/noice.nvim
 
     {
         "folke/noice.nvim",
