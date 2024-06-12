@@ -182,9 +182,9 @@ local default = {
 				themable = true,
 				diagnostics = "nvim_lsp",
 				diagnostics_update_in_insert = false,
-				diagnostics_indicator = function(count)
-					return "(" .. count .. ")"
-				end,
+				-- diagnostics_indicator = function(count)
+				-- 	return "(" .. count .. ")"
+				-- end,
 
 				custom_areas = {
 					right = function()
