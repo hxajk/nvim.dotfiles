@@ -131,6 +131,9 @@ local default = {
                 colorscheme = {
                     enable_preview = true,
                 },
+                find_files = {
+                    find_command = { "fd", "--type=file", "--follow", "--exclude=.git" },
+                },
             },
             defaults = {
                 vimgrep_arguments = {
@@ -146,7 +149,7 @@ local default = {
                 },
 
                 prompt_prefix = get_icons("TelescopePrompt", 1, true),
-                selection_caret = get_icons("Selected",1,true),
+                selection_caret = get_icons("Selected", 1, true),
                 initial_mode = "insert",
                 sorting_strategy = "ascending",
                 -- layout_strategy = "horizontal",
