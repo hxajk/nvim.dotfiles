@@ -1,6 +1,7 @@
 -- UI Plugins
 
-local get_icons = require("core").get_icon
+local core = require("core")
+local get_icons = core.get_icon
 
 local default = {
 
@@ -264,51 +265,54 @@ local default = {
 			end
 		end,
 
-	
-opts = function()
-    return {
-        options = {
-            theme = require("core").theme(),
-            component_separators = "",
-            disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
-            section_separators = { left = " ", right = " " },
-        },
-        sections = {
-            lualine_a = { "mode" },
-            lualine_b = {
-                { "branch" },
-                {
-                    "diff",
-                    symbols = { 
-                        added = "  ", 
-                        modified = "  ", 
-                        removed = " " 
-                    }, 
-                },
-                { "diagnostics" },
-            },
-            lualine_c = {
-                { 
-                    "filetype", 
-                    icon_only = true, 
-                    padding = { left = 1, right = 0 }, 
-                    separator = " " 
-                },
-                { 
-                    "filename", 
-                    padding = { left = 0, right = 1 } 
-                },
-            },
-            lualine_x = {},
-            lualine_y = { "progress" },
-            lualine_z = {
-                function()
-                    return " " .. os.date("%R")
-                end,
-            },
-        },
-    }
-end,
+		opts = function()
+			return {
+				options = {
+					theme = require("core").theme(),
+					component_separators = "",
+					disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+					section_separators = { left = " ", right = " " },
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = {
+						{ "branch" },
+						{
+							"diff",
+							symbols = {
+								added = "  ",
+								modified = "  ",
+								removed = " ",
+							},
+						},
+						{ "diagnostics" },
+					},
+					lualine_c = {
+						{
+							"filetype",
+							icon_only = true,
+							padding = { left = 1, right = 0 },
+							separator = " ",
+						},
+						{
+							"filename",
+							padding = { left = 0, right = 1 },
+						},
+					},
+					lualine_x = {
+						function()
+							return require("core").lsp_progress()
+						end,
+					},
+					lualine_y = { "location" },
+					lualine_z = {
+						function()
+							return " " .. os.date("%R")
+						end,
+					},
+				},
+			}
+		end,
 
 		config = function(_, opts)
 			require("lualine").setup(opts)
