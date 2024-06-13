@@ -39,6 +39,7 @@ vim.opt.undofile = true
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = vim.fn.has("nvim-0.10") == 1 and "expr" or "indent"
 vim.opt.foldtext = vim.fn.has("nvim-0.10") == 1 and "" or vim.opt.foldtext
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Search settings
 vim.opt.hlsearch = true
