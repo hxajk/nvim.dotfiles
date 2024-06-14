@@ -280,13 +280,12 @@ local default = {
 						{
 							"filetype",
 							icon_only = false,
-							padding = { left = 1, right = 0 },
 							separator = " ",
 						},
 
 					},
 					lualine_c = {
-						{ "branch" },
+						{ "branch"},
 						{
 							"diff",
 							symbols = {
@@ -294,8 +293,9 @@ local default = {
 								modified = "  ",
 								removed = " ",
 							},
+
 						},
-						{ "diagnostics" },
+						{ "diagnostics"},
 
 					},
 					lualine_x = {
@@ -305,9 +305,9 @@ local default = {
 					},
 					lualine_y = { "location" },
 					lualine_z = {
-						function()
-							return " " .. os.date("%R")
-						end,
+						-- function()
+						-- 	return " " .. os.date("%R")
+						-- end,
 					},
 				},
 			}
