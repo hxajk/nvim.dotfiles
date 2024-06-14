@@ -276,6 +276,16 @@ local default = {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = {
+
+						{
+							"filetype",
+							icon_only = false,
+							padding = { left = 1, right = 0 },
+							separator = " ",
+						},
+
+					},
+					lualine_c = {
 						{ "branch" },
 						{
 							"diff",
@@ -286,18 +296,7 @@ local default = {
 							},
 						},
 						{ "diagnostics" },
-					},
-					lualine_c = {
-						{
-							"filetype",
-							icon_only = true,
-							padding = { left = 1, right = 0 },
-							separator = " ",
-						},
-						{
-							"filename",
-							padding = { left = 0, right = 1 },
-						},
+
 					},
 					lualine_x = {
 						function()
