@@ -330,9 +330,7 @@ local default = {
 								removed = { fg = colors.red },
 							},
 						},
-					},
-					lualine_y = {},
-					lualine_z = {
+
 						{
 							function()
 								return "▊"
@@ -341,6 +339,8 @@ local default = {
 							padding = { left = 1 },
 						},
 					},
+					lualine_y = {},
+					lualine_z = {},
 				},
 			}
 		end,
