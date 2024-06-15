@@ -366,6 +366,11 @@ local default = {
 								modified = "  ",
 								removed = " ",
 							},
+							diff_color = {
+								added = { fg = colors.green },
+								modified = { fg = colors.orange },
+								removed = { fg = colors.red },
+							},
 						},
 					},
 					lualine_z = {
