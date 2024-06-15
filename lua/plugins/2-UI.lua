@@ -302,7 +302,24 @@ local default = {
 						},
 					},
 					lualine_c = {
+						{ "diagnostics" },
+					},
+					lualine_x = {
+
+						{
+							function()
+								return require("core").lsp_progress()
+							end,
+						},
+
+						{
+							"location",
+						},
+					},
+					lualine_y = {
+
 						{ "branch" },
+
 						{
 							"diff",
 							symbols = {
@@ -311,16 +328,15 @@ local default = {
 								removed = " ",
 							},
 						},
-						{ "diagnostics" },
 					},
-					lualine_x = {
-						function()
-							print(vim.fn.mode())
-							return require("core").lsp_progress()
-						end,
-					},
-					lualine_y = { "location" },
 					lualine_z = {
+						{
+							function()
+								return "▊"
+							end,
+							color = { fg = colors.blue },
+							padding = { left = 1 },
+						},
 					},
 				},
 			}
