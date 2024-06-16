@@ -1,6 +1,9 @@
 --  More coding plugins
 
-local get_icons = require("core").gets
+local icons = 
+	{ 
+		git = require("core").gets("git"),
+	}
 
 local default = {
 	{
@@ -60,18 +63,50 @@ local default = {
 
 		opts = {
 			signs = {
-				add = { text = get_icons("base").GitAdd },
-				change = { text = get_icons("base").GitChange },
-				delete = { text = get_icons("base").GitDelete },
-				topdelete = { text = get_icons("base").GitTopDelete },
-				changedelete = { text = get_icons("base").GitChangeDelete },
-				untracked = { text = get_icons("base").GitUnTracked },
+				add = {
+					hl = "GitSignsAdd",
+					text = "│",
+					numhl = "GitSignsAddNr",
+					linehl = "GitSignsAddLn",
+				},
+				change = {
+					hl = "GitSignsChange",
+					text = "│",
+					numhl = "GitSignsChangeNr",
+					linehl = "GitSignsChangeLn",
+				},
+				delete = {
+					hl = "GitSignsDelete",
+					text = "_",
+					numhl = "GitSignsDeleteNr",
+					linehl = "GitSignsDeleteLn",
+				},
+				topdelete = {
+					hl = "GitSignsDelete",
+					text = "‾",
+					numhl = "GitSignsDeleteNr",
+					linehl = "GitSignsDeleteLn",
+				},
+				changedelete = {
+					hl = "GitSignsChange",
+					text = "~",
+					numhl = "GitSignsChangeNr",
+					linehl = "GitSignsChangeLn",
+				},
 			},
+			watch_gitdir = { interval = 1000, follow_files = true },
+			current_line_blame = true,
+			current_line_blame_opts = { delay = 1000, virtual_text_pos = "eol" },
+			sign_priority = 6,
+			update_debounce = 100,
+			status_formatter = nil, -- Use default
+			word_diff = false,
+			diff_opts = { internal = true },
 			on_attach = function(_)
 				local gs = package.loaded.gitsigns
 
                 -- stylua: ignore start
-                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = get_icons("base").Git .. "Git" })
+                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = icons.git.Git .. "Git" })
                 vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
                 vim.keymap.set('n', '[h', function() gs.nav_hunk("prev") end, { desc = 'Prev Hunk' })
                 vim.keymap.set('n', ']H', function() gs.nav_hunk("last") end, { desc = 'Last Hunk' })
