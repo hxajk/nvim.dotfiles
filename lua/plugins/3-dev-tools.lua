@@ -1,6 +1,11 @@
 -- Coding Tools plugins
 
-local get_icons = require("core").gets
+local icons = 
+	{ 
+		kind = require("core").gets("kind"),
+		diagnostics = require("core").gets("diagnostics"),
+		misc = require("core").gets("misc"),
+	}
 
 local default = {
 	{
@@ -91,19 +96,19 @@ local default = {
 			})
 			vim.fn.sign_define(
 				"DiagnosticSignError",
-				{ text = get_icons("base").DiagnosticError, texthl = "DiagnosticSignError" }
+				{ text = icons.diagnostics.Error, texthl = "DiagnosticSignError" }
 			)
 			vim.fn.sign_define(
 				"DiagnosticSignWarn",
-				{ text = get_icons("base").DiagnosticWarn, texthl = "DiagnosticSignWarn" }
+				{ text = icons.diagnostics.Warning, texthl = "DiagnosticSignWarn" }
 			)
 			vim.fn.sign_define(
 				"DiagnosticSignInfo",
-				{ text = get_icons("base").DiagnosticInfo, texthl = "DiagnosticSignInfo" }
+				{ text = icons.diagnostics.Information, texthl = "DiagnosticSignInfo" }
 			)
 			vim.fn.sign_define(
 				"DiagnosticSignHint",
-				{ text = get_icons("base").DiagnosticHint, texthl = "DiagnosticSignHint" }
+				{ text = icons.diagnostics.Hint, texthl = "DiagnosticSignHint" }
 			)
 		end,
 	},
@@ -120,7 +125,7 @@ local default = {
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = get_icons("base").LSP .. "LSP" })
+			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = icons.misc.LSP .. "LSP" })
 			vim.keymap.set("n", "<leader>lu", function()
 				vim.g.autoformat = not vim.g.autoformat
 
@@ -160,8 +165,6 @@ local default = {
 		opts = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			local icons = get_icons("kind")
-
 			return {
 				snippet = {
 					expand = function(args)
@@ -183,8 +186,8 @@ local default = {
 					fields = { "abbr", "kind", "menu" },
 					format = function(_, item)
 						-- Kind icons
-						if icons[item.kind] then
-							item.kind = icons[item.kind] .. " " .. item.kind
+						if icons.kind[item.kind] then
+							item.kind = icons.kind[item.kind] .. " " .. item.kind
 						end
 
 						return item
@@ -262,7 +265,7 @@ local default = {
 			log_level = vim.log.levels.INFO,
 		},
 		keys = {
-			{ "<leader>p", "<Cmd><leader>p<CR>", desc = get_icons("base").Package .. "Packages" },
+			{ "<leader>p", "<Cmd><leader>p<CR>", desc = icons.misc.Package .. "Packages" },
 			{ "<leader>pm", "<Cmd>Mason<CR>", desc = "Open Language Menu" },
 			{ "<leader>pu", "<Cmd>MasonUpdate<CR>", desc = "Refesh Language" },
 		},

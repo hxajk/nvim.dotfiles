@@ -211,6 +211,7 @@ local icons = {
 		Table = "",
 		Telescope = "",
 		Window = "",
+        Message = "",
 	},
 	diagnostics = {
 		Error = "",
@@ -245,6 +246,8 @@ local icons = {
 		ManUp = "",
 		Neovim = "",
 		Vim = "",
+        Package = "",
+        LSP = "",
 	},
 
     tools = {
@@ -270,9 +273,6 @@ local icons = {
         GitDelete = "",
         GitTopDelete = "",
         GitUnTracked = "▎",
-        LSP = "",
-        Message = "",
-        Package = "",
         Tab = "󰓩",
         VBar = "│",
     },
