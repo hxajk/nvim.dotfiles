@@ -120,7 +120,7 @@ local default = {
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+" .. get_icons("base").LSP .. "LSP" })
+			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = get_icons("base").LSP .. "LSP" })
 			vim.keymap.set("n", "<leader>lu", function()
 				vim.g.autoformat = not vim.g.autoformat
 
@@ -262,7 +262,7 @@ local default = {
 			log_level = vim.log.levels.INFO,
 		},
 		keys = {
-			{ "<leader>p", "<Cmd><leader>p<CR>", desc = "+" .. get_icons("base").Package .. "Packages" },
+			{ "<leader>p", "<Cmd><leader>p<CR>", desc = get_icons("base").Package .. "Packages" },
 			{ "<leader>pm", "<Cmd>Mason<CR>", desc = "Open Language Menu" },
 			{ "<leader>pu", "<Cmd>MasonUpdate<CR>", desc = "Refesh Language" },
 		},

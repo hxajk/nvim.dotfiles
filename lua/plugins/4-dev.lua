@@ -71,7 +71,7 @@ local default = {
 				local gs = package.loaded.gitsigns
 
                 -- stylua: ignore start
-                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = "+" .. get_icons("base").Git .. "Git" })
+                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = get_icons("base").Git .. "Git" })
                 vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
                 vim.keymap.set('n', '[h', function() gs.nav_hunk("prev") end, { desc = 'Prev Hunk' })
                 vim.keymap.set('n', ']H', function() gs.nav_hunk("last") end, { desc = 'Last Hunk' })

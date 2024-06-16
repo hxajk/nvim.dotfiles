@@ -33,7 +33,7 @@ local default = {
             {
                 "<leader>S",
                 "<cmd><leader>S<cr>",
-                desc = "+" .. get_icons("base").Session .. "Session",
+                desc = get_icons("base").Session .. "Session",
             },
             {
                 "<leader>Sa",
@@ -102,7 +102,7 @@ local default = {
             {
                 "<leader>t",
                 "<Cmd><leader>t<CR>",
-                desc = "+" .. get_icons("base").Terminal .. "Terminal",
+                desc = get_icons("base").Terminal .. "Terminal",
             },
             { "<leader>tt", "<Cmd>ToggleTerm direction=float<CR>",      desc = "Toggle terminal (float)" },
             { "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Toggle terminal (horizontal)" },
@@ -181,7 +181,7 @@ local default = {
         },
 
         keys = {
-            { "<leader>f", "<leader>f", desc = "+" .. get_icons("base").Telescope .. "Telescope" },
+            { "<leader>f", "<leader>f", desc = get_icons("base").Telescope .. "Telescope" },
         },
 
         config = function(_, opts)

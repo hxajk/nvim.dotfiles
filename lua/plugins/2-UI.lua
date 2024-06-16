@@ -192,7 +192,7 @@ local default = {
 			{
 				"<leader>b",
 				"<Cmd><leader>b<CR>",
-				desc = "+" .. get_icons("base").Buffer .. "Buffer",
+				desc = get_icons("base").Buffer .. "Buffer",
 			},
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
@@ -439,7 +439,7 @@ local default = {
 			return {
                 -- stylua: ignore start
                 { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end,                 desc = "Redirect Cmdline" },
-                { "<leader>s",  "<leader>s",                                                        desc = "+" .. get_icons("base").Message .. "Notification" },
+                { "<leader>s",  "<leader>s",                                                        desc = get_icons("base").Message .. "Notification" },
                 { "<leader>sl", function() noice.cmd("last") end,                                   desc = "Noice Last Message" },
                 { "<leader>sh", function() noice.cmd("history") end,                                desc = "Noice History" },
                 { "<leader>sa", function() noice.cmd("all") end,                                    desc = "Noice All" },
