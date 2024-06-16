@@ -247,6 +247,14 @@ local icons = {
 		Vim = "",
 	},
 
+    tools = {
+        Session = "",
+        Terminal = "",
+        Telescope = "",
+        TelescopePrompt = "",
+        Selected = "❯",
+    },
+
     base = {
         Buffer = "󰓩",
         Clock = "",
@@ -265,12 +273,7 @@ local icons = {
         LSP = "",
         Message = "",
         Package = "",
-        Selected = "❯",
-        Session = "",
         Tab = "󰓩",
-        Telescope = "",
-        TelescopePrompt = "",
-        Terminal = "",
         VBar = "│",
     },
 
