@@ -78,45 +78,46 @@ M.theme = function()
 end
 -- Icons
 
-M.Icons = {
+local icons = {
     -- AUTO COMPLETION --
-    kinds = {
-        Array = "",
-        Boolean = "",
-        Class = "",
-        Color = "",
-        Constant = "",
-        Constructor = "",
-        Enum = "",
-        EnumMember = "",
-        Event = "",
-        Field = "",
-        File = "",
-        Folder = "󰉋",
-        Function = "",
-        Interface = "",
-        Key = "",
-        Keyword = "",
-        Method = "",
-        Module = "",
-        Namespace = "",
-        Null = "󰟢",
-        Number = "",
-        Object = "",
-        Operator = "",
-        Package = "",
-        Property = "",
-        Reference = "",
-        Snippet = "",
-        String = "",
-        Struct = "",
-        Text = "",
-        TypeParameter = "",
-        Unit = "",
-        Value = "",
-        Variable = "",
-    },
-    -- -- -- -- -- -- -- -- -- --
+    kind = {
+		Class = "󰠱",
+		Color = "󰏘",
+		Constant = "󰏿",
+		Constructor = "",
+		Enum = "",
+		EnumMember = "",
+		Event = "",
+		Field = "󰇽",
+		File = "󰈙",
+		Folder = "󰉋",
+		Fragment = "",
+		Function = "󰊕",
+		Interface = "",
+		Implementation = "",
+		Keyword = "󰌋",
+		Method = "󰆧",
+		Module = "",
+		Namespace = "󰌗",
+		Number = "",
+		Operator = "󰆕",
+		Package = "",
+		Property = "󰜢",
+		Reference = "",
+		Snippet = "",
+		Struct = "",
+		Text = "󰉿",
+		TypeParameter = "󰅲",
+		Undefined = "",
+		Unit = "",
+		Value = "󰎠",
+		Variable = "",
+		-- ccls-specific icons.
+		TypeAlias = "",
+		Parameter = "",
+		StaticMethod = "",
+		Macro = "",
+	},    -- -- -- -- -- -- -- -- -- --
 
     -- Base Icon --
 
@@ -150,14 +151,15 @@ M.Icons = {
     -- -- -- -- -- -- --
 }
 
-M.get_icon = function(kind, padding, enable) -- Later on...
-    if not vim.g.icons_enabled and enable then
+M.gets = function(category, add_space)
+    if not vim.g.icons_enabled then
         return ""
     end
-
-    local Base = M.Icons
-    local icon = Base["base"] and Base["base"][kind]
-    return icon and icon .. string.rep(" ", padding or 0) or ""
+		return setmetatable({}, {
+			__index = function(_, key)
+				return icons[category][key] .. " "
+			end,
+		})
 end
 
 M.capabilities = function()
@@ -171,7 +173,7 @@ M.on_attach = function(client, bufnr)
 
     -- Using the custom map function
 
-    map("n", "<leader>l", "<leader>l", "+" .. M.get_icon("LSP", 1, true) .. "LSP")
+    map("n", "<leader>l", "<leader>l", "+" .. M.gets("base").LSP .. "LSP")
 
     map("n", "<leader>lh", vim.lsp.buf.signature_help, "Show signature help")
 
