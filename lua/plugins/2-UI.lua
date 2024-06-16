@@ -1,7 +1,11 @@
 -- UI Plugins
 
 local core = require("core")
-local icons = { ui = core.gets("ui") }
+local icons = {
+	ui = core.gets("ui"),
+	git = core.gets("git"),
+	diagnostics = core.gets("diagnostics"),
+}
 
 local default = {
 
@@ -239,38 +243,59 @@ local default = {
 				red = "#ec5f67",
 			}
 
+			local conditionals = {
+				has_enough_room = function()
+					return vim.o.columns > 100
+				end,
+				has_comp_before = function()
+					return vim.bo.filetype ~= ""
+				end,
+				has_git = function()
+					local gitdir = vim.fs.find(".git", {
+						limit = 1,
+						upward = true,
+						type = "directory",
+						path = vim.fn.expand("%:p:h"),
+					})
+					return #gitdir > 0
+				end,
+			}
+
 			return {
 				options = {
 					theme = require("core").theme(),
 					component_separators = "",
-					disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+					disabled_filetypes = { statusline = { "dashboard" } },
 					section_separators = { left = "", right = "" },
 				},
 				extensions = { "toggleterm" },
 				sections = {
-					lualine_a = {
-						{
-							"mode",
-						},
-					},
+					lualine_a = { "mode" },
 					lualine_b = {},
 					lualine_c = {
 						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " " },
-						{
-							"diagnostics",
-							sources = { "nvim_diagnostic" },
-							symbols = { error = " ", warn = " ", info = " " },
-							diagnostics_color = {
-								color_error = { fg = colors.red },
-								color_warn = { fg = colors.yellow },
-								color_info = { fg = colors.cyan },
-							},
-						},
 
 						{
 							function()
 								return "%="
 							end,
+						},
+
+						{
+							"diagnostics",
+							sources = { "nvim_diagnostic" },
+							sections = { "error", "warn", "info", "hint" },
+							symbols = {
+								error = icons.diagnostics.Error,
+								warn = icons.diagnostics.Warning,
+								info = icons.diagnostics.Information,
+								hint = icons.diagnostics.Hint_alt,
+							},
+							diagnostics_color = {
+								color_error = { fg = colors.red },
+								color_warn = { fg = colors.yellow },
+								color_info = { fg = colors.cyan },
+							},
 						},
 
 						{
@@ -292,7 +317,6 @@ local default = {
 							icon = " LSP:",
 							color = { fg = "#ffffff", gui = "bold" },
 						},
-						{ "fileformat" },
 					},
 					lualine_x = {
 
@@ -308,20 +332,22 @@ local default = {
 
 						{
 							"branch",
+							cond = conditionals.has_git,
 						},
 
 						{
 							"diff",
 							symbols = {
-								added = "  ",
-								modified = "  ",
-								removed = " ",
+								added = icons.git.Add,
+								modified = icons.git.Mod_alt,
+								removed = icons.git.Remove,
 							},
 							diff_color = {
 								added = { fg = colors.green },
 								modified = { fg = colors.orange },
 								removed = { fg = colors.red },
 							},
+							cond = conditionals.has_git,
 						},
 
 						{
