@@ -1,7 +1,7 @@
 -- UI Plugins
 
 local core = require("core")
-local get_icons = core.gets
+local icons = { ui = core.gets("ui") }
 
 local default = {
 
@@ -192,7 +192,7 @@ local default = {
 			{
 				"<leader>b",
 				"<Cmd><leader>b<CR>",
-				desc = get_icons("base").Buffer .. "Buffer",
+				desc = icons.ui.Buffer .. "Buffer",
 			},
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
@@ -253,7 +253,7 @@ local default = {
 							"mode",
 						},
 					},
-                    lualine_b = {},
+					lualine_b = {},
 					lualine_c = {
 						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " " },
 						{
@@ -292,7 +292,7 @@ local default = {
 							icon = " LSP:",
 							color = { fg = "#ffffff", gui = "bold" },
 						},
-                    {"fileformat"},
+						{ "fileformat" },
 					},
 					lualine_x = {
 
@@ -439,14 +439,14 @@ local default = {
 			return {
                 -- stylua: ignore start
                 { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end,                 desc = "Redirect Cmdline" },
-                { "<leader>s",  "<leader>s",                                                        desc = get_icons("base").Message .. "Notification" },
+                { "<leader>s",  "<leader>s",                                                        desc = icons.ui.Message .. "Notification" },
                 { "<leader>sl", function() noice.cmd("last") end,                                   desc = "Noice Last Message" },
                 { "<leader>sh", function() noice.cmd("history") end,                                desc = "Noice History" },
                 { "<leader>sa", function() noice.cmd("all") end,                                    desc = "Noice All" },
                 { "<leader>sd", function() noice.cmd("dismiss") end,                                desc = "Dismiss All" },
                 { "<leader>st", function() noice.cmd("telescope") end,                              desc = "Noice Telescope" },
-                { "<c-f>",      function() if not noice_lsp.scroll(4) then return "<c-f>" end end,  silent = true,                                                expr = true, desc = "Scroll Forward" },
-                { "<c-b>",      function() if not noice_lsp.scroll(-4) then return "<c-b>" end end, silent = true,                                                expr = true, desc = "Scroll Backward" },
+                { "<c-f>",      function() if not noice_lsp.scroll(4) then return "<c-f>" end end,  silent = true,                            expr = true, desc = "Scroll Forward" },
+                { "<c-b>",      function() if not noice_lsp.scroll(-4) then return "<c-b>" end end, silent = true,                            expr = true, desc = "Scroll Backward" },
 			}
 			-- stylua : ignore
 		end,
