@@ -173,7 +173,7 @@ M.on_attach = function(client, bufnr)
 
     -- Using the custom map function
 
-    map("n", "<leader>l", "<leader>l", "+" .. M.gets("base").LSP .. "LSP")
+    map("n", "<leader>l", "<leader>l", M.gets("base").LSP .. "LSP")
 
     map("n", "<leader>lh", vim.lsp.buf.signature_help, "Show signature help")
 
