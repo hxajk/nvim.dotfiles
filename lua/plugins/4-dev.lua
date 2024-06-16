@@ -1,6 +1,6 @@
 --  More coding plugins
 
-local get_icons = require("core").get_icon
+local get_icons = require("core").gets
 
 local default = {
 	{
@@ -60,18 +60,18 @@ local default = {
 
 		opts = {
 			signs = {
-				add = { text = get_icons("GitAdd", 1, true) },
-				change = { text = get_icons("GitChange", 1, true) },
-				delete = { text = get_icons("GitDelete", 1, true) },
-				topdelete = { text = get_icons("GitTopDelete", 1, true) },
-				changedelete = { text = get_icons("GitChangeDelete", 1, true) },
-				untracked = { text = get_icons("GitUnTracked", 1, true) },
+				add = { text = get_icons("base").GitAdd },
+				change = { text = get_icons("base").GitChange },
+				delete = { text = get_icons("base").GitDelete },
+				topdelete = { text = get_icons("base").GitTopDelete },
+				changedelete = { text = get_icons("base").GitChangeDelete },
+				untracked = { text = get_icons("base").GitUnTracked },
 			},
 			on_attach = function(_)
 				local gs = package.loaded.gitsigns
 
                 -- stylua: ignore start
-                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = "+" .. get_icons("Git", 1, true) .. "Git" })
+                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = "+" .. get_icons("base").Git .. "Git" })
                 vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
                 vim.keymap.set('n', '[h', function() gs.nav_hunk("prev") end, { desc = 'Prev Hunk' })
                 vim.keymap.set('n', ']H', function() gs.nav_hunk("last") end, { desc = 'Last Hunk' })

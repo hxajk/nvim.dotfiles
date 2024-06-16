@@ -1,7 +1,7 @@
 -- UI Plugins
 
 local core = require("core")
-local get_icons = core.get_icon
+local get_icons = core.gets
 
 local default = {
 
@@ -192,7 +192,7 @@ local default = {
 			{
 				"<leader>b",
 				"<Cmd><leader>b<CR>",
-				desc = "+" .. get_icons("Buffer", 1, true) .. "Buffer",
+				desc = "+" .. get_icons("base").Buffer .. "Buffer",
 			},
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
@@ -246,22 +246,16 @@ local default = {
 					disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
 					section_separators = { left = "", right = "" },
 				},
-
+				extensions = { "toggleterm" },
 				sections = {
 					lualine_a = {
 						{
 							"mode",
 						},
 					},
-					lualine_b = {
-
-						{
-							"filetype",
-							icon_only = false,
-							separator = " ",
-						},
-					},
+                    lualine_b = {},
 					lualine_c = {
+						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " " },
 						{
 							"diagnostics",
 							sources = { "nvim_diagnostic" },
@@ -298,6 +292,7 @@ local default = {
 							icon = " LSP:",
 							color = { fg = "#ffffff", gui = "bold" },
 						},
+                    {"fileformat"},
 					},
 					lualine_x = {
 
@@ -313,8 +308,6 @@ local default = {
 
 						{
 							"branch",
-							icon = "",
-							color = { fg = colors.violet, gui = "bold" },
 						},
 
 						{
@@ -446,7 +439,7 @@ local default = {
 			return {
                 -- stylua: ignore start
                 { "<S-Enter>",  function() noice.redirect(vim.fn.getcmdline()) end,                 desc = "Redirect Cmdline" },
-                { "<leader>s",  "<leader>s",                                                        desc = "+" .. get_icons("Message", 1, true) .. "Notification" },
+                { "<leader>s",  "<leader>s",                                                        desc = "+" .. get_icons("base").Message .. "Notification" },
                 { "<leader>sl", function() noice.cmd("last") end,                                   desc = "Noice Last Message" },
                 { "<leader>sh", function() noice.cmd("history") end,                                desc = "Noice History" },
                 { "<leader>sa", function() noice.cmd("all") end,                                    desc = "Noice All" },

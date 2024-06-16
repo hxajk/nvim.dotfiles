@@ -1,6 +1,6 @@
 -- Coding Tools plugins
 
-local get_icons = require("core").get_icon
+local get_icons = require("core").gets
 
 local default = {
 	{
@@ -91,19 +91,19 @@ local default = {
 			})
 			vim.fn.sign_define(
 				"DiagnosticSignError",
-				{ text = get_icons("DiagnosticError", 1, true), texthl = "DiagnosticSignError" }
+				{ text = get_icons("base").DiagnosticError, texthl = "DiagnosticSignError" }
 			)
 			vim.fn.sign_define(
 				"DiagnosticSignWarn",
-				{ text = get_icons("DiagnosticWarn", 1, true), texthl = "DiagnosticSignWarn" }
+				{ text = get_icons("base").DiagnosticWarn, texthl = "DiagnosticSignWarn" }
 			)
 			vim.fn.sign_define(
 				"DiagnosticSignInfo",
-				{ text = get_icons("DiagnosticInfo", 1, true), texthl = "DiagnosticSignInfo" }
+				{ text = get_icons("base").DiagnosticInfo, texthl = "DiagnosticSignInfo" }
 			)
 			vim.fn.sign_define(
 				"DiagnosticSignHint",
-				{ text = get_icons("DiagnosticHint", 1, true), texthl = "DiagnosticSignHint" }
+				{ text = get_icons("base").DiagnosticHint, texthl = "DiagnosticSignHint" }
 			)
 		end,
 	},
@@ -120,7 +120,7 @@ local default = {
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+" .. get_icons("LSP", 1, true) .. "LSP" })
+			vim.keymap.set("n", "<leader>l", "<leader>l", { desc = "+" .. get_icons("base").LSP .. "LSP" })
 			vim.keymap.set("n", "<leader>lu", function()
 				vim.g.autoformat = not vim.g.autoformat
 
@@ -160,7 +160,7 @@ local default = {
 		opts = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			local icons = require("core").Icons.kinds
+			local icons = get_icons("kind")
 
 			return {
 				snippet = {
@@ -262,7 +262,7 @@ local default = {
 			log_level = vim.log.levels.INFO,
 		},
 		keys = {
-			{ "<leader>p", "<Cmd><leader>p<CR>", desc = "+" .. get_icons("Package", 1, true) .. "Packages" },
+			{ "<leader>p", "<Cmd><leader>p<CR>", desc = "+" .. get_icons("base").Package .. "Packages" },
 			{ "<leader>pm", "<Cmd>Mason<CR>", desc = "Open Language Menu" },
 			{ "<leader>pu", "<Cmd>MasonUpdate<CR>", desc = "Refesh Language" },
 		},

@@ -1,6 +1,6 @@
 -- Tools plugins
 
-local get_icons = require("core").get_icon
+local get_icons = require("core").gets
 
 local default = {
 
@@ -33,7 +33,7 @@ local default = {
             {
                 "<leader>S",
                 "<cmd><leader>S<cr>",
-                desc = "+" .. get_icons("Session", 1, true) .. "Session",
+                desc = "+" .. get_icons("base").Session .. "Session",
             },
             {
                 "<leader>Sa",
@@ -102,7 +102,7 @@ local default = {
             {
                 "<leader>t",
                 "<Cmd><leader>t<CR>",
-                desc = "+" .. get_icons("Terminal", 1, true) .. "Terminal",
+                desc = "+" .. get_icons("base").Terminal .. "Terminal",
             },
             { "<leader>tt", "<Cmd>ToggleTerm direction=float<CR>",      desc = "Toggle terminal (float)" },
             { "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Toggle terminal (horizontal)" },
@@ -148,8 +148,8 @@ local default = {
                     "--glob=!.git/",
                 },
 
-                prompt_prefix = get_icons("TelescopePrompt", 1, true),
-                selection_caret = get_icons("Selected", 1, true),
+                prompt_prefix = get_icons("base").TelescopePrompt,
+                selection_caret = get_icons("base").Selected,
                 initial_mode = "insert",
                 sorting_strategy = "ascending",
                 -- layout_strategy = "horizontal",
@@ -181,7 +181,7 @@ local default = {
         },
 
         keys = {
-            { "<leader>f", "<leader>f", desc = "+" .. get_icons("Telescope", 1, true) .. "Telescope" },
+            { "<leader>f", "<leader>f", desc = "+" .. get_icons("base").Telescope .. "Telescope" },
         },
 
         config = function(_, opts)
