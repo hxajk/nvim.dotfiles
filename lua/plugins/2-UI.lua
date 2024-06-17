@@ -438,40 +438,6 @@ local default = {
 	},
 
 	{
-		"gelguy/wilder.nvim",
-		lazy = true,
-		event = "CmdlineEnter",
-		config = function()
-			local wilder = require("wilder")
-			local popupmenu_renderer = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-				border = "rounded",
-				highlights = {
-					default = "Pmenu",
-					border = "PmenuBorder",
-					accent = wilder.make_hl("WilderAccent", "CmpItemAbbr", "CmpItemAbbrMatch"),
-				},
-				empty_message = wilder.popupmenu_empty_message_with_spinner(),
-				highlighter = wilder.lua_fzy_highlighter(),
-				left = {
-					" ",
-					wilder.popupmenu_devicons(),
-				},
-				right = {
-					" ",
-					wilder.popupmenu_scrollbar(),
-				},
-			}))
-			wilder.set_option(
-				"renderer",
-				wilder.renderer_mux({
-					[":"] = popupmenu_renderer,
-				})
-			)
-			wilder.setup({ modes = { ":", "/", "?" } })
-		end,
-	},
-
-	{
 		"folke/which-key.nvim",
 		lazy = true,
 		event = { "CursorHold", "CursorHoldI" },

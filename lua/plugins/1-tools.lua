@@ -120,6 +120,44 @@ local default = {
 		end,
 	},
 
+   	{
+		"gelguy/wilder.nvim",
+		lazy = true,
+		event = "CmdlineEnter",
+
+		dependencies = { "romgrk/fzy-lua-native" },
+
+		config = function()
+			local wilder = require("wilder")
+			local popupmenu_renderer = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
+				border = "rounded",
+				highlights = {
+					default = "Pmenu",
+					border = "PmenuBorder",
+					accent = wilder.make_hl("WilderAccent", "CmpItemAbbr", "CmpItemAbbrMatch"),
+				},
+				empty_message = wilder.popupmenu_empty_message_with_spinner(),
+				highlighter = wilder.lua_fzy_highlighter(),
+				left = {
+					" ",
+					wilder.popupmenu_devicons(),
+				},
+				right = {
+					" ",
+					wilder.popupmenu_scrollbar(),
+				},
+			}))
+			wilder.set_option(
+				"renderer",
+				wilder.renderer_mux({
+					[":"] = popupmenu_renderer,
+				})
+			)
+			wilder.setup({ modes = { ":", "/", "?" } })
+		end,
+	},
+ 
+
 	-- telescope.nvim -> [A fuzzy finder]
 	-- https://github.com//nvim-telescope/telescope.nvim
 
