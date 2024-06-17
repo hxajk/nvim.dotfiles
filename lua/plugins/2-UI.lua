@@ -421,8 +421,8 @@ local default = {
 
 	{
 		"dstein64/nvim-scrollview",
-         lazy = true,
-	     event = { "CursorHold", "CursorHoldI" },
+		lazy = true,
+		event = { "CursorHold", "CursorHoldI" },
 		config = function()
 			require("scrollview").setup({
 				mode = "virtual",
@@ -434,6 +434,18 @@ local default = {
 				diagnostics_info_symbol = icons.diagnostics.Information,
 				diagnostics_hint_symbol = icons.diagnostics.Hint,
 			})
+		end,
+	},
+
+	{
+		"gelguy/wilder.nvim",
+		lazy = true,
+		event = "CmdlineEnter",
+		config = function()
+			local wilder = require("wilder")
+
+		
+        require("wilder").setup({ modes = { ":", "/", "?" } })
 		end,
 	},
 
