@@ -421,6 +421,8 @@ local default = {
 
 	{
 		"dstein64/nvim-scrollview",
+         lazy = true,
+	     event = { "CursorHold", "CursorHoldI" },
 		config = function()
 			require("scrollview").setup({
 				mode = "virtual",
