@@ -1,7 +1,7 @@
 -- Coding Tools plugins
 
-local icons = 
-	{ 
+local icons =
+	{
 		kind = require("core").gets("kind"),
 		diagnostics = require("core").gets("diagnostics"),
 		misc = require("core").gets("misc"),
@@ -110,6 +110,7 @@ local default = {
 				"DiagnosticSignHint",
 				{ text = icons.diagnostics.Hint, texthl = "DiagnosticSignHint" }
 			)
+        vim.api.nvim_command([[LspStart]]) -- start LSP
 		end,
 	},
 
