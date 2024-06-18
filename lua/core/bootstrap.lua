@@ -2,6 +2,11 @@
 
 local M = {}
 
+local icons = {
+	misc = require("core").gets("misc"),
+	ui = require("core").gets("ui"),
+}
+
 M.init = function(installpath)
 	vim.notify("Waiting...")
 	vim.fn.system({
@@ -72,6 +77,19 @@ M.load = function(installpath)
 			border = "rounded",
 			title = "Plugin Manager",
 			title_pos = "center",
+            size = { width = 0.88, height = 0.8 },
+            wrap = true,
+            icons = {
+				cmd = icons.misc.Code,
+				config = icons.ui.Gear,
+				init = icons.misc.ManUp,
+				keys = icons.ui.Keyboard,
+				loaded = icons.ui.Check,
+				not_loaded = icons.misc.Ghost,
+				plugin = icons.ui.Package,
+				runtime = icons.misc.Vim,
+				start = icons.ui.Play,
+			},
 		},
 
 		performance = {
