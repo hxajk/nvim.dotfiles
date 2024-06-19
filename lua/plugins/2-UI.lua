@@ -329,9 +329,12 @@ local default = {
 						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " " },
 
 						{
-							function()
-								return "%="
-							end,
+							"location",
+						},
+
+						{
+							"progress",
+							color = { fg = colors.fg, gui = "bold" },
 						},
 
 						{
@@ -349,6 +352,12 @@ local default = {
 								color_warn = { fg = colors.yellow },
 								color_info = { fg = colors.cyan },
 							},
+						},
+
+						{
+							function()
+								return "%="
+							end,
 						},
 
 						{
@@ -374,13 +383,17 @@ local default = {
 					lualine_x = {
 
 						{
-							function()
-								return require("core").lsp_progress()
-							end,
+							"o:encoding", -- option component same as &encoding in viml
+							fmt = string.upper, -- I'm not sure why it's upper case either ;)
+							cond = conditionals.has_enough_room,
+							color = { fg = colors.green, gui = "bold" },
 						},
 
 						{
-							"location",
+							"fileformat",
+							fmt = string.upper,
+							icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+							color = { fg = colors.green, gui = "bold" },
 						},
 
 						{
