@@ -184,26 +184,26 @@ local default = {
 		event = { "BufReadPost", "BufAdd", "BufNewFile" },
 		opts = {
 			options = {
-			number = nil,
-			buffer_close_icon = icons.ui.Close,
-			left_trunc_marker = icons.ui.Left,
-			right_trunc_marker = icons.ui.Right,
-			max_name_length = 20,
-			max_prefix_length = 13,
-			tab_size = 20,
-			color_icons = true,
-			show_buffer_icons = true,
-			show_buffer_close_icons = true,
-			show_close_icon = true,
-			show_tab_indicators = true,
-			enforce_regular_tabs = false,
-			persist_buffer_sort = true,
-			always_show_bufferline = true,
-			separator_style = "thin",
-			diagnostics = "nvim_lsp",
-            diagnostics_indicator = function(count)
-				return "(" .. count .. ")"
-			end,
+				number = nil,
+				buffer_close_icon = icons.ui.Close,
+				left_trunc_marker = icons.ui.Left,
+				right_trunc_marker = icons.ui.Right,
+				max_name_length = 20,
+				max_prefix_length = 13,
+				tab_size = 20,
+				color_icons = true,
+				show_buffer_icons = true,
+				show_buffer_close_icons = true,
+				show_close_icon = true,
+				show_tab_indicators = true,
+				enforce_regular_tabs = false,
+				persist_buffer_sort = true,
+				always_show_bufferline = true,
+				separator_style = "thin",
+				diagnostics = "nvim_lsp",
+				diagnostics_indicator = function(count)
+					return "(" .. count .. ")"
+				end,
 			},
 		},
 		keys = {
@@ -258,6 +258,9 @@ local default = {
 			}
 
 			local conditionals = {
+				buffer_not_empty = function()
+					return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+				end,
 				has_enough_room = function()
 					return vim.o.columns > 100
 				end,
@@ -284,9 +287,45 @@ local default = {
 				},
 				extensions = { "toggleterm" },
 				sections = {
-					lualine_a = { "mode" },
+					lualine_a = {},
 					lualine_b = {},
 					lualine_c = {
+						{
+							function()
+								return "▊"
+							end,
+							color = function()
+								local mode_color = {
+									n = colors.red,
+									i = colors.green,
+									v = colors.blue,
+									[""] = colors.blue,
+									V = colors.blue,
+									c = colors.magenta,
+									no = colors.red,
+									s = colors.orange,
+									S = colors.orange,
+									ic = colors.yellow,
+									R = colors.violet,
+									Rv = colors.violet,
+									cv = colors.red,
+									ce = colors.red,
+									r = colors.cyan,
+									rm = colors.cyan,
+									["r?"] = colors.cyan,
+									["!"] = colors.red,
+									t = colors.red,
+								}
+								return { fg = mode_color[vim.fn.mode()] }
+							end,
+							padding = { left = 0, right = 1 },
+						},
+
+						{
+							"filesize",
+							cond = conditionals.buffer_not_empty,
+						},
+
 						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " " },
 
 						{
