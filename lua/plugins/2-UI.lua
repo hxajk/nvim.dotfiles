@@ -326,7 +326,7 @@ local default = {
 							cond = conditionals.buffer_not_empty,
 						},
 
-						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " " },
+						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " ", color = { fg = colors.violet, gui = 'bold' }, },
 
 						{
 							"location",
@@ -399,6 +399,7 @@ local default = {
 						{
 							"branch",
 							cond = conditionals.has_git,
+                            color = { fg = colors.violet, gui = 'bold' },
 						},
 
 						{
