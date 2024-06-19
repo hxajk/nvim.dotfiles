@@ -1,11 +1,10 @@
 -- Coding Tools plugins
 
-local icons =
-	{
-		kind = require("core").gets("kind"),
-		diagnostics = require("core").gets("diagnostics"),
-		misc = require("core").gets("misc"),
-	}
+local icons = {
+	kind = require("core").gets("kind"),
+	diagnostics = require("core").gets("diagnostics"),
+	misc = require("core").gets("misc"),
+}
 
 local default = {
 	{
@@ -71,20 +70,12 @@ local default = {
 
 			for _, server in ipairs(servers) do
 				require("lspconfig")[server].setup({
-					on_attach = function(client, buffer)
-						require("core").on_attach(client, buffer)
-					end,
-
 					capabilities = require("core").capabilities(),
 				})
 			end
 
 			require("lspconfig").lua_ls.setup({
-				on_attach = function(client, buffer)
-					require("core").on_attach(client, buffer)
-				end,
-
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				capabilities = require("core").capabilities(),
 
 				settings = {
 					Lua = {
@@ -106,11 +97,8 @@ local default = {
 				"DiagnosticSignInfo",
 				{ text = icons.diagnostics.Information, texthl = "DiagnosticSignInfo" }
 			)
-			vim.fn.sign_define(
-				"DiagnosticSignHint",
-				{ text = icons.diagnostics.Hint, texthl = "DiagnosticSignHint" }
-			)
-        vim.api.nvim_command([[LspStart]]) -- start LSP
+			vim.fn.sign_define("DiagnosticSignHint", { text = icons.diagnostics.Hint, texthl = "DiagnosticSignHint" })
+			vim.api.nvim_command([[LspStart]]) -- start LSP
 		end,
 	},
 
@@ -149,16 +137,11 @@ local default = {
 	},
 
 	{
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		event = "VeryLazy",
-		lazy = true,
-	},
-
-	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
+			{ "hrsh7th/cmp-nvim-lsp" },
+
+			{ "L3MON4D3/LuaSnip", version = "v2.*", lazy = true },
 		},
 		lazy = true,
 		event = "InsertEnter",
