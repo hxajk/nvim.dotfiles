@@ -296,28 +296,5 @@ M.capabilities = function()
 end
 
 M.on_attach = function(client, bufnr)
-	local function map(mode, key, core, desc)
-		vim.keymap.set(mode, key, core, { desc = desc, buffer = bufnr })
-	end
-
-	-- Using the custom map function
-
-	map("n", "<leader>l", "<leader>l", M.gets("base").LSP .. "LSP")
-
-	map("n", "<leader>lh", vim.lsp.buf.signature_help, "Show signature help")
-
-	map("n", "<leader>li", "<cmd>LspInfo<cr>", "Lsp Info")
-
-	map("n", "<leader>lk", vim.lsp.buf.hover, "Hover")
-
-	map("n", "[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
-
-	map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
-
-	map("n", "<leader>ln", vim.lsp.buf.rename, "Rename Varable")
-
-	if client.supports_method("textDocument/formatting") then
-		map({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, "Format buffer")
-	end
 end
 return M
