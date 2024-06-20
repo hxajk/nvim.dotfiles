@@ -469,6 +469,9 @@ local default = {
 		end,
 	},
 
+    -- which-key.nvim -> [Displays a popup with possible keybindings of the command you started typing.]
+	-- https://github.com/folke/which-key.nvim
+
 	{
 		"folke/which-key.nvim",
 		lazy = true,
