@@ -204,6 +204,12 @@ local default = {
 				diagnostics_indicator = function(count)
 					return "(" .. count .. ")"
 				end,
+
+                highlights = {
+
+                    styles = { "bold" },
+
+                },
 			},
 		},
 		keys = {
@@ -326,7 +332,13 @@ local default = {
 							cond = conditionals.buffer_not_empty,
 						},
 
-						{ "filetype", icon_only = false, padding = { left = 1, right = 0 }, separator = " ", color = { fg = colors.violet, gui = 'bold' }, },
+						{
+							"filetype",
+							icon_only = false,
+							padding = { left = 1, right = 0 },
+							separator = " ",
+							color = { fg = colors.violet, gui = "bold" },
+						},
 
 						{
 							"location",
@@ -383,8 +395,8 @@ local default = {
 					lualine_x = {
 
 						{
-							"o:encoding", -- option component same as &encoding in viml
-							fmt = string.upper, -- I'm not sure why it's upper case either ;)
+							"o:encoding",
+							fmt = string.upper,
 							cond = conditionals.has_enough_room,
 							color = { fg = colors.green, gui = "bold" },
 						},
@@ -392,14 +404,14 @@ local default = {
 						{
 							"fileformat",
 							fmt = string.upper,
-							icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+							icons_enabled = false,
 							color = { fg = colors.green, gui = "bold" },
 						},
 
 						{
 							"branch",
 							cond = conditionals.has_git,
-                            color = { fg = colors.violet, gui = 'bold' },
+							color = { fg = colors.violet, gui = "bold" },
 						},
 
 						{
