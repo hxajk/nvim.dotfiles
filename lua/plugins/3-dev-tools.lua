@@ -149,6 +149,8 @@ local default = {
         opts = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
+
+            local compare = require("cmp.config.compare")
             return {
                 snippet = {
                     expand = function(args)
@@ -178,6 +180,17 @@ local default = {
 
                         return item
                     end,
+                },
+
+                sorting = {
+                    priority_weight = 2,
+                    comparators = {
+                        compare.offset,
+                        compare.exact,
+                        compare.score,
+                        compare.recently_used,
+                        compare.kind,
+                    },
                 },
 
                 matching = {
