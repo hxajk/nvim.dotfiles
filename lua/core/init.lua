@@ -257,27 +257,6 @@ local icons = {
 		TelescopePrompt = "",
 		Selected = "❯",
 	},
-
-	base = {
-		Buffer = "󰓩",
-		Clock = "",
-		DiagnosticError = "",
-		DiagnosticHint = "󰌵",
-		DiagnosticInfo = "󰋼",
-		DiagnosticWarn = "",
-		Flash = "⚡",
-		Git = "󰊢",
-		GitAdd = "▎",
-		GitChange = "▎",
-		GitChangeDelete = "▎",
-		GitDelete = "",
-		GitTopDelete = "",
-		GitUnTracked = "▎",
-		Tab = "󰓩",
-		VBar = "│",
-	},
-
-	-- -- -- -- -- -- --
 }
 
 M.gets = function(category, add_space)
