@@ -7,6 +7,10 @@ local icons = {
 }
 
 local default = {
+
+    -- nvim-treesitter/nvim-treesitter -> [Nvim Treesitter configurations and abstraction layer]
+    -- https://github.com/nvim-treesitter/nvim-treesitter
+
     {
         "nvim-treesitter/nvim-treesitter",
         version = false,
@@ -40,6 +44,9 @@ local default = {
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
+
+    -- neovim/nvim-lspconfig -> [Quickstart configs for Nvim LSP]
+    -- https://github.com/neovim/nvim-lspconfig
 
     {
         -- LSP and Autocompletion
@@ -115,6 +122,14 @@ local default = {
         config = function(_, opts)
             require("conform").setup(opts)
             vim.keymap.set("n", "<leader>l", "<leader>l", { desc = icons.misc.LSP .. "LSP" })
+
+            vim.keymap.set(
+                { "n", "v" },
+                "<leader>lf",
+                vim.lsp.buf.format,
+                { desc = "Format file" }
+            )
+
             vim.keymap.set("n", "<leader>lu", function()
                 vim.g.autoformat = not vim.g.autoformat
 

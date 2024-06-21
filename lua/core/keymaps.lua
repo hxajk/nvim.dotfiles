@@ -65,8 +65,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
 
         map("n", "<leader>ln", vim.lsp.buf.rename, "Rename Varable")
-
-        map({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, "Format buffer")
     end,
 })
 
