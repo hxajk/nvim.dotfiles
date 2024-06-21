@@ -279,6 +279,9 @@ local default = {
         end,
     },
 
+    -- williamboman/mason.nvim -> [Easily install and manage LSP servers, DAP servers, linters, and formatters]
+    -- https://github.com/williamboman/mason.nvim
+
     {
         "williamboman/mason.nvim",
         cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
