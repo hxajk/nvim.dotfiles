@@ -154,6 +154,9 @@ local default = {
         end,
     },
 
+    -- hrsh7th/nvim-cmp -> [A completion plugin for neovim coded in Lua]
+    -- https://github.com/hrsh7th/nvim-cmp
+
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
