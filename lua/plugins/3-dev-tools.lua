@@ -109,6 +109,9 @@ local default = {
         end,
     },
 
+    -- stevearc/conform.nvim -> [Lightweight yet powerful formatter plugin for Neovim]
+    -- https://github.com/stevearc/conform.nvim 
+
     {
         "stevearc/conform.nvim",
         lazy = true,
