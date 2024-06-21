@@ -4,6 +4,7 @@ local icons = {
     kind = require("core").gets("kind"),
     diagnostics = require("core").gets("diagnostics"),
     misc = require("core").gets("misc"),
+    ui = require("core").gets("ui")
 }
 
 local default = {
@@ -110,7 +111,7 @@ local default = {
     },
 
     -- stevearc/conform.nvim -> [Lightweight yet powerful formatter plugin for Neovim]
-    -- https://github.com/stevearc/conform.nvim 
+    -- https://github.com/stevearc/conform.nvim
 
     {
         "stevearc/conform.nvim",
@@ -289,10 +290,22 @@ local default = {
         lazy = true,
         opts = {
             ui = {
-                check_outdated_packages_on_open = true,
-                width = 0.8,
-                height = 0.9,
-                border = "rounded",
+                border = "single",
+                icons = {
+                    package_pending = icons.ui.Modified_alt,
+                    package_installed = icons.ui.Check,
+                    package_uninstalled = icons.misc.Ghost,
+                },
+                keymaps = {
+                    toggle_server_expand = "<CR>",
+                    install_server = "i",
+                    update_server = "u",
+                    check_server_version = "c",
+                    update_all_servers = "U",
+                    check_outdated_servers = "C",
+                    uninstall_server = "X",
+                    cancel_installation = "<C-c>",
+                },
             },
             log_level = vim.log.levels.INFO,
         },
