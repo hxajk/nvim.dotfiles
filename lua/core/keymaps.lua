@@ -1,5 +1,10 @@
 -- Mappings general
 
+local icons = {
+    misc = require("core").gets("misc"),
+}
+
+
 -- Insert mode mappings
 vim.keymap.set("i", "jj", "<ESC>", { desc = "Turn to normal mode" })
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Beginning of line" })
@@ -35,14 +40,22 @@ vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", { desc = "Terminal down window
 vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", { desc = "Terminal up window navigation" })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", { desc = "Terminal right window navigation" })
 
+-- Lazy package mananger mappings
+
+vim.keymap.set("n", "<leader>p", "<cmd> <leader>p <cr>", { desc = icons.misc.Package .. "Package" })
+vim.keymap.set("n", "<leader>ps", "<cmd> Lazy <cr>", { desc = "Package: Show" })
+vim.keymap.set("n", "<leader>pu", "<cmd> Lazy sync <cr>", { desc = "Package: Sync" })
+vim.keymap.set("n", "<leader>pi", "<cmd> Lazy update <cr>", { desc = "Package: Update" })
+vim.keymap.set("n", "<leader>pl", "<cmd> Lazy install <cr>", { desc = "Package: Install" })
+vim.keymap.set("n", "<leader>pc", "<cmd> Lazy log <cr>", { desc = "Package: Log" })
+vim.keymap.set("n", "<leader>pd", "<cmd> Lazy check <cr>", { desc = "Package: Check" })
+vim.keymap.set("n", "<leader>pp", "<cmd> Lazy debug <cr>", { desc = "Package: Debug" })
+vim.keymap.set("n", "<leader>pr", "<cmd> Lazy Restore <cr>", { desc = "Package: Restore" })
+vim.keymap.set("n", "<leader>px", "<cmd> Lazy clean <cr>", { desc = "Package: Clean" })
+
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-        local icons = {
-            misc = require("core").gets("misc"),
-        }
-
 
         local function map(mode, key, core, desc)
             vim.keymap.set(mode, key, core, { desc = desc, buffer = ev.buf })
