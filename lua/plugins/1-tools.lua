@@ -59,6 +59,113 @@ local default = {
         end,
     },
 
+
+    -- windwp/nvim-autopairs ->  [autopairs for neovim written in lua]
+    -- autopairs for neovim written in lua
+
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        lazy = true,
+        opts = {
+            check_ts = true,
+            ts_config = { java = false },
+            fast_wrap = {
+                map = "<M-e>",
+                chars = { "{", "[", "(", '"', "'" },
+                pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+                offset = 0,
+                end_key = "$",
+                keys = "qwertyuiopzxcvbnmasdfghjkl",
+                check_comma = true,
+                highlight = "PmenuSel",
+                highlight_grey = "LineNr",
+            },
+        },
+        config = function(_, opts)
+            require("nvim-autopairs").setup(opts)
+
+            require("cmp").event:on(
+                "confirm_done",
+                require("nvim-autopairs.completion.cmp").on_confirm_done({ tex = false })
+            )
+        end,
+    },
+
+    -- lewis6991/gitsigns.nvim -> [Git integration for buffers]
+    -- https://github.com/lewis6991/gitsigns.nvim
+
+    {
+        "lewis6991/gitsigns.nvim",
+        lazy = true,
+        event = { "CursorHold", "CursorHoldI" },
+        enabled = vim.fn.executable("git") == 1,
+
+        opts = {
+            signs = {
+                add = {
+                    hl = "GitSignsAdd",
+                    text = "│",
+                    numhl = "GitSignsAddNr",
+                    linehl = "GitSignsAddLn",
+                },
+                change = {
+                    hl = "GitSignsChange",
+                    text = "│",
+                    numhl = "GitSignsChangeNr",
+                    linehl = "GitSignsChangeLn",
+                },
+                delete = {
+                    hl = "GitSignsDelete",
+                    text = "_",
+                    numhl = "GitSignsDeleteNr",
+                    linehl = "GitSignsDeleteLn",
+                },
+                topdelete = {
+                    hl = "GitSignsDelete",
+                    text = "‾",
+                    numhl = "GitSignsDeleteNr",
+                    linehl = "GitSignsDeleteLn",
+                },
+                changedelete = {
+                    hl = "GitSignsChange",
+                    text = "~",
+                    numhl = "GitSignsChangeNr",
+                    linehl = "GitSignsChangeLn",
+                },
+            },
+            watch_gitdir = { interval = 1000, follow_files = true },
+            current_line_blame = true,
+            current_line_blame_opts = { delay = 1000, virtual_text_pos = "eol" },
+            sign_priority = 6,
+            update_debounce = 100,
+            status_formatter = nil, -- Use default
+            word_diff = false,
+            diff_opts = { internal = true },
+            on_attach = function(_)
+                local gs = package.loaded.gitsigns
+
+                -- stylua: ignore start
+                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = icons.git.Git .. "Git" })
+                vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
+                vim.keymap.set('n', '[h', function() gs.nav_hunk("prev") end, { desc = 'Prev Hunk' })
+                vim.keymap.set('n', ']H', function() gs.nav_hunk("last") end, { desc = 'Last Hunk' })
+                vim.keymap.set('n', '[H', function() gs.nav_hunk("first") end, { desc = 'First Hunk' })
+                vim.keymap.set({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage Hunk' })
+                vim.keymap.set({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset Hunk' })
+                vim.keymap.set('n', '<leader>gS', gs.stage_buffer, { desc = 'Stage Buffer' })
+                vim.keymap.set('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Undo Stage Hunk' })
+                vim.keymap.set('n', '<leader>gR', gs.reset_buffer, { desc = 'Reset Buffer' })
+                vim.keymap.set('n', '<leader>gp', gs.preview_hunk_inline, { desc = 'Preview Hunk Inline' })
+                vim.keymap.set('n', '<leader>gb', function() gs.blame_line({ full = true }) end, { desc = 'Blame Line' })
+                vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'Diff This' })
+                vim.keymap.set('n', '<leader>gD', function() gs.diffthis("~") end, { desc = 'Diff This ~' })
+                vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'GitSigns Select Hunk' })
+            end,
+        },
+    },
+
+
     -- toggleterm.nvim -> [Manager for multiple terminal windows]
     -- https://github.com//akinsho/toggleterm.nvim
 
@@ -240,33 +347,33 @@ local default = {
             end, { desc = "Find nvim config files" })
 
             vim.keymap.set("n", "<leader>fb", [[<cmd> lua require("telescope.builtin").buffers() <cr> ]],
-                { desc = "Find Buffers" })
+                { desc = "Find: Buffers" })
 
             vim.keymap.set("n", "<leader>fh", [[
                <cmd> lua require("telescope.builtin").help_tags() <cr>
             ]],
-                { desc = "Find help" })
+                { desc = "Find: help" })
 
             vim.keymap.set("n", "<leader>f/", [[
               <cmd> lua  require("telescope.builtin").current_buffer_fuzzy_find() <cr>
-           ]], { desc = "Find word in current buffer" })
+           ]], { desc = "Find: word in current buffer" })
 
             vim.keymap.set("n", "<leader>fo", [[
                <cmd> lua require("telescope.builtin").oldfiles() <cr>
-           ]], { desc = "Find recent" })
+           ]], { desc = "Find: recent" })
 
             vim.keymap.set("n", "<leader>ff", [[
                <cmd> lua require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) <cr>
-           ]], { desc = "Find all files" })
+           ]], { desc = "Find: files" })
 
             vim.keymap.set("n", "<leader>ft", [[
                <cmd> lua require("telescope.builtin").colorscheme({ enable_preview = true }) <cr>
-           ]], { desc = "Find themes" })
+           ]], { desc = "Find: themes" })
 
             if vim.fn.executable("rg") == 1 then
                 vim.keymap.set("n", "<leader>fw", [[
                 <cmd> lua require("telescope.builtin").live_grep() <cr>
-           ]], { desc = "Find Words" })
+           ]], { desc = "Find: Words" })
             end
         end,
     },
