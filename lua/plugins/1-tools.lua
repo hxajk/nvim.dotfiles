@@ -38,7 +38,7 @@ local default = {
                 },
                 {
                     "<leader>Sa",
-                    [[<cmd>lua require("persistence").load()]],
+                    [[<cmd>lua require("persistence").load()<cr>]],
                     desc = "Load current session",
                 },
                 {
@@ -236,43 +236,37 @@ local default = {
                     prompt_title = "Config Files",
                     cwd = vim.fn.stdpath("config"),
                     follow = true,
-                }) -- call telescope
+                })
             end, { desc = "Find nvim config files" })
 
-            -- Find Buffers
-            vim.keymap.set("n", "<leader>fb", function()
-                require("telescope.builtin").buffers()
-            end, { desc = "Find Buffers" })
+            vim.keymap.set("n", "<leader>fb", [[<cmd> lua require("telescope.builtin").buffers() <cr> ]],
+                { desc = "Find Buffers" })
 
-            -- Find help
-            vim.keymap.set("n", "<leader>fh", function()
-                require("telescope.builtin").help_tags()
-            end, { desc = "Find help" })
+            vim.keymap.set("n", "<leader>fh", [[
+               <cmd> lua require("telescope.builtin").help_tags() <cr>
+            ]],
+                { desc = "Find help" })
 
-            -- Find word in current buffer
-            vim.keymap.set("n", "<leader>f/", function()
-                require("telescope.builtin").current_buffer_fuzzy_find()
-            end, { desc = "Find word in current buffer" })
+            vim.keymap.set("n", "<leader>f/", [[
+              <cmd> lua  require("telescope.builtin").current_buffer_fuzzy_find() <cr>
+           ]], { desc = "Find word in current buffer" })
 
-            -- Find recent files
-            vim.keymap.set("n", "<leader>fo", function()
-                require("telescope.builtin").oldfiles()
-            end, { desc = "Find recent" })
+            vim.keymap.set("n", "<leader>fo", [[
+               <cmd> lua require("telescope.builtin").oldfiles() <cr>
+           ]], { desc = "Find recent" })
 
-            -- Find all files
-            vim.keymap.set("n", "<leader>ff", function()
-                require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
-            end, { desc = "Find all files" })
+            vim.keymap.set("n", "<leader>ff", [[
+               <cmd> lua require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) <cr>
+           ]], { desc = "Find all files" })
 
-            -- Find themes
-            vim.keymap.set("n", "<leader>ft", function()
-                require("telescope.builtin").colorscheme({ enable_preview = true })
-            end, { desc = "Find themes" })
+            vim.keymap.set("n", "<leader>ft", [[
+               <cmd> lua require("telescope.builtin").colorscheme({ enable_preview = true }) <cr>
+           ]], { desc = "Find themes" })
 
             if vim.fn.executable("rg") == 1 then
-                vim.keymap.set("n", "<leader>fw", function()
-                    require("telescope.builtin").live_grep()
-                end, { desc = "Find Words" })
+                vim.keymap.set("n", "<leader>fw", [[
+                <cmd> lua require("telescope.builtin").live_grep() <cr>
+           ]], { desc = "Find Words" })
             end
         end,
     },
