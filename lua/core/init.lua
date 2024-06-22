@@ -2,17 +2,6 @@
 
 local M = {}
 
-M.notify = function(msg, type, opts)
-	vim.schedule(function()
-		vim.notify(msg, type, vim.tbl_deep_extend("force", { title = "3x3y3z" }, opts or {}))
-	end)
-end
-
-M.is_available = function(plugin)
-	local status, lazy = pcall(require, "lazy.core.config")
-	return status and lazy.spec.plugins[plugin] ~= nil
-end
-
 M.create_file = function()
 	local extension = vim.fn.input("Enter your file type e.g (.txt, .lua, ...): ")
 
@@ -274,6 +263,4 @@ M.capabilities = function()
 	require("cmp_nvim_lsp").default_capabilities()
 end
 
-M.on_attach = function(client, bufnr)
-end
 return M
