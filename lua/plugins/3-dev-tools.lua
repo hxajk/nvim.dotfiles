@@ -131,7 +131,7 @@ local default = {
                 { "n", "v" },
                 "<leader>lf",
                 vim.lsp.buf.format,
-                { desc = "Format file" }
+                { desc = "LSP: Format file" }
             )
 
             vim.keymap.set("n", "<leader>lu", function()
@@ -142,7 +142,7 @@ local default = {
                 else
                     vim.notify("Disable Auto Format")
                 end
-            end, { desc = "Toggle autoformat" })
+            end, { desc = "LSP: Toggle autoformat" })
 
             vim.api.nvim_create_autocmd("BufWritePre", {
                 pattern = "*",
@@ -308,11 +308,6 @@ local default = {
                 },
             },
             log_level = vim.log.levels.INFO,
-        },
-        keys = {
-            { "<leader>p",  "<Cmd><leader>p<CR>",   desc = icons.misc.Package .. "Packages" },
-            { "<leader>pm", "<Cmd>Mason<CR>",       desc = "Open Language Menu" },
-            { "<leader>pu", "<Cmd>MasonUpdate<CR>", desc = "Refesh Language" },
         },
         config = function(_, opts)
             local ensure_installed = { "lua-language-server", "stylua" }

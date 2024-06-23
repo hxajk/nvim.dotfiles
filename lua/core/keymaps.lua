@@ -65,19 +65,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         map("n", "<leader>l", "<leader>l", icons.misc.LSP .. "LSP")
 
-        map("n", "<leader>lh", vim.lsp.buf.signature_help, "Show signature help")
+        map("n", "<leader>lh", vim.lsp.buf.signature_help, "LSP: Show signature help")
 
-        map('n', 'ld', vim.lsp.buf.definition, "Show definition")
+        map('n', 'ld', vim.lsp.buf.definition, "LSP: Show definition")
 
-        map("n", "<leader>li", "<cmd>LspInfo<cr>", "Lsp Info")
+        map("n", "<leader>li", "<cmd>LspInfo<cr>", "LSP: Info")
 
-        map("n", "<leader>lk", vim.lsp.buf.hover, "Hover")
+        map("n", "<leader>lk", vim.lsp.buf.hover, "LSP: Hover file")
 
-        map("n", "[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
+        map("n", "[d", vim.diagnostic.goto_prev, "LSP: Previous Diagnostic")
 
-        map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
+        map("n", "]d", vim.diagnostic.goto_next, "LSP: Next Diagnostic")
 
-        map("n", "<leader>ln", vim.lsp.buf.rename, "Rename Varable")
+        map("n", "<leader>ln", vim.lsp.buf.rename, "LSP: Rename Varable")
     end,
 })
 
