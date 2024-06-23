@@ -211,9 +211,9 @@ local default = {
                 "<Cmd><leader>t<CR>",
                 desc = icons.tools.Terminal .. "Terminal",
             },
-            { "<leader>tt", "<Cmd>ToggleTerm direction=float<CR>",      desc = "Toggle terminal (float)" },
-            { "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Toggle terminal (horizontal)" },
-            { "<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>",   desc = "Toggle terminal (vertical)" },
+            { "<leader>tt", "<Cmd>ToggleTerm direction=float<CR>",      desc = "Terminal: Toggle float" },
+            { "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Terminal:  Toggle horizontal" },
+            { "<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>",   desc = "Terminal: Toggle vertical" },
         },
 
         config = function(_, opts)
