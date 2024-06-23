@@ -202,9 +202,7 @@ local default = {
                 always_show_bufferline = true,
                 separator_style = "thin",
                 diagnostics = "nvim_lsp",
-                diagnostics_indicator = function(count)
-                    return "(" .. count .. ")"
-                end,
+                diagnostics_indicator = function(count) return "(" .. count .. ")" end,
 
                 highlights = {
 
@@ -224,8 +222,8 @@ local default = {
             { "<leader>be", "<Cmd>BufferLineSortByExtension<CR>", desc = "Buffer: Sort by extensions" },
             { "<leader>bd", "<Cmd>BufferLineSortByDirectory<CR>", desc = "Buffer: Sort by directory" },
 
-            { "<A-i>",      "<cmd>BufferLineCycleNext<cr>",       desc = "Buffer: Next" },
-            { "<A-o>",      "<cmd>BufferLineCyclePrev<cr>",       desc = "Buffer: Prev" },
+            { "<Tab>",      "<cmd>BufferLineCycleNext<cr>",       desc = "Buffer: Next" },
+            { "<S-Tab>",      "<cmd>BufferLineCyclePrev<cr>",       desc = "Buffer: Prev" },
         },
         config = function(_, opts)
             vim.opt.termguicolors = true
