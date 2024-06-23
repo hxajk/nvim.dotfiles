@@ -147,20 +147,14 @@ local default = {
 
                 -- stylua: ignore start
                 vim.keymap.set('n', '<leader>g', '<leader>g', { desc = icons.git.Git .. "Git" })
-                vim.keymap.set('n', ']h', function() gs.nav_hunk("next") end, { desc = 'Next Hunk' })
-                vim.keymap.set('n', '[h', function() gs.nav_hunk("prev") end, { desc = 'Prev Hunk' })
-                vim.keymap.set('n', ']H', function() gs.nav_hunk("last") end, { desc = 'Last Hunk' })
-                vim.keymap.set('n', '[H', function() gs.nav_hunk("first") end, { desc = 'First Hunk' })
-                vim.keymap.set({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage Hunk' })
-                vim.keymap.set({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset Hunk' })
-                vim.keymap.set('n', '<leader>gS', gs.stage_buffer, { desc = 'Stage Buffer' })
-                vim.keymap.set('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Undo Stage Hunk' })
-                vim.keymap.set('n', '<leader>gR', gs.reset_buffer, { desc = 'Reset Buffer' })
-                vim.keymap.set('n', '<leader>gp', gs.preview_hunk_inline, { desc = 'Preview Hunk Inline' })
-                vim.keymap.set('n', '<leader>gb', function() gs.blame_line({ full = true }) end, { desc = 'Blame Line' })
-                vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'Diff This' })
-                vim.keymap.set('n', '<leader>gD', function() gs.diffthis("~") end, { desc = 'Diff This ~' })
-                vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'GitSigns Select Hunk' })
+                vim.keymap.set('n', ']g', function() gs.nav_hunk("last") end, { desc = 'Git: Last Hunk' })
+                vim.keymap.set('n', '[g', function() gs.nav_hunk("first") end, { desc = 'Git : First Hunk' })
+                vim.keymap.set({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'Git: Stage Hunk' })
+                vim.keymap.set({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'Git: Reset Hunk' })
+                vim.keymap.set('n', '<leader>gR', gs.reset_buffer, { desc = 'Git: Reset Buffer' })
+                vim.keymap.set('n', '<leader>gp', gs.preview_hunk_inline, { desc = 'Git: Preview Hunk Inline' })
+                vim.keymap.set('n', '<leader>gb', function() gs.blame_line({ full = true }) end, { desc = 'Git: Blame Line' })
+                vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'Git: Diff This' })
             end,
         },
     },
