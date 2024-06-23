@@ -212,7 +212,7 @@ local default = {
                 desc = icons.tools.Terminal .. "Terminal",
             },
             { "<leader>tt", "<Cmd>ToggleTerm direction=float<CR>",      desc = "Terminal: Toggle float" },
-            { "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Terminal:  Toggle horizontal" },
+            { "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Terminal: Toggle horizontal" },
             { "<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>",   desc = "Terminal: Toggle vertical" },
         },
 
