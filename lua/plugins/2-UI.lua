@@ -219,12 +219,13 @@ local default = {
                 "<Cmd><leader>b<CR>",
                 desc = icons.ui.Buffer .. "Buffer",
             },
-            { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Buffer: Toggle Pin" },
-            { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Buffer: Delete " },
-            { "<leader>be", "<Cmd>BufferLineSortByExtension<CR>",      desc = "Buffer: Sort by extensions" },
+            { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",       desc = "Buffer: Toggle Pin" },
+            { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",     desc = "Buffer: Delete " },
+            { "<leader>be", "<Cmd>BufferLineSortByExtension<CR>", desc = "Buffer: Sort by extensions" },
+            { "<leader>bd", "<Cmd>BufferLineSortByDirectory<CR>", desc = "Buffer: Sort by directory" },
 
-            { "<A-i>",         "<cmd>BufferLineCycleNext<cr>",            desc = "Buffer: Next" },
-            { "<A-o>",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Buffer: Prev" },
+            { "<A-i>",      "<cmd>BufferLineCycleNext<cr>",       desc = "Buffer: Next" },
+            { "<A-o>",      "<cmd>BufferLineCyclePrev<cr>",       desc = "Buffer: Prev" },
         },
         config = function(_, opts)
             vim.opt.termguicolors = true
