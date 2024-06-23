@@ -32,24 +32,24 @@ local default = {
         keys = function()
             return {
                 {
-                    "<leader>S",
-                    "<cmd><leader>S<cr>",
+                    "<leader>s",
+                    "<cmd><leader>s<cr>",
                     desc = icons.tools.Session .. "Session",
                 },
                 {
-                    "<leader>Sa",
+                    "<leader>sa",
                     [[<cmd>lua require("persistence").load()<cr>]],
-                    desc = "Load current session",
+                    desc = "Session: Load current",
                 },
                 {
-                    "<leader>Sb",
+                    "<leader>sb",
                     [[<cmd>lua require("persistence").load({last = true})<cr>]],
-                    desc = "Load last session",
+                    desc = "Session: Load last",
                 },
                 {
-                    "<leader>Sc",
+                    "<leader>sc",
                     [[<cmd>lua require("persistence").stop()<cr>]],
-                    desc = "Stop session saved on exit",
+                    desc = "Session: Stop session",
                 },
             }
         end,
