@@ -7,6 +7,9 @@ local icons = {
 	ui = require("core").gets("ui"),
 }
 
+
+--- @brief Install lazy.vim, generate custom  for the first time, and us.
+--- @param installpath string
 M.init = function(installpath)
 	vim.notify("Waiting...")
 	vim.fn.system({
@@ -20,12 +23,12 @@ M.init = function(installpath)
 	M.gen_template()
 end
 
--- Function to generate a template configuration
+--- @brief Generate custom template for us.
 M.gen_template = function()
 	local path = vim.fn.stdpath("config") .. "/lua/custom"
 
 	if vim.fn.isdirectory(path) == 1 then
-		return
+		return;
 	end
 
 	vim.fn.mkdir(path, "p")
@@ -63,6 +66,8 @@ return default
 	end
 end
 
+--- @brief Loading lazy.vim, related core settings for greater 1 time.
+--- @param installpath string
 M.load = function(installpath)
 	vim.opt.rtp:prepend(installpath)
 
