@@ -253,7 +253,7 @@ local icons = {
 
 --- @brief a custom function used to get icon from a specific table (category).
 --- @param category string
---- @param add_space boolean
+--- @param add_space nil
 M.gets = function(category, add_space)
 	if not vim.g.icons_enabled then
 		return ""
