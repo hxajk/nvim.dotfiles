@@ -2,6 +2,8 @@
 
 local M = {}
 
+
+--- @brief A custom create_file function based on what i want:)
 M.create_file = function()
 	local extension = vim.fn.input("Enter your file type e.g (.txt, .lua, ...): ")
 
@@ -19,8 +21,8 @@ M.create_file = function()
 	print("Created file: " .. filename .. " with filetype: " .. filetype)
 end
 
--- lualine
 
+--- @brief A custom function for lualine lsp specifics.
 M.lsp_progress = function()
 	local cur = vim.fn.line(".")
 	local total = vim.fn.line("$")
@@ -38,6 +40,7 @@ M.lsp_progress = function()
 	end
 end
 
+--- @brief A theme function for lualine specifics
 M.theme = function()
 	-- -- Define the gruvbox color pallete
 	-- local colors = {
@@ -248,6 +251,9 @@ local icons = {
 	},
 }
 
+--- @brief a custom function used to get icon from a specific table (category).
+--- @param category string
+--- @param add_space boolean
 M.gets = function(category, add_space)
 	if not vim.g.icons_enabled then
 		return ""
