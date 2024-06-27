@@ -8,8 +8,9 @@ This is the repository where I host my nvim dotfiles that works on Linux 🐧�
 
   - Neovim >= v0.8.1
   - Git: [Click here](https://git-scm.com/downloads)
+  - fd: [Click here](https://github.com/sharkdp/fd)
   - Nerd Fonts: [Click here](https://www.nerdfonts.com/font-downloads) (Optional)
-  - NodeJS with npm (Optional)
+  - ripgrep: [Click here](https://github.com/BurntSushi/ripgrep) ( 🔎 -  Optional)
 
 <h1 align="center">✨ Features</h1>
 
