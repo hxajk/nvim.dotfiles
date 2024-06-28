@@ -138,7 +138,22 @@ local default = {
                 always_show_bufferline = true,
                 separator_style = "thin",
                 diagnostics = "nvim_lsp",
-                diagnostics_indicator = function(count) return "(" .. count .. ")" end,
+                diagnostics_indicator = function(_, _, diagnostics, _)
+                    local result = {}
+
+                    local symbols = {
+                        error   = icons.diagnostics.Error,
+                        warning = icons.diagnostics.Warning,
+                        info    = icons.diagnostics.Information,
+                    }
+                    for name, count in pairs(diagnostics) do
+                        if symbols[name] and count > 0 then
+                            table.insert(result, symbols[name] .. " " .. count)
+                        end
+                    end
+                    result = table.concat(result, " ")
+                    return #result > 0 and result or ""
+                end,
 
                 highlights = {
 
@@ -159,7 +174,7 @@ local default = {
             { "<leader>bd", "<Cmd>BufferLineSortByDirectory<CR>", desc = "Buffer: Sort by directory" },
 
             { "<Tab>",      "<cmd>BufferLineCycleNext<cr>",       desc = "Buffer: Next" },
-            { "<S-Tab>",      "<cmd>BufferLineCyclePrev<cr>",       desc = "Buffer: Prev" },
+            { "<S-Tab>",    "<cmd>BufferLineCyclePrev<cr>",       desc = "Buffer: Prev" },
         },
         config = function(_, opts)
             vim.opt.termguicolors = true
