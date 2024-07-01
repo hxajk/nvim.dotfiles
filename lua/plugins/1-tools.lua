@@ -92,6 +92,22 @@ local default = {
         end,
     },
 
+    {
+        'CRAG666/code_runner.nvim',
+
+        keys = {
+            { "<leader>r", "<Cmd>RunCode<CR>",      desc = "Code: Run" },
+        },
+
+        opts =  {
+
+        },
+
+        config = function (_,opts)
+            require("code_runner").setup(opts)
+        end
+    },
+
     -- lewis6991/gitsigns.nvim -> [Git integration for buffers]
     -- https://github.com/lewis6991/gitsigns.nvim
 
