@@ -246,6 +246,11 @@ local default = {
             },
         },
         keys = {
+            {"<leader>fh", [[
+               <cmd> lua require("telescope.builtin").help_tags() <cr>
+            ]],
+            desc = "Find: help"
+            }
         },
         opts = {
             pickers = {
