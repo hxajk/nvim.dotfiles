@@ -1,10 +1,5 @@
 -- Mappings general
 
-local icons = {
-    misc = require("core").gets("misc"),
-}
-
-
 -- Insert mode mappings
 vim.keymap.set("i", "jj", "<ESC>", { desc = "Turn to normal mode" })
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Beginning of line" })
@@ -26,8 +21,8 @@ vim.keymap.set("n", "<S-Up>", function()
     vim.api.nvim_feedkeys("5k", "n", true)
 end, { desc = "Fast move up" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
-vim.keymap.set("n", "<leader>\\", "<cmd>split<cr>", { desc = "Horizontal Split" })
+vim.keymap.set("n", "<leader>v", "<cmd>vsplit<cr>", { desc = "Navigation: Vertical Split" })
+vim.keymap.set("n", "<leader>h", "<cmd>split<cr>", { desc = "Navigation: Horizontal Split" })
 
 -- Visual mode mappings
 vim.keymap.set("x", "X", '"_x"', { desc = "Delete all characters in line" })
@@ -42,7 +37,6 @@ vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", { desc = "Terminal right windo
 
 -- Lazy package mananger mappings
 
-vim.keymap.set("n", "<leader>p", "<cmd> <leader>p <cr>", { desc = icons.misc.Package .. "Package" })
 vim.keymap.set("n", "<leader>ps", "<cmd> Lazy <cr>", { desc = "Package: Show" })
 vim.keymap.set("n", "<leader>pu", "<cmd> Lazy sync <cr>", { desc = "Package: Sync" })
 vim.keymap.set("n", "<leader>pi", "<cmd> Lazy update <cr>", { desc = "Package: Update" })
@@ -62,8 +56,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         -- Using the custom map function
-
-        map("n", "<leader>l", "<leader>l", icons.misc.LSP .. "LSP")
 
         map("n", "<leader>lh", vim.lsp.buf.signature_help, "LSP: Show signature help")
 

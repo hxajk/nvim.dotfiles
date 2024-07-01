@@ -125,8 +125,6 @@ local default = {
         },
         config = function(_, opts)
             require("conform").setup(opts)
-            vim.keymap.set("n", "<leader>l", "<leader>l", { desc = icons.misc.LSP .. "LSP" })
-
             vim.keymap.set(
                 { "n", "v" },
                 "<leader>lf",

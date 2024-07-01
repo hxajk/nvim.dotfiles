@@ -32,11 +32,6 @@ local default = {
         keys = function()
             return {
                 {
-                    "<leader>s",
-                    "<cmd><leader>s<cr>",
-                    desc = icons.tools.Session .. "Session",
-                },
-                {
                     "<leader>sa",
                     [[<cmd>lua require("persistence").load()<cr>]],
                     desc = "Session: Load current",
@@ -96,14 +91,14 @@ local default = {
         'CRAG666/code_runner.nvim',
 
         keys = {
-            { "<leader>r", "<Cmd>RunCode<CR>",      desc = "Code: Run" },
+            { "<leader>c", "<Cmd>RunCode<CR>", desc = "Code: Run" },
         },
 
-        opts =  {
+        opts = {
 
         },
 
-        config = function (_,opts)
+        config = function(_, opts)
             require("code_runner").setup(opts)
         end
     },
@@ -131,14 +126,14 @@ local default = {
                 local gs = package.loaded.gitsigns
 
                 -- stylua: ignore start
-                vim.keymap.set('n', '<leader>g', '<leader>g', { desc = icons.git.Git .. "Git" })
                 vim.keymap.set('n', ']g', function() gs.nav_hunk("last") end, { desc = 'Git: Last Hunk' })
                 vim.keymap.set('n', '[g', function() gs.nav_hunk("first") end, { desc = 'Git : First Hunk' })
                 vim.keymap.set({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'Git: Stage Hunk' })
                 vim.keymap.set({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'Git: Reset Hunk' })
                 vim.keymap.set('n', '<leader>gR', gs.reset_buffer, { desc = 'Git: Reset Buffer' })
                 vim.keymap.set('n', '<leader>gp', gs.preview_hunk_inline, { desc = 'Git: Preview Hunk Inline' })
-                vim.keymap.set('n', '<leader>gb', function() gs.blame_line({ full = true }) end, { desc = 'Git: Blame Line' })
+                vim.keymap.set('n', '<leader>gb', function() gs.blame_line({ full = true }) end,
+                    { desc = 'Git: Blame Line' })
                 vim.keymap.set('n', '<leader>gd', gs.diffthis, { desc = 'Git: Diff This' })
             end,
         },
@@ -191,11 +186,6 @@ local default = {
         },
 
         keys = {
-            {
-                "<leader>t",
-                "<Cmd><leader>t<CR>",
-                desc = icons.tools.Terminal .. "Terminal",
-            },
             { "<leader>tt", "<Cmd>ToggleTerm direction=float<CR>",      desc = "Terminal: Toggle float" },
             { "<leader>th", "<Cmd>ToggleTerm direction=horizontal<CR>", desc = "Terminal: Toggle horizontal" },
             { "<leader>tv", "<Cmd>ToggleTerm direction=vertical<CR>",   desc = "Terminal: Toggle vertical" },
@@ -255,6 +245,8 @@ local default = {
                 "nvim-telescope/telescope-ui-select.nvim",
             },
         },
+        keys = {
+        },
         opts = {
             pickers = {
                 colorscheme = {
@@ -307,10 +299,6 @@ local default = {
             },
 
             extensions = {},
-        },
-
-        keys = {
-            { "<leader>f", "<leader>f", desc = icons.tools.Telescope .. "Telescope" },
         },
 
         config = function(_, opts)

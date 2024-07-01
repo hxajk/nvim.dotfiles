@@ -6,6 +6,7 @@ local icons = {
     git = core.gets("git"),
     diagnostics = core.gets("diagnostics"),
     misc = core.gets("misc"),
+    tools = core.gets("tools")
 }
 
 local default = {
@@ -163,11 +164,6 @@ local default = {
             },
         },
         keys = {
-            {
-                "<leader>b",
-                "<Cmd><leader>b<CR>",
-                desc = icons.ui.Buffer .. "Buffer",
-            },
             { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",       desc = "Buffer: Toggle Pin" },
             { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",     desc = "Buffer: Delete " },
             { "<leader>be", "<Cmd>BufferLineSortByExtension<CR>", desc = "Buffer: Sort by extensions" },
@@ -401,9 +397,15 @@ local default = {
         cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
         lazy = true,
 
-        opts = {},
+        keys = {
+            { "<leader>e", "<Cmd>NvimTreeToggle<CR>", desc = "Navigation: Toggle" },
+        },
 
-        config = function (_,opts)
+        opts = {
+
+        },
+
+        config = function(_, opts)
             require("nvim-tree").setup(opts)
         end
     },
@@ -452,6 +454,7 @@ local default = {
             icons = {
                 breadcrumb = icons.ui.Separator,
                 separator = icons.misc.Vbar,
+                group = ""
             },
             window = {
                 position = "bottom",
@@ -461,6 +464,32 @@ local default = {
             },
         },
         config = function(_, opts)
+            require("which-key").register({
+                ["<leader>"] = {
+                    b = {
+                        name = icons.ui.Buffer .. " Buffer",
+                    },
+                    f = {
+                        name = icons.ui.Telescope .. " Search",
+                    },
+                    g = {
+                        name = icons.git.Git .. " Git",
+                    },
+                    l = {
+                        name = icons.misc.LSP .. " Language Server Protocol",
+                    },
+                    t = {
+                        name = icons.tools.Terminal .. " Terminal"
+                    },
+                    p = {
+                        name = icons.misc.Package .. " Package",
+                    },
+                    s = {
+                        name = icons.tools.Session .. " Session",
+                    },
+                },
+            })
+
             require("which-key").setup(opts)
         end,
     },
