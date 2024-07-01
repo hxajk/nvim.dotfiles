@@ -87,6 +87,10 @@ local default = {
         end,
     },
 
+
+    -- CRAG666/code_runner.nvim -> [A code runner plugins for neovim]
+    -- https://github.com/CRAG666/code_runner.nvim
+
     {
         'CRAG666/code_runner.nvim',
 
@@ -258,7 +262,6 @@ local default = {
                     enable_preview = true,
                 },
                 find_files = {
-                    find_command = { "fd", "--type=file", "--follow", "--exclude=.git" },
                 },
             },
             defaults = {
@@ -316,7 +319,7 @@ local default = {
                     cwd = vim.fn.stdpath("config"),
                     follow = true,
                 })
-            end, { desc = "Find nvim config files" })
+            end, { desc = "Find: nvim config files" })
 
             vim.keymap.set("n", "<leader>fb", [[<cmd> lua require("telescope.builtin").buffers() <cr> ]],
                 { desc = "Find: Buffers" })
