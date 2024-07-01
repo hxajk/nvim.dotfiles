@@ -396,6 +396,18 @@ local default = {
         end,
     },
 
+    {
+        'nvim-tree/nvim-tree.lua',
+        cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
+        lazy = true,
+
+        opts = {},
+
+        config = function (_,opts)
+            require("nvim-tree").setup(opts)
+        end
+    },
+
     -- nvim-scrollview -> [Displays interactive vertical scrollbars and signs]
     -- https://github.com/dstein64/nvim-scrollview
 
