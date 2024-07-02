@@ -250,10 +250,48 @@ local default = {
             },
         },
         keys = {
-            {"<leader>fh", [[
-               <cmd> lua require("telescope.builtin").help_tags() <cr>
-            ]],
-            desc = "Find: help"
+            {
+                "<leader>fa",
+                function()
+                    return require("telescope.builtin").find_files({
+                        prompt_title = "Config Files",
+                        cwd = vim.fn.stdpath("config"),
+                        follow = true,
+                    })
+                end,
+                desc = "Search: Nvim Configs Files"
+            },
+            {
+                "<leader>fb",
+                [[<cmd> lua require("telescope.builtin").buffers() <cr> ]],
+                desc = "Search: Buffers"
+            },
+            {
+                "<leader>f/",
+                [[<cmd> lua  require("telescope.builtin").current_buffer_fuzzy_find() <cr>]],
+                desc = "Search: Word in current buffers",
+            },
+            {
+                "<leader>fo",
+                [[<cmd> lua require("telescope.builtin").oldfiles() <cr>]],
+                desc = "Search: Recents files"
+            },
+            {
+                "<leader>ff",
+                [[<cmd> lua require("telescope.builtin").find_files()]],
+                desc = "Search: Files"
+            },
+            {
+                "<leader>ft",
+                [[ <cmd> lua require("telescope.builtin").colorscheme({ enable_preview = true }) <cr> ]],
+                desc = "Search: Themes",
+            },
+            {
+                "<leader>fh",
+                [[
+                    <Cmd> lua require("telescope.builtin").help_tags() <CR>
+                ]],
+                desc = "Search: help"
             }
         },
         opts = {
@@ -312,38 +350,6 @@ local default = {
         config = function(_, opts)
             require("telescope").setup(opts)
             require("telescope").load_extension("ui-select")
-
-            vim.keymap.set("n", "<leader>fa", function()
-                require("telescope.builtin").find_files({
-                    prompt_title = "Config Files",
-                    cwd = vim.fn.stdpath("config"),
-                    follow = true,
-                })
-            end, { desc = "Find: nvim config files" })
-
-            vim.keymap.set("n", "<leader>fb", [[<cmd> lua require("telescope.builtin").buffers() <cr> ]],
-                { desc = "Find: Buffers" })
-
-            vim.keymap.set("n", "<leader>fh", [[
-               <cmd> lua require("telescope.builtin").help_tags() <cr>
-            ]],
-                { desc = "Find: help" })
-
-            vim.keymap.set("n", "<leader>f/", [[
-              <cmd> lua  require("telescope.builtin").current_buffer_fuzzy_find() <cr>
-           ]], { desc = "Find: word in current buffer" })
-
-            vim.keymap.set("n", "<leader>fo", [[
-               <cmd> lua require("telescope.builtin").oldfiles() <cr>
-           ]], { desc = "Find: recent" })
-
-            vim.keymap.set("n", "<leader>ff", [[
-               <cmd> lua require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) <cr>
-           ]], { desc = "Find: files" })
-
-            vim.keymap.set("n", "<leader>ft", [[
-               <cmd> lua require("telescope.builtin").colorscheme({ enable_preview = true }) <cr>
-           ]], { desc = "Find: themes" })
 
             if vim.fn.executable("rg") == 1 then
                 vim.keymap.set("n", "<leader>fw", [[
