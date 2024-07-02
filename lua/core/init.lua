@@ -2,26 +2,6 @@
 
 local M = {}
 
-
---- @brief A custom create_file function based on what i want:)
-M.create_file = function()
-	local extension = vim.fn.input("Enter your file type e.g (.txt, .lua, ...): ")
-
-	if extension == "" then
-		print("No extension provided, operation cancelled.")
-		return
-	end
-
-	local filename = "newfile" .. extension
-	vim.cmd("e " .. filename)
-
-	local filetype = vim.fn.fnamemodify(filename, ":e")
-	vim.cmd("setlocal filetype=" .. filetype)
-
-	print("Created file: " .. filename .. " with filetype: " .. filetype)
-end
-
-
 --- @brief A custom function for lualine lsp specifics.
 M.lsp_progress = function()
 	local cur = vim.fn.line(".")
