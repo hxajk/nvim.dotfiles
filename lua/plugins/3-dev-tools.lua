@@ -4,7 +4,7 @@ local icons = {
     kind = require("core").gets("kind"),
     diagnostics = require("core").gets("diagnostics"),
     misc = require("core").gets("misc"),
-    ui = require("core").gets("ui")
+    ui = require("core").gets("ui"),
 }
 
 local default = {
@@ -106,7 +106,57 @@ local default = {
                 { text = icons.diagnostics.Information, texthl = "DiagnosticSignInfo" }
             )
             vim.fn.sign_define("DiagnosticSignHint", { text = icons.diagnostics.Hint, texthl = "DiagnosticSignHint" })
-            vim.api.nvim_command([[LspStart]]) -- start LSP
+            vim.api.nvim_command([[LspStart]])
+
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(ev)
+                    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+                    local function options(desc)
+                        return { desc = desc, buffer = ev.buf }
+                    end
+
+                    vim.keymap.set("n", "<leader>lh", vim.lsp.buf.signature_help, options("LSP: Show signature help"))
+
+                    vim.keymap.set("n", "ld", vim.lsp.buf.definition, options("LSP: Show definition"))
+
+                    vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", options("LSP: Info"))
+
+                    vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, options("LSP: Hover file"))
+
+                    vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, options("LSP: Rename Varable"))
+
+                    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, options("LSP: Previous Diagnostic"))
+
+                    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, options("LSP: Next Diagnostic"))
+
+                    vim.keymap.set(
+                        { "n", "v" },
+                        "<leader>lf",
+                        require("conform").format({ bufnr = ev.buf }),
+                        { desc = "LSP: Format file", buffer = ev.buf }
+                    )
+
+                    vim.keymap.set("n", "<leader>lu", function()
+                        vim.g.autoformat = not vim.g.autoformat
+
+                        if vim.g.autoformat then
+                            vim.notify("Enable Auto Format")
+                        else
+                            vim.notify("Disable Auto Format")
+                        end
+                    end, { desc = "LSP: Toggle autoformat" })
+
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        pattern = "*",
+                        callback = function(args)
+                            if vim.g.autoformat then
+                                require("conform").format({ bufnr = args.buf })
+                            end
+                        end,
+                    })
+                end,
+            })
         end,
     },
 
@@ -125,12 +175,7 @@ local default = {
         },
         config = function(_, opts)
             require("conform").setup(opts)
-            vim.keymap.set(
-                { "n", "v" },
-                "<leader>lf",
-                vim.lsp.buf.format,
-                { desc = "LSP: Format file" }
-            )
+            vim.keymap.set({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, { desc = "LSP: Format file" })
 
             vim.keymap.set("n", "<leader>lu", function()
                 vim.g.autoformat = not vim.g.autoformat
