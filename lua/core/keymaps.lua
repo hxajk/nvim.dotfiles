@@ -15,10 +15,10 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>", { desc = "Resize down" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Resize left" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Resize right" })
 vim.keymap.set("n", "<S-Down>", function()
-    vim.api.nvim_feedkeys("5j", "n", true)
+	vim.api.nvim_feedkeys("5j", "n", true)
 end, { desc = "Fast move down" })
 vim.keymap.set("n", "<S-Up>", function()
-    vim.api.nvim_feedkeys("5k", "n", true)
+	vim.api.nvim_feedkeys("5k", "n", true)
 end, { desc = "Fast move up" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>v", "<cmd>vsplit<cr>", { desc = "Navigation: Vertical Split" })
@@ -48,29 +48,29 @@ vim.keymap.set("n", "<leader>pr", "<cmd> Lazy Restore <cr>", { desc = "Package: 
 vim.keymap.set("n", "<leader>px", "<cmd> Lazy clean <cr>", { desc = "Package: Clean" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(ev)
-        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+	callback = function(ev)
+		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-        local function map(mode, key, core, desc)
-            vim.keymap.set(mode, key, core, { desc = desc, buffer = ev.buf })
-        end
+		local function map(mode, key, core, desc)
+			vim.keymap.set(mode, key, core, { desc = desc, buffer = ev.buf })
+		end
 
-        -- Using the custom map function
+		-- Using the custom map function
 
-        map("n", "<leader>lh", vim.lsp.buf.signature_help, "LSP: Show signature help")
+		map("n", "<leader>lh", vim.lsp.buf.signature_help, "LSP: Show signature help")
 
-        map('n', 'ld', vim.lsp.buf.definition, "LSP: Show definition")
+		map("n", "ld", vim.lsp.buf.definition, "LSP: Show definition")
 
-        map("n", "<leader>li", "<cmd>LspInfo<cr>", "LSP: Info")
+		map("n", "<leader>li", "<cmd>LspInfo<cr>", "LSP: Info")
 
-        map("n", "<leader>lk", vim.lsp.buf.hover, "LSP: Hover file")
+		map("n", "<leader>lk", vim.lsp.buf.hover, "LSP: Hover file")
 
-        map("n", "[d", vim.diagnostic.goto_prev, "LSP: Previous Diagnostic")
+		map("n", "[d", vim.diagnostic.goto_prev, "LSP: Previous Diagnostic")
 
-        map("n", "]d", vim.diagnostic.goto_next, "LSP: Next Diagnostic")
+		map("n", "]d", vim.diagnostic.goto_next, "LSP: Next Diagnostic")
 
-        map("n", "<leader>ln", vim.lsp.buf.rename, "LSP: Rename Varable")
-    end,
+		map("n", "<leader>ln", vim.lsp.buf.rename, "LSP: Rename Varable")
+	end,
 })
 
 require("custom.keymaps")
