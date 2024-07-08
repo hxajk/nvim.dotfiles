@@ -1,4 +1,4 @@
--- Bootstrap core 
+-- Bootstrap core
 
 local M = {}
 
@@ -7,11 +7,10 @@ local icons = {
 	ui = require("core").gets("ui"),
 }
 
-
 --- @brief Install lazy.vim, generate custom  for the first time, and us.
 --- @param installpath string
 M.init = function(installpath)
-	vim.notify("Waiting...")
+	vim.notify("Loading package manager... ⏱")
 	vim.fn.system({
 		"git",
 		"clone",
@@ -28,7 +27,7 @@ M.gen_template = function()
 	local path = vim.fn.stdpath("config") .. "/lua/custom"
 
 	if vim.fn.isdirectory(path) == 1 then
-		return;
+		return
 	end
 
 	vim.fn.mkdir(path, "p")
@@ -80,11 +79,9 @@ M.load = function(installpath)
 
 		ui = {
 			border = "rounded",
-			title = "Plugin Manager",
-			title_pos = "center",
-            size = { width = 0.88, height = 0.8 },
-            wrap = true,
-            icons = {
+			size = { width = 0.88, height = 0.8 },
+			wrap = true,
+			icons = {
 				cmd = icons.misc.Code,
 				config = icons.ui.Gear,
 				init = icons.misc.ManUp,
@@ -109,8 +106,8 @@ M.load = function(installpath)
 				reset = true,
 				---@type string[]
 				paths = {},
-                --download faster from the plugin repos.
-                disabled_plugins = {"tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin"},
+				--download faster from the plugin repos.
+				disabled_plugins = { "tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin" },
 			},
 		},
 	})
