@@ -1,92 +1,94 @@
--- Options Settings
+-----------------------------------------------------------
+-- General Neovim settings and configuration
+-----------------------------------------------------------
 
--- Clipboard setup based on environment
-vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+-----------------------------------------------------------
+-- General Neovim options and configuration
+-----------------------------------------------------------
 
--- Completion options
-vim.opt.completeopt = "menu,menuone,noselect"
+local opt = vim.opt -- Set options (global/buffer/windows-scoped)
 
--- Display options
-vim.opt.showmode = false
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.numberwidth = 1
-vim.opt.cursorline = true
-vim.opt.termguicolors = true
-vim.opt.sidescrolloff = 8
-vim.opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = " ",
-}
+-- General
 
--- Indentation and tabs
-vim.opt.tabstop = 4 -- Number of spaces for a tab
-vim.opt.shiftwidth = 4 -- Spaces for auto-indent
-vim.opt.expandtab = true -- Convert tabs to spaces
-vim.opt.smartindent = true -- Smart indentation
+opt.mouse = "a"
+opt.clipboard = "unnamedplus"
+opt.swapfile = false
+opt.completeopt = "menuone,noinsert,noselect"
 
--- File handling
-vim.opt.autowrite = true
-vim.opt.swapfile = true
-vim.opt.backup = false
-vim.opt.undofile = true
+-- Neovim UI
 
--- Folding
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = vim.fn.has("nvim-0.10") == 1 and "expr" or "indent"
-vim.opt.foldtext = vim.fn.has("nvim-0.10") == 1 and "" or vim.opt.foldtext
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.number = true
+opt.showmatch = true
+opt.foldmethod = "marker"
+opt.colorcolumn = "80"
+opt.splitright = true
+opt.splitbelow = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.linebreak = true
+opt.termguicolors = true
+opt.laststatus = 3
 
--- Search settings
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+-- Tabs, indent
 
--- Time settings
-vim.opt.timeoutlen = 300
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.smartindent = true
 
--- Scrolling and wrapping
-vim.opt.wrap = false
-vim.opt.scrolloff = 10
+-- Memory
 
--- Mouse settings
-vim.opt.mouse = "a" -- Enable mouse mode; set to "" to disable
--- vim.opt.guicursor = "" -- Enable blocky cursor
+opt.hidden = true
+opt.history = 100
+opt.lazyredraw = true
+opt.synmaxcol = 240
+opt.updatetime = 250
+opt.undofile = true
 
--- Virtual editing
-vim.opt.virtualedit = "block"
-
--- Smooth scrolling (available in Neovim 0.10 and above)
-if vim.fn.has("nvim-0.10") == 1 then
-	vim.opt.smoothscroll = true
-end
-
--- Editor settings
-vim.cmd("set autoindent")
-vim.cmd("set smarttab")
-vim.cmd("set ve+=onemore")
-vim.cmd("set updatetime=500")
+------------------------------------------------------------
+-- Configuration
+-----------------------------------------------------------
 
 -- Global Variables
-vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than 100KB
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 vim.g.icons_enabled = true
 vim.g.autoformat = false
--- Extras
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
--- disable some default providers
-vim.g["loaded_node_provider"] = 0
-vim.g["loaded_python3_provider"] = 0
-vim.g["loaded_perl_provider"] = 0
-vim.g["loaded_ruby_provider"] = 0
+-- Disable builtin plugins
+local disabled_built_ins = {
+    "2html_plugin",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logipat",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "matchit",
+    "tar",
+    "tarPlugin",
+    "rrhelper",
+    "spellfile_plugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
+    "tutor",
+    "rplugin",
+    "synmenu",
+    "optwin",
+    "compiler",
+    "bugreport",
+    "ftplugin",
+}
 
--- add binaries installed by mason.nvim to path
+for _, plugin in pairs(disabled_built_ins) do
+    vim.g["loaded_" .. plugin] = 1
+end
+
+-- Set global variable
 local is_windows = vim.fn.has("win32") ~= 0
 
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
