@@ -22,23 +22,7 @@ end
 
 --- @brief A theme function for lualine specifics
 M.theme = function()
-	-- -- Define the gruvbox color pallete
-	-- local colors = {
-	-- 	black = "#282828",
-	-- 	white = "#ebdbb2",
-	-- 	red = "#fb4934",
-	-- 	green = "#b8bb26",
-	-- 	blue = "#83a598",
-	-- 	yellow = "#fe8019",
-	-- 	gray = "#a89984",
-	-- 	darkgray = "#3c3836",
-	-- 	lightgray = "#504945",
-	-- 	inactivegray = "#7c6f64",
-	-- 	outerbg = "None",
-	-- 	innerbg = "None",
-	-- }
 
-	-- Define the evil lualine color palette
 	local colors = {
 		bg = "#202328",
 		fg = "#bbc2cf",
@@ -244,9 +228,4 @@ M.gets = function(category, add_space)
 		end,
 	})
 end
-
-M.capabilities = function()
-	require("cmp_nvim_lsp").default_capabilities()
-end
-
 return M
