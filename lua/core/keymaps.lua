@@ -34,6 +34,8 @@ vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h", { desc = "Terminal left window
 vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", { desc = "Terminal down window navigation" })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", { desc = "Terminal up window navigation" })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", { desc = "Terminal right window navigation" })
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
 
 -- Lazy package mananger mappings
 
