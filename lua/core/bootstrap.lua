@@ -3,8 +3,8 @@
 local M = {}
 
 local icons = {
-	misc = require("core").gets("misc"),
-	ui = require("core").gets("ui"),
+	misc = require("core.icons").gets("misc"),
+	ui = require("core.icons").gets("ui"),
 }
 
 --- @brief Install lazy.vim, generate custom  for the first time, and us.

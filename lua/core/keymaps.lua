@@ -36,7 +36,6 @@ vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", { desc = "Terminal up window n
 vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", { desc = "Terminal right window navigation" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
-
 -- Lazy package mananger mappings
 
 vim.keymap.set("n", "<leader>ps", "<cmd> Lazy <cr>", { desc = "Package: Show" })
@@ -48,31 +47,5 @@ vim.keymap.set("n", "<leader>pd", "<cmd> Lazy check <cr>", { desc = "Package: Ch
 vim.keymap.set("n", "<leader>pp", "<cmd> Lazy debug <cr>", { desc = "Package: Debug" })
 vim.keymap.set("n", "<leader>pr", "<cmd> Lazy Restore <cr>", { desc = "Package: Restore" })
 vim.keymap.set("n", "<leader>px", "<cmd> Lazy clean <cr>", { desc = "Package: Clean" })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(ev)
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-		local function map(mode, key, core, desc)
-			vim.keymap.set(mode, key, core, { desc = desc, buffer = ev.buf })
-		end
-
-		-- Using the custom map function
-
-		map("n", "<leader>lh", vim.lsp.buf.signature_help, "LSP: Show signature help")
-
-		map("n", "ld", vim.lsp.buf.definition, "LSP: Show definition")
-
-		map("n", "<leader>li", "<cmd>LspInfo<cr>", "LSP: Info")
-
-		map("n", "<leader>lk", vim.lsp.buf.hover, "LSP: Hover file")
-
-		map("n", "[d", vim.diagnostic.goto_prev, "LSP: Previous Diagnostic")
-
-		map("n", "]d", vim.diagnostic.goto_next, "LSP: Next Diagnostic")
-
-		map("n", "<leader>ln", vim.lsp.buf.rename, "LSP: Rename Varable")
-	end,
-})
 
 require("custom.keymaps")

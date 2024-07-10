@@ -1,6 +1,8 @@
 -- Tools plugins
 
-local icons = { tools = require("core").gets("tools"), git = require("core").gets("git") }
+local icons = { tools = require("core.icons").gets("tools"),
+                git = require("core.icons").gets("git")
+              }
 
 local default = {
 
